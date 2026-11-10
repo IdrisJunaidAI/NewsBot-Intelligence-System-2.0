@@ -1,0 +1,4 @@
+# Never commit actual API keys. This prototype requires none for the core modules.
+# Optional third party translation / news services can be configured through environment variables.
+NEWS_API_KEY=
+TRANSLATION_API_KEY=

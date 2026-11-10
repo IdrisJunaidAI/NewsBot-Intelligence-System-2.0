@@ -1,0 +1,15 @@
+Validation date: November 10, 2026
+Context: local automated tests using installed Python packages and synthetic examples.
+Outcome: 10 tests passed in 3.14 seconds (pytest -q).
+Python compileall: passed.
+Demonstration training: completed on 60 synthetic news examples.
+Demonstration training split: 12 held-out records. Held-out logistic accuracy: 0.50; NOT a real publisher research metric.
+Retrieval: TF IDF lexical fallback only.
+Topic modeling: both LDA and NMF fit and generated top topic words.
+Conversational test: 12 matching sport articles on synthetic dataset.
+NER: unavailable in current runtime because en_core_web_sm is not installed; explicit status returned.
+Missing web dependencies in current runtime: flask; webdriver/browser run not performed.
+Missing optional translation/semantic dependencies in current runtime: deep_translator and sentence-transformers.
+Actual BBC News Train.csv: not provided; no final BBC evaluation performed.
+Live URL: not deployed.
+This text is a record of local testing and its limits, not final acceptance criteria.

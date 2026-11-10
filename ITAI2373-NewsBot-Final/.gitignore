@@ -1,0 +1,11 @@
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
+.env
+*.pyc
+*.joblib
+*.pkl
+.DS_Store
+data/raw/BBC News Train.csv
+/data/models/*
+!/data/models/.gitkeep

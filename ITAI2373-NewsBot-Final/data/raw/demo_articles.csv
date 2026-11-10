@@ -1,0 +1,61 @@
+ArticleId,Text,Category,date,source,language
+DEMO0001,The regional bank announced stronger quarterly earnings after commercial lending increased and operating expenses decreased.,business,2026-09-01,"SYNTHETIC classroom example, not a publisher",en
+DEMO0002,A manufacturing company increased its annual investment budget to expand warehouse capacity and strengthen supply chains.,business,2026-09-06,"SYNTHETIC classroom example, not a publisher",en
+DEMO0003,Investors monitored the stock market as retailers reported slower consumer spending and adjusted revenue forecasts.,business,2026-09-11,"SYNTHETIC classroom example, not a publisher",en
+DEMO0004,The global logistics company introduced new shipping contracts that reduce delivery costs for regional exporters.,business,2026-09-16,"SYNTHETIC classroom example, not a publisher",en
+DEMO0005,An independent economic survey found small businesses expect higher hiring demand during the next financial quarter.,business,2026-09-21,"SYNTHETIC classroom example, not a publisher",en
+DEMO0006,The corporate board approved a merger proposal after auditors reviewed the acquisition price and financial statements.,business,2026-09-26,"SYNTHETIC classroom example, not a publisher",en
+DEMO0007,A retail chain opened three locations and reported improved sales from household products and online orders.,business,2026-10-01,"SYNTHETIC classroom example, not a publisher",en
+DEMO0008,The national currency weakened while importers faced higher costs for raw materials and manufacturing supplies.,business,2026-10-06,"SYNTHETIC classroom example, not a publisher",en
+DEMO0009,An insurance company expanded its customer service division and revised annual premium revenue expectations.,business,2026-10-11,"SYNTHETIC classroom example, not a publisher",en
+DEMO0010,The hospitality industry reported increased hotel bookings as travel spending strengthened during the summer season.,business,2026-10-16,"SYNTHETIC classroom example, not a publisher",en
+DEMO0011,The investment fund reduced exposure to energy shares and increased its holdings in infrastructure projects.,business,2026-10-21,"SYNTHETIC classroom example, not a publisher",en
+DEMO0012,A startup raised venture capital to finance product development and recruit new engineering employees.,business,2026-10-26,"SYNTHETIC classroom example, not a publisher",en
+DEMO0013,The independent film director announced a new drama featuring a cast of award winning actors and musicians.,entertainment,2026-09-01,"SYNTHETIC classroom example, not a publisher",en
+DEMO0014,The theater company opened its autumn season with a musical production praised by early festival audiences.,entertainment,2026-09-06,"SYNTHETIC classroom example, not a publisher",en
+DEMO0015,A streaming platform released a documentary series exploring the careers of influential jazz performers.,entertainment,2026-09-11,"SYNTHETIC classroom example, not a publisher",en
+DEMO0016,"The cultural festival attracted thousands of visitors to exhibitions, concerts and live performance stages.",entertainment,2026-09-16,"SYNTHETIC classroom example, not a publisher",en
+DEMO0017,The television network commissioned a comedy series from a writer known for several acclaimed productions.,entertainment,2026-09-21,"SYNTHETIC classroom example, not a publisher",en
+DEMO0018,A famous museum unveiled a contemporary art exhibition featuring sculptures and experimental video installations.,entertainment,2026-09-26,"SYNTHETIC classroom example, not a publisher",en
+DEMO0019,The concert promoter confirmed an international tour with performers appearing in twenty major cities.,entertainment,2026-10-01,"SYNTHETIC classroom example, not a publisher",en
+DEMO0020,The literary awards committee shortlisted six novels recognized for character development and original storytelling.,entertainment,2026-10-06,"SYNTHETIC classroom example, not a publisher",en
+DEMO0021,An animation studio premiered a family adventure movie during the annual cinema festival program.,entertainment,2026-10-11,"SYNTHETIC classroom example, not a publisher",en
+DEMO0022,A music publisher signed an emerging singer after her debut album gained attention across radio stations.,entertainment,2026-10-16,"SYNTHETIC classroom example, not a publisher",en
+DEMO0023,The ballet company invited guest dancers to perform a classical production during the winter season.,entertainment,2026-10-21,"SYNTHETIC classroom example, not a publisher",en
+DEMO0024,The gaming awards ceremony recognized creative storytelling and visual design in several new releases.,entertainment,2026-10-26,"SYNTHETIC classroom example, not a publisher",en
+DEMO0025,The parliamentary committee discussed a new transportation bill and invited public comments before a vote.,politics,2026-09-01,"SYNTHETIC classroom example, not a publisher",en
+DEMO0026,Government officials announced a policy review addressing municipal budgets and infrastructure accountability.,politics,2026-09-06,"SYNTHETIC classroom example, not a publisher",en
+DEMO0027,The election commission published procedural guidance for registered candidates and accredited observers.,politics,2026-09-11,"SYNTHETIC classroom example, not a publisher",en
+DEMO0028,Lawmakers negotiated amendments to an education proposal during a lengthy committee hearing.,politics,2026-09-16,"SYNTHETIC classroom example, not a publisher",en
+DEMO0029,The city council voted to authorize a public consultation on zoning rules and community development.,politics,2026-09-21,"SYNTHETIC classroom example, not a publisher",en
+DEMO0030,A diplomatic delegation discussed regional trade agreements with representatives from neighboring countries.,politics,2026-09-26,"SYNTHETIC classroom example, not a publisher",en
+DEMO0031,The governor delivered a legislative address outlining proposed changes to the annual state budget.,politics,2026-10-01,"SYNTHETIC classroom example, not a publisher",en
+DEMO0032,Political parties prepared campaign platforms ahead of scheduled local elections and candidate debates.,politics,2026-10-06,"SYNTHETIC classroom example, not a publisher",en
+DEMO0033,The legislative oversight panel requested an audit of procurement practices in several government agencies.,politics,2026-10-11,"SYNTHETIC classroom example, not a publisher",en
+DEMO0034,A court ruling prompted officials to revise the timeline for a contested administrative regulation.,politics,2026-10-16,"SYNTHETIC classroom example, not a publisher",en
+DEMO0035,The senate debated proposed environmental standards after experts testified on enforcement costs.,politics,2026-10-21,"SYNTHETIC classroom example, not a publisher",en
+DEMO0036,A minister announced a consultation process for new public service transparency requirements.,politics,2026-10-26,"SYNTHETIC classroom example, not a publisher",en
+DEMO0037,The football club secured a championship victory after its captain scored the deciding goal in extra time.,sport,2026-09-01,"SYNTHETIC classroom example, not a publisher",en
+DEMO0038,The basketball team won its semifinal game following a strong defensive performance in the final quarter.,sport,2026-09-06,"SYNTHETIC classroom example, not a publisher",en
+DEMO0039,The tennis player advanced to the tournament final after defeating a highly ranked opponent in three sets.,sport,2026-09-11,"SYNTHETIC classroom example, not a publisher",en
+DEMO0040,The cycling squad completed the mountain stage with its team leader maintaining the race lead.,sport,2026-09-16,"SYNTHETIC classroom example, not a publisher",en
+DEMO0041,The baseball manager praised the pitchers after a narrow win in the league playoff series.,sport,2026-09-21,"SYNTHETIC classroom example, not a publisher",en
+DEMO0042,The swimming federation announced the finalists for the national competition held at the aquatic center.,sport,2026-09-26,"SYNTHETIC classroom example, not a publisher",en
+DEMO0043,The marathon runner improved her personal best during a demanding road race in humid conditions.,sport,2026-10-01,"SYNTHETIC classroom example, not a publisher",en
+DEMO0044,The hockey team lost its away match after conceding two goals during the final period.,sport,2026-10-06,"SYNTHETIC classroom example, not a publisher",en
+DEMO0045,The rugby captain returned from injury to lead the club in an important regional match.,sport,2026-10-11,"SYNTHETIC classroom example, not a publisher",en
+DEMO0046,The soccer coach introduced a training program focused on passing accuracy and goalkeeper positioning.,sport,2026-10-16,"SYNTHETIC classroom example, not a publisher",en
+DEMO0047,The athletics team finished first at the university meet following victories in sprinting and relay events.,sport,2026-10-21,"SYNTHETIC classroom example, not a publisher",en
+DEMO0048,The volleyball tournament attracted regional teams competing for qualification in the final round.,sport,2026-10-26,"SYNTHETIC classroom example, not a publisher",en
+DEMO0049,The software company introduced a machine learning platform that helps developers monitor model performance.,technology,2026-09-01,"SYNTHETIC classroom example, not a publisher",en
+DEMO0050,Engineers demonstrated a new semiconductor chip designed for efficient artificial intelligence inference.,technology,2026-09-06,"SYNTHETIC classroom example, not a publisher",en
+DEMO0051,The cybersecurity research team discovered a software vulnerability and released guidance for affected systems.,technology,2026-09-11,"SYNTHETIC classroom example, not a publisher",en
+DEMO0052,A robotics laboratory tested an autonomous navigation algorithm using cameras and environmental sensors.,technology,2026-09-16,"SYNTHETIC classroom example, not a publisher",en
+DEMO0053,The cloud computing provider expanded its data center infrastructure to support distributed applications.,technology,2026-09-21,"SYNTHETIC classroom example, not a publisher",en
+DEMO0054,Researchers published a new natural language processing benchmark for evaluating multilingual algorithms.,technology,2026-09-26,"SYNTHETIC classroom example, not a publisher",en
+DEMO0055,The smartphone manufacturer announced improved battery technology and a faster mobile processor.,technology,2026-10-01,"SYNTHETIC classroom example, not a publisher",en
+DEMO0056,The telecommunications company tested a high speed network architecture for remote industrial devices.,technology,2026-10-06,"SYNTHETIC classroom example, not a publisher",en
+DEMO0057,The technology startup released an open source development toolkit for secure application programming.,technology,2026-10-11,"SYNTHETIC classroom example, not a publisher",en
+DEMO0058,The engineering team deployed an upgraded database system to improve transaction latency and reliability.,technology,2026-10-16,"SYNTHETIC classroom example, not a publisher",en
+DEMO0059,A university computer science lab built a prototype robot controlled by a reinforcement learning agent.,technology,2026-10-21,"SYNTHETIC classroom example, not a publisher",en
+DEMO0060,The software developer introduced stronger encryption and improved identity management in the new release.,technology,2026-10-26,"SYNTHETIC classroom example, not a publisher",en

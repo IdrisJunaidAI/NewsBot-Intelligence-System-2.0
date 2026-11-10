@@ -1,0 +1,32 @@
+name: NewsBot 2.0 Python Tests
+
+on:
+  push:
+    paths:
+      - "ITAI2373-NewsBot-Final/**"
+      - ".github/workflows/newsbot2-ci.yml"
+  pull_request:
+    paths:
+      - "ITAI2373-NewsBot-Final/**"
+      - ".github/workflows/newsbot2-ci.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ITAI2373-NewsBot-Final
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install project dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Run unit and Flask API tests
+        run: python -m pytest -q
+      - name: Verify explicitly synthetic model training
+        run: python train.py --demo

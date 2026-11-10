@@ -1,0 +1,46 @@
+"""NewsBot 2.0: cohesive analysis engine with explicit provenance and capability status."""
+from config.settings import Settings
+from src.data_processing.data_validator import load_news_csv,quality_report
+from src.analysis.classifier import NewsClassifier
+from src.analysis.topic_modeler import TopicModeler
+from src.analysis.sentiment_analyzer import SentimentAnalyzer
+from src.analysis.ner_extractor import EntityExtractor
+from src.language_models.summarizer import NewsSummarizer
+from src.language_models.embeddings import SemanticSearch
+from src.language_models.generator import InsightGenerator
+from src.multilingual.language_detector import LanguageDetector
+from src.multilingual.translator import Translator
+from src.multilingual.cross_lingual_analyzer import CrossLingualAnalyzer
+from src.conversation.query_processor import QueryProcessor
+
+class NewsBotSystem:
+    def __init__(self,settings=None,use_embeddings=False):
+        self.settings=settings or Settings()
+        self.classifier=NewsClassifier(max_features=self.settings.max_features,seed=self.settings.seed)
+        self.topics=TopicModeler(n_topics=self.settings.n_topics,seed=self.settings.seed)
+        self.sentiment=SentimentAnalyzer();self.entities=EntityExtractor()
+        self.summarizer=NewsSummarizer();self.search=SemanticSearch(use_embeddings=use_embeddings)
+        self.languages=LanguageDetector();self.translator=Translator();self.generator=InsightGenerator()
+        self.multilingual=CrossLingualAnalyzer(self.search);self.conversation=QueryProcessor(self)
+        self.df=None;self.source='not loaded'
+    def fit_csv(self,path,source=None):
+        self.df=load_news_csv(path)
+        self.source=source or str(path)
+        self.classifier.fit(self.df,source=self.source)
+        self.topics.fit(self.df.text)
+        self.search.fit(self.df)
+        return self
+    def analyze(self,text):
+        if not isinstance(text,str) or len(text.strip())<30:
+            raise ValueError('Please enter an article of at least 30 characters')
+        if len(text)>self.settings.max_input_characters:raise ValueError('Article is too long')
+        classification=self.classifier.predict(text)
+        analysis={'classification':classification,'sentiment':self.sentiment.analyze(text),
+             'language':self.languages.detect(text),'summary':self.summarizer.summarize(text),
+             'entities':self.entities.extract(text),'relations':self.entities.relationships(text),
+             'topics':self.topics.topics_for(text),
+             'needs_human_review':classification['model_probability']<self.settings.low_confidence_threshold,
+             'model_source':self.source}
+        return analysis
+    def corpus_stats(self):return quality_report(self.df)
+    def ask(self,query,context=None):return self.conversation.process(query,context)

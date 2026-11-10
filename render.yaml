@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: newsbot-intelligence-system-2
+    runtime: python
+    rootDir: ITAI2373-NewsBot-Final
+    buildCommand: pip install -r requirements.txt
+    startCommand: bash scripts/start_web.sh
+    healthCheckPath: /health
+    envVars:
+      - key: FLASK_SECRET_KEY
+        generateValue: true

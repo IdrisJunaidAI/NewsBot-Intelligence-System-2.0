@@ -1,0 +1,158 @@
+{
+  "provenance": "DEMO SYNTHETIC DATA ONLY",
+  "classifier_evaluation": {
+    "source": "DEMO SYNTHETIC DATA ONLY",
+    "n_articles": 60,
+    "holdout_n": 12,
+    "logistic_heldout_accuracy": 0.5,
+    "logistic_heldout_macro_f1": 0.4533333333333333,
+    "cv_comparison": [
+      {
+        "model": "Majority baseline",
+        "cv_macro_f1": 0.06315789473684211,
+        "cv_accuracy": 0.1875
+      },
+      {
+        "model": "Multinomial Naive Bayes",
+        "cv_macro_f1": 0.5367724867724867,
+        "cv_accuracy": 0.5416666666666666
+      },
+      {
+        "model": "Logistic Regression",
+        "cv_macro_f1": 0.5196296296296296,
+        "cv_accuracy": 0.5208333333333334
+      },
+      {
+        "model": "Linear SVM",
+        "cv_macro_f1": 0.6382010582010582,
+        "cv_accuracy": 0.625
+      }
+    ],
+    "per_class": {
+      "business": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3.0
+      },
+      "entertainment": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1-score": 0.6666666666666666,
+        "support": 2.0
+      },
+      "politics": {
+        "precision": 0.6666666666666666,
+        "recall": 1.0,
+        "f1-score": 0.8,
+        "support": 2.0
+      },
+      "sport": {
+        "precision": 0.5,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.4,
+        "support": 3.0
+      },
+      "technology": {
+        "precision": 0.3333333333333333,
+        "recall": 0.5,
+        "f1-score": 0.4,
+        "support": 2.0
+      },
+      "accuracy": 0.5,
+      "macro avg": {
+        "precision": 0.39999999999999997,
+        "recall": 0.5666666666666667,
+        "f1-score": 0.4533333333333333,
+        "support": 12.0
+      },
+      "weighted avg": {
+        "precision": 0.375,
+        "recall": 0.5,
+        "f1-score": 0.41111111111111115,
+        "support": 12.0
+      }
+    },
+    "evaluation_note": "Independent 20% held-out partition; demonstration data cannot establish real-world reliability"
+  },
+  "corpus": {
+    "articles": 60,
+    "categories": {
+      "business": 12,
+      "entertainment": 12,
+      "politics": 12,
+      "sport": 12,
+      "technology": 12
+    },
+    "dated_articles": 60,
+    "source_coverage": 60
+  },
+  "topic_words": [
+    {
+      "topic": 0,
+      "words": [
+        "new",
+        "development",
+        "committee",
+        "public",
+        "recognized",
+        "storytelling",
+        "awards",
+        "consultation"
+      ]
+    },
+    {
+      "topic": 1,
+      "words": [
+        "company",
+        "season",
+        "annual",
+        "production",
+        "festival",
+        "increased",
+        "budget",
+        "opened"
+      ]
+    },
+    {
+      "topic": 2,
+      "words": [
+        "team",
+        "final",
+        "match",
+        "following",
+        "regional",
+        "tournament",
+        "lead",
+        "attracted"
+      ]
+    },
+    {
+      "topic": 3,
+      "words": [
+        "announced",
+        "infrastructure",
+        "center",
+        "officials",
+        "government",
+        "national",
+        "addressing",
+        "accountability"
+      ]
+    },
+    {
+      "topic": 4,
+      "words": [
+        "introduced",
+        "software",
+        "platform",
+        "new",
+        "company",
+        "learning",
+        "developer",
+        "identity"
+      ]
+    }
+  ],
+  "retrieval_method": "TF IDF lexical fallback (NOT semantic or cross-lingual)"
+}
