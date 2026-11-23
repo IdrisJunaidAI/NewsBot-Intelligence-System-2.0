@@ -1,9 +1,38 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NewsBot Intelligence System 2.0</title><link rel="stylesheet" href="/static/style.css"></head>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NewsBot Intelligence System 2.0</title>
+<link rel="stylesheet" href="/static/style.css"></head>
 <body><div class="shell">
-<header><div><small>ITAI 2373 | ADVANCED NLP CAPSTONE</small><h1>NewsBot Intelligence System <span>2.0</span></h1><p>Analyze reporting, inspect model evidence and explore your article collection.</p></div><div class="brand">NB<span>2</span></div></header>
-<section class="notice">Educational prototype. Outputs do not verify facts or establish editorial reliability. A trained BBC model is required for evidence beyond demonstration mode.</section>
-<main><section class="card"><h2>Analyze an article</h2><p>Paste at least 30 characters from an article. Model categories derive from the selected training corpus.</p><label for="article">Article text</label><textarea id="article" rows="9" maxlength="30000" placeholder="Paste a news article here..."></textarea><button id="analyze">Analyze article</button><div id="analyze_out" class="result" role="status">Analysis results will appear here.</div></section>
-<section class="card"><h2>Ask your news collection</h2><p>Use questions like “Show technology articles,” “Summarize business,” or “How many sport articles?”</p><label for="query">Natural language question</label><input id="query" placeholder="What happened in technology news?"><div class="actions"><button id="ask">Ask NewsBot</button><button class="secondary" id="reset">Reset filters</button></div><div id="chat_out" class="result" role="status">Cited article IDs will appear with retrieved content.</div></section></main>
-<footer><span>Classification · LDA/NMF · Sentiment · Search · Language Detection · Summarization · Conversation</span><p>Unverified predictions require human review. Translation and multilingual embedding search require optional integrations.</p></footer></div><script src="/static/script.js"></script></body></html>
+<header><div><small>ITAI 2373 | ADVANCED NLP CAPSTONE</small>
+<h1>NewsBot Intelligence System <span>2.0</span></h1>
+<p>Analyze reporting, inspect model evidence and explore your stored article collection.</p></div>
+<div class="brand">NB<span>2</span></div></header>
+<section class="notice"><strong>Demonstration mode:</strong> This system analyzes a fixed collection of synthetic articles. It does not retrieve live or breaking news. Outputs are not fact verification or evidence of real publisher performance.</section>
+<main>
+<section class="card">
+<h2>Analyze an article</h2>
+<p>Paste at least 30 characters of article text to inspect category, sentiment, extracted summary, entities and topic weights.</p>
+<label for="article">Article text</label>
+<textarea id="article" rows="9" maxlength="30000" placeholder="Paste a news article here..."></textarea>
+<p class="hint">Analysis is based on a teaching corpus, not the BBC evaluation dataset.</p>
+<button id="analyze" type="button">Analyze article</button>
+<div id="analyze_out" class="result" role="status" aria-live="polite">Your analysis results will appear here.</div>
+</section>
+<section class="card">
+<h2>Ask your news collection</h2>
+<p>Search or summarize stored articles. Questions about today's latest headlines require a separate live news source.</p>
+<label for="query">Question about the loaded articles</label>
+<input id="query" placeholder="What articles discuss technology?">
+<div class="examples" aria-label="Example questions">
+<button type="button" data-example-query="Show technology articles">Browse technology</button>
+<button type="button" data-example-query="How many business articles?">Count business</button>
+<button type="button" data-example-query="Summarize sport">Summarize sport</button>
+</div>
+<div class="actions"><button id="ask" type="button">Ask NewsBot</button>
+<button class="secondary" id="reset" type="button">Reset filters</button></div>
+<div id="chat_out" class="result" role="status" aria-live="polite">Relevant article cards and source IDs will appear here.</div>
+</section></main>
+<footer><span>Classification · LDA/NMF · Sentiment · Lexical Search · Language Detection · Summarization · Conversation</span>
+<p>Predictions require human review. Optional translation and multilingual embeddings are not enabled in this demonstration.</p></footer></div>
+<script src="/static/script.js"></script></body></html>
