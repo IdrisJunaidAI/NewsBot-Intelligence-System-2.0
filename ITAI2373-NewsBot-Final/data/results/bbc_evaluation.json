@@ -1,0 +1,458 @@
+{
+  "provenance": {
+    "train_csv_sha256": "f56a65dab2ea728505a639d2186a2b2f1c0939f28e8e89b5ed1c1fe9520b1323",
+    "test_csv_sha256": "27734eb5f2615692693f572ec86b5450c5990aa8ce03105136606a3f990c459f",
+    "train_input_rows": 1490,
+    "train_retained_unique_rows": 1440,
+    "train_duplicates_or_short_removed": 50,
+    "test_rows": 735,
+    "test_unique_texts": 722,
+    "train_test_exact_text_overlap_unique": 38,
+    "training_class_counts": {
+      "business": 335,
+      "entertainment": 263,
+      "politics": 266,
+      "sport": 342,
+      "technology": 234
+    },
+    "test_has_ground_truth": false,
+    "sample_solution_sha256": "617bb50aa65328ca7f57770bbe7c4a8f2d8abfa3d158676c916a19104acfbd21",
+    "sample_solution_repeating_five_class_pattern": true,
+    "sample_solution_notice": "Illustrative submission labels, not verified ground truth; never score against these labels.",
+    "split_seed": 42,
+    "split_stratified": true,
+    "split_after_deduplication": true,
+    "training_partition_rows": 1152,
+    "heldout_partition_rows": 288,
+    "holdout_class_counts": {
+      "business": 67,
+      "entertainment": 53,
+      "politics": 53,
+      "sport": 68,
+      "technology": 47
+    },
+    "vectorizer": "TF IDF, English stop words, unigrams/bigrams, 12000 features, sublinear TF",
+    "category_mapping": {
+      "tech": "technology",
+      "sports": "sport"
+    },
+    "ground_truth_source": "BBC News Train.csv labels, exclusively"
+  },
+  "classes": [
+    "business",
+    "entertainment",
+    "politics",
+    "sport",
+    "technology"
+  ],
+  "models": [
+    {
+      "model": "Majority baseline",
+      "cv_macro_f1": 0.0768580274214949,
+      "cv_accuracy": 0.2378472222222222,
+      "holdout_accuracy": 0.2361111111111111,
+      "holdout_macro_f1": 0.07640449438202247,
+      "holdout_balanced_accuracy": 0.2
+    },
+    {
+      "model": "Multinomial Naive Bayes",
+      "cv_macro_f1": 0.9600175410906409,
+      "cv_accuracy": 0.9609375,
+      "holdout_accuracy": 0.9513888888888888,
+      "holdout_macro_f1": 0.948273572004948,
+      "holdout_balanced_accuracy": 0.9441044476533431
+    },
+    {
+      "model": "Logistic Regression",
+      "cv_macro_f1": 0.9670469464696937,
+      "cv_accuracy": 0.9678819444444445,
+      "holdout_accuracy": 0.9583333333333334,
+      "holdout_macro_f1": 0.956728494159208,
+      "holdout_balanced_accuracy": 0.9521333517079397
+    },
+    {
+      "model": "Linear SVM",
+      "cv_macro_f1": 0.977034117865578,
+      "cv_accuracy": 0.9774305555555557,
+      "holdout_accuracy": 0.96875,
+      "holdout_macro_f1": 0.9676603574882915,
+      "holdout_balanced_accuracy": 0.9644175749114723
+    }
+  ],
+  "logistic_regression": {
+    "metrics": {
+      "model": "Logistic Regression",
+      "cv_macro_f1": 0.9670469464696937,
+      "cv_accuracy": 0.9678819444444445,
+      "holdout_accuracy": 0.9583333333333334,
+      "holdout_macro_f1": 0.956728494159208,
+      "holdout_balanced_accuracy": 0.9521333517079397
+    },
+    "report": {
+      "business": {
+        "precision": 0.9166666666666666,
+        "recall": 0.9850746268656716,
+        "f1-score": 0.9496402877697842,
+        "support": 67.0
+      },
+      "entertainment": {
+        "precision": 1.0,
+        "recall": 0.9622641509433962,
+        "f1-score": 0.9807692307692307,
+        "support": 53.0
+      },
+      "politics": {
+        "precision": 0.9622641509433962,
+        "recall": 0.9622641509433962,
+        "f1-score": 0.9622641509433962,
+        "support": 53.0
+      },
+      "sport": {
+        "precision": 0.9444444444444444,
+        "recall": 1.0,
+        "f1-score": 0.9714285714285714,
+        "support": 68.0
+      },
+      "technology": {
+        "precision": 1.0,
+        "recall": 0.851063829787234,
+        "f1-score": 0.9195402298850575,
+        "support": 47.0
+      },
+      "accuracy": 0.9583333333333334,
+      "macro avg": {
+        "precision": 0.9646750524109015,
+        "recall": 0.9521333517079397,
+        "f1-score": 0.956728494159208,
+        "support": 288.0
+      },
+      "weighted avg": {
+        "precision": 0.9605516975308641,
+        "recall": 0.9583333333333334,
+        "f1-score": 0.9579243131009907,
+        "support": 288.0
+      }
+    },
+    "confusion": [
+      [
+        66,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        51,
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        51,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        68,
+        0
+      ],
+      [
+        4,
+        0,
+        0,
+        3,
+        40
+      ]
+    ]
+  },
+  "linear_svm": {
+    "metrics": {
+      "model": "Linear SVM",
+      "cv_macro_f1": 0.977034117865578,
+      "cv_accuracy": 0.9774305555555557,
+      "holdout_accuracy": 0.96875,
+      "holdout_macro_f1": 0.9676603574882915,
+      "holdout_balanced_accuracy": 0.9644175749114723
+    },
+    "report": {
+      "business": {
+        "precision": 0.9428571428571428,
+        "recall": 0.9850746268656716,
+        "f1-score": 0.9635036496350365,
+        "support": 67.0
+      },
+      "entertainment": {
+        "precision": 0.9811320754716981,
+        "recall": 0.9811320754716981,
+        "f1-score": 0.9811320754716981,
+        "support": 53.0
+      },
+      "politics": {
+        "precision": 0.9807692307692307,
+        "recall": 0.9622641509433962,
+        "f1-score": 0.9714285714285714,
+        "support": 53.0
+      },
+      "sport": {
+        "precision": 0.9577464788732394,
+        "recall": 1.0,
+        "f1-score": 0.9784172661870504,
+        "support": 68.0
+      },
+      "technology": {
+        "precision": 1.0,
+        "recall": 0.8936170212765957,
+        "f1-score": 0.9438202247191011,
+        "support": 47.0
+      },
+      "accuracy": 0.96875,
+      "macro avg": {
+        "precision": 0.9725009855942623,
+        "recall": 0.9644175749114723,
+        "f1-score": 0.9676603574882915,
+        "support": 288.0
+      },
+      "weighted avg": {
+        "precision": 0.969718605436035,
+        "recall": 0.96875,
+        "f1-score": 0.9685152203950655,
+        "support": 288.0
+      }
+    },
+    "confusion": [
+      [
+        66,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        52,
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        51,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        68,
+        0
+      ],
+      [
+        3,
+        1,
+        0,
+        1,
+        42
+      ]
+    ]
+  },
+  "fewshot_study": {
+    "purpose": "Few-shot training size experiment using disjoint fixed labeled holdout",
+    "repetitions": 5,
+    "sample_sizes_per_class": [
+      5,
+      10,
+      25,
+      50,
+      100
+    ],
+    "results": [
+      {
+        "per_class_samples": 5,
+        "total_training_samples": 25,
+        "seed": 17,
+        "holdout_macro_f1": 0.8806260765250628,
+        "holdout_accuracy": 0.8854166666666666
+      },
+      {
+        "per_class_samples": 5,
+        "total_training_samples": 25,
+        "seed": 29,
+        "holdout_macro_f1": 0.8456338128934433,
+        "holdout_accuracy": 0.8506944444444444
+      },
+      {
+        "per_class_samples": 5,
+        "total_training_samples": 25,
+        "seed": 43,
+        "holdout_macro_f1": 0.8234666032651299,
+        "holdout_accuracy": 0.8298611111111112
+      },
+      {
+        "per_class_samples": 5,
+        "total_training_samples": 25,
+        "seed": 71,
+        "holdout_macro_f1": 0.8420245500230493,
+        "holdout_accuracy": 0.8472222222222222
+      },
+      {
+        "per_class_samples": 5,
+        "total_training_samples": 25,
+        "seed": 97,
+        "holdout_macro_f1": 0.8710779596900678,
+        "holdout_accuracy": 0.8715277777777778
+      },
+      {
+        "per_class_samples": 10,
+        "total_training_samples": 50,
+        "seed": 17,
+        "holdout_macro_f1": 0.9122662459193925,
+        "holdout_accuracy": 0.9166666666666666
+      },
+      {
+        "per_class_samples": 10,
+        "total_training_samples": 50,
+        "seed": 29,
+        "holdout_macro_f1": 0.9297308392677138,
+        "holdout_accuracy": 0.9305555555555556
+      },
+      {
+        "per_class_samples": 10,
+        "total_training_samples": 50,
+        "seed": 43,
+        "holdout_macro_f1": 0.8663377325086372,
+        "holdout_accuracy": 0.8715277777777778
+      },
+      {
+        "per_class_samples": 10,
+        "total_training_samples": 50,
+        "seed": 71,
+        "holdout_macro_f1": 0.9154325744229157,
+        "holdout_accuracy": 0.9166666666666666
+      },
+      {
+        "per_class_samples": 10,
+        "total_training_samples": 50,
+        "seed": 97,
+        "holdout_macro_f1": 0.9023001991104724,
+        "holdout_accuracy": 0.90625
+      },
+      {
+        "per_class_samples": 25,
+        "total_training_samples": 125,
+        "seed": 17,
+        "holdout_macro_f1": 0.9427203015236587,
+        "holdout_accuracy": 0.9444444444444444
+      },
+      {
+        "per_class_samples": 25,
+        "total_training_samples": 125,
+        "seed": 29,
+        "holdout_macro_f1": 0.9440915868936006,
+        "holdout_accuracy": 0.9444444444444444
+      },
+      {
+        "per_class_samples": 25,
+        "total_training_samples": 125,
+        "seed": 43,
+        "holdout_macro_f1": 0.9421730868519835,
+        "holdout_accuracy": 0.9444444444444444
+      },
+      {
+        "per_class_samples": 25,
+        "total_training_samples": 125,
+        "seed": 71,
+        "holdout_macro_f1": 0.9509788857924732,
+        "holdout_accuracy": 0.9513888888888888
+      },
+      {
+        "per_class_samples": 25,
+        "total_training_samples": 125,
+        "seed": 97,
+        "holdout_macro_f1": 0.9562323584444468,
+        "holdout_accuracy": 0.9583333333333334
+      },
+      {
+        "per_class_samples": 50,
+        "total_training_samples": 250,
+        "seed": 17,
+        "holdout_macro_f1": 0.9531180088665108,
+        "holdout_accuracy": 0.9548611111111112
+      },
+      {
+        "per_class_samples": 50,
+        "total_training_samples": 250,
+        "seed": 29,
+        "holdout_macro_f1": 0.9680926663335766,
+        "holdout_accuracy": 0.96875
+      },
+      {
+        "per_class_samples": 50,
+        "total_training_samples": 250,
+        "seed": 43,
+        "holdout_macro_f1": 0.9491735659895084,
+        "holdout_accuracy": 0.9513888888888888
+      },
+      {
+        "per_class_samples": 50,
+        "total_training_samples": 250,
+        "seed": 71,
+        "holdout_macro_f1": 0.9465283552697606,
+        "holdout_accuracy": 0.9479166666666666
+      },
+      {
+        "per_class_samples": 50,
+        "total_training_samples": 250,
+        "seed": 97,
+        "holdout_macro_f1": 0.9535842037732426,
+        "holdout_accuracy": 0.9548611111111112
+      },
+      {
+        "per_class_samples": 100,
+        "total_training_samples": 500,
+        "seed": 17,
+        "holdout_macro_f1": 0.9633891080814788,
+        "holdout_accuracy": 0.9652777777777778
+      },
+      {
+        "per_class_samples": 100,
+        "total_training_samples": 500,
+        "seed": 29,
+        "holdout_macro_f1": 0.9560747879683674,
+        "holdout_accuracy": 0.9583333333333334
+      },
+      {
+        "per_class_samples": 100,
+        "total_training_samples": 500,
+        "seed": 43,
+        "holdout_macro_f1": 0.9598881749063738,
+        "holdout_accuracy": 0.9618055555555556
+      },
+      {
+        "per_class_samples": 100,
+        "total_training_samples": 500,
+        "seed": 71,
+        "holdout_macro_f1": 0.9372829131652661,
+        "holdout_accuracy": 0.9409722222222222
+      },
+      {
+        "per_class_samples": 100,
+        "total_training_samples": 500,
+        "seed": 97,
+        "holdout_macro_f1": 0.9639207114756392,
+        "holdout_accuracy": 0.9652777777777778
+      }
+    ],
+    "model": "Logistic Regression TF IDF",
+    "limitation": "Low-data learning curve on a historical news corpus; does not establish multilingual ability or current-news reliability"
+  },
+  "test_prediction_notice": "BBC Test has no verified labels; no test accuracy is calculated. Sample Solution is a cyclic placeholder.",
+  "evaluation_note": "Historical, within-corpus stratified holdout. Duplicate texts removed before splitting. Comparison with midterm is descriptive, not identical folds."
+}

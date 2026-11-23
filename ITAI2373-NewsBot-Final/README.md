@@ -4,8 +4,8 @@
 
 **Student:** Idris O. Junaid  
 **Source midterm repository:** https://github.com/IdrisJunaidAI/ITAI2373_NewsBot_Midterm  
-**Status:** Reproducible draft implementation with Flask frontend and deployment blueprint, not a verified publicly accessible production deployment.  
-**Training corpus:** Instructor-approved BBC News Classification (`BBC News Train.csv`) must be supplied by the user.  
+**Status:** Flask NLP dashboard deployed on Render Free. The single-article BBC category classifier uses a safe released weight table; corpus search and topic dashboard use a synthetic 60-article demo. This is a research prototype, not a hardened production system.  
+**Training corpus:** The student supplied BBC News Train, Test and Sample Solution files. The labeled Train file has 1,490 rows (1,440 unique after deduplication). Raw BBC article text is not in this repository. See `docs/BBC_AUTHENTIC_EVALUATION.md`.  
 **Disclaimer:** The included `demo_articles.csv` contains exactly 60 synthetic articles authored as teaching examples and may not support externally valid evaluation.
 
 ### Research purpose
@@ -82,3 +82,10 @@ The responsive Flask app consists of `app.py`, `templates/index.html`, `static/s
 The startup script trains from the included **synthetic demonstration** corpus if no model is present; this allows the web application to be viewed but cannot validate scientific performance. Before presenting as a research deployment, train on approved BBC news data and confirm model dependencies and provenance. Do not commit the BBC raw dataset or untrusted model artifacts. Full model loading in hosted environments requires validation of compute, memory, package versions and application security. The hosting provider may charge fees and its current deployment options must be confirmed.
 
 Continuous integration tests run on GitHub Actions using `.github/workflows/ci.yml`, including Flask route tests. The source package is self contained for code review; enabling optional language models requires additional installation and internet connectivity.
+
+
+## Authentic BBC evaluation update (November 23, 2026)
+
+See `docs/BBC_AUTHENTIC_EVALUATION.md` and `data/results/bbc_evaluation.json` for reproducible aggregate measurements. On an isolated 288 article holdout, Logistic Regression achieved **95.83% accuracy** and **95.67% macro F1**; Linear SVM achieved **96.88% accuracy** and **96.77% macro F1**. The uploaded sample solution is a cyclic placeholder and was not used as verified ground truth. The deployed category model uses Logistic Regression trained on 1,440 distinct labeled BBC articles. The article search and topic dashboard use 60 synthetic examples, with separate interface labels. `scripts/evaluate_bbc.py` reproduces the evaluation from licensed local CSV files. The released model is a non-executable JSON.GZ coefficients table that excludes raw BBC article texts. Do not present synthetic or historical results as live current news.
+
+**Research extension:** A repeated 5, 10, 25, 50, and 100 labeled articles per class learning curve is included in `data/results/fewshot_learning_curve.csv`. This is an exploratory low-data study rather than an LLM prompting demonstration.

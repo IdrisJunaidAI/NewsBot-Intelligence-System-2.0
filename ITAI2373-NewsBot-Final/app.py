@@ -2,11 +2,14 @@
 import csv
 import io
 import os
+import json
+from pathlib import Path
 
 import joblib
 from flask import Flask, Response, jsonify, render_template, request, session
 
 from config.settings import Settings
+from src.analysis.bbc_classifier import BBCWeightedClassifier
 from src.utils.dashboard import dashboard_snapshot
 
 app = Flask(__name__)
@@ -17,6 +20,8 @@ app.config.update(
     SESSION_COOKIE_SAMESITE='Lax',
     SESSION_COOKIE_SECURE=bool(os.environ.get('RENDER')),
 )
+BBC_WEIGHTS_PATH = Path(__file__).resolve().parent / 'data' / 'released_models' / 'bbc_classifier_weights.json.gz'
+BBC_EVALUATION_PATH = Path(__file__).resolve().parent / 'data' / 'results' / 'bbc_evaluation.json'
 _model = None
 _dashboard_cache = {'model': None, 'snapshot': None}
 
@@ -29,6 +34,8 @@ def get_model():
             raise RuntimeError('Train a model first with python train.py --csv "BBC News Train.csv"')
         # Deserializing a joblib file can execute code. Load only trusted, locally trained artifacts.
         _model = joblib.load(path)
+        if BBC_WEIGHTS_PATH.is_file():
+            _model.bbc_classifier = BBCWeightedClassifier(BBC_WEIGHTS_PATH)
     return _model
 
 
@@ -37,6 +44,24 @@ def get_dashboard():
     model = get_model()
     if _dashboard_cache['model'] is not model:
         snapshot = dashboard_snapshot(model)
+        bbc=getattr(model,'bbc_classifier',None)
+        if bbc is not None and BBC_EVALUATION_PATH.is_file():
+            with BBC_EVALUATION_PATH.open(encoding='utf8') as handle:
+                record=json.load(handle)
+            logistic=record['logistic_regression']['metrics']
+            svm=record['linear_svm']['metrics']
+            snapshot['bbc_classifier'] = {
+                'active': True,
+                'model': 'TF IDF Logistic Regression',
+                'articles_used': bbc.provenance['articles_used'],
+                'heldout_count': record['provenance']['heldout_partition_rows'],
+                'heldout_accuracy': logistic['holdout_accuracy'],
+                'heldout_macro_f1': logistic['holdout_macro_f1'],
+                'comparison_svm_accuracy': svm['holdout_accuracy'],
+                'comparison_svm_macro_f1': svm['holdout_macro_f1'],
+                'evaluation_source': 'Real BBC labeled training subset, not the synthetic dashboard dataset',
+                'note': 'Only article classification uses this authentic BBC model. Corpus charts and search remain 60 synthetic articles.'
+            }
         _dashboard_cache['model'] = model
         _dashboard_cache['snapshot'] = snapshot
     return _dashboard_cache['snapshot']
@@ -49,7 +74,8 @@ def home():
 
 @app.get('/health')
 def health():
-    return jsonify({'status': 'ok', 'component': 'web', 'model_ready': Settings().model_path.exists()})
+    return jsonify({'status': 'ok', 'component': 'web', 'model_ready': Settings().model_path.exists(),
+                    'bbc_classifier_available': BBC_WEIGHTS_PATH.is_file()})
 
 
 @app.post('/api/analyze')

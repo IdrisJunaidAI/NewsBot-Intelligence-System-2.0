@@ -107,6 +107,20 @@
       });
     }
     add(panel, 'p', 'meta', 'Held out evaluation size: ' + (evalData.holdout_count || 0) + ' articles');
+    const bbc = snapshot.bbc_classifier;
+    if (bbc && bbc.active) {
+      const section = add(panel, 'section', 'bbc-evidence');
+      add(section, 'h4', 'small-heading', 'Real BBC classification evaluation');
+      add(section, 'p', 'quality-lead', bbc.articles_used + ' distinct labeled BBC articles; 288 held out for evaluation.');
+      const realMetrics=add(section, 'div', 'quality-metrics');
+      [['BBC Logistic accuracy', bbc.heldout_accuracy], ['BBC Logistic macro F1', bbc.heldout_macro_f1],
+       ['BBC Linear SVM accuracy (comparison only)', bbc.comparison_svm_accuracy]].forEach(([label,value]) => {
+        const tile=add(realMetrics, 'div', 'quality-metric');
+        add(tile,'span','meta',label);
+        add(tile,'strong','', (100*Number(value)).toFixed(2)+'%');
+      });
+      add(section, 'p', 'result-notice', bbc.note);
+    }
   }
 
   function render(snapshot) {
@@ -115,6 +129,10 @@
     notice.replaceChildren();
     add(notice, 'strong', '', snapshot.meta.corpus + '. ');
     add(notice, 'span', '', snapshot.meta.disclaimer);
+    if (snapshot.bbc_classifier?.active) {
+      add(notice, 'p', 'quality-lead',
+          'Article category classification uses a real BBC trained model. The searchable articles, topic charts and corpus statistics remain synthetic demonstrations. This is not live news.');
+    }
     const status = byId('dashboard_status');
     status.replaceChildren();
     add(status, 'span', 'data-indicator', snapshot.meta.synthetic ? 'Synthetic data' : 'User supplied corpus');
