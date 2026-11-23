@@ -61,3 +61,12 @@ The instructor's final project rubric calls for cultural context and comparison 
 7. In the deployed Flask app validate capability status, endpoint errors and the two distinct data source labels.
 
 **References:** The instructor's ITAI 2373 final project rubric, the Student Guidance Notebook, Sentence Transformers official documentation, multilingual MiniLM model card and the `deep-translator` usage documentation. External model behavior should be validated empirically before claiming numerical performance.
+
+
+## Executed Colab benchmark, November 23 2026
+
+The original template notebook was subsequently executed by the student and its saved outputs were supplied for review. The real pretrained multilingual MiniLM model loaded successfully with 384 dimensional embeddings. On **six synthetic English passages and six constructed queries per language**, recorded Recall@1 and Recall@3 were both 100% for English, Spanish and French (18/18 first rank hits). The TF IDF baseline returned Recall@1 of 100%, 50%, and 33.3%, and Recall@3 of 100%, 66.7%, and 50%, respectively. The language detector agreed on all 18 test examples.
+
+**Scope restriction:** These results are a small controlled benchmark, not validation on authentic multilingual BBC news, independent publishers or cultural perspective analysis. LSA was not included in this Colab comparison. Translation was **not executed** because the consent switch remained false. The hosted Free Render system still uses LSA, not MiniLM neural inference.
+
+See `docs/MULTILINGUAL_EXECUTED_RESULTS.md`, `data/results/multilingual_measured_summary.csv`, and `notebooks/08_Multilingual_Semantic_Search_Executed_Evidence.ipynb` for the measured result table and executed code. The cleaned notebook preserves meaningful outputs while removing transient Colab progress widgets. The supplied original notebook's SHA256 appears in `data/results/multilingual_evidence_manifest.json`.

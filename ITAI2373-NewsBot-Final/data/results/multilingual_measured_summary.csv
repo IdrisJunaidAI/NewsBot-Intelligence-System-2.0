@@ -1,0 +1,7 @@
+method,language,queries,recall_at_1,recall_at_3
+Multilingual MiniLM,en,6,1.0,1.0
+Multilingual MiniLM,es,6,1.0,1.0
+Multilingual MiniLM,fr,6,1.0,1.0
+TF IDF baseline,en,6,1.0,1.0
+TF IDF baseline,es,6,0.5,0.666667
+TF IDF baseline,fr,6,0.333333,0.5

@@ -1,0 +1,75 @@
+{
+  "source": "User uploaded executed Google Colab notebook, 08_Multilingual_Semantic_Search (1).ipynb",
+  "model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "embedding_dimension": 384,
+  "articles": 6,
+  "language_counts": {
+    "en": 6,
+    "es": 6,
+    "fr": 6
+  },
+  "queries": 18,
+  "documents_language": "en",
+  "benchmark_type": "synthetic controlled teaching example; no external articles or independently labeled BBC retrieval test",
+  "methods_compared": [
+    "TF IDF baseline",
+    "Multilingual MiniLM"
+  ],
+  "lsi_comparison_in_this_notebook": false,
+  "language_detection_agreement": 1.0,
+  "external_translation_tested": false,
+  "translation_control": "ALLOW_EXTERNAL_TRANSLATION = False",
+  "saved_output_measures": [
+    {
+      "method": "Multilingual MiniLM",
+      "language": "en",
+      "recall_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "queries": 6
+    },
+    {
+      "method": "Multilingual MiniLM",
+      "language": "es",
+      "recall_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "queries": 6
+    },
+    {
+      "method": "Multilingual MiniLM",
+      "language": "fr",
+      "recall_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "queries": 6
+    },
+    {
+      "method": "TF IDF baseline",
+      "language": "en",
+      "recall_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "queries": 6
+    },
+    {
+      "method": "TF IDF baseline",
+      "language": "es",
+      "recall_at_1": 0.5,
+      "recall_at_3": 0.666667,
+      "queries": 6
+    },
+    {
+      "method": "TF IDF baseline",
+      "language": "fr",
+      "recall_at_1": 0.333333,
+      "recall_at_3": 0.5,
+      "queries": 6
+    }
+  ],
+  "limitations": [
+    "Only six short English passages and 18 investigator constructed queries",
+    "Ranked TF IDF baseline can contain zero similarity ties; ranks are not a robust out of domain comparison",
+    "Model download and loading occurred, but package versions were not printed in the notebook outputs",
+    "No evidence for multilingual publisher coverage, translation quality, cultural analysis, or live news",
+    "Recall@1 and Recall@3 measure retrieval on this synthetic benchmark only"
+  ],
+  "original_notebook_sha256": "d73cda4fe394913d9f1e7918f896edeb04097af9853efcd21737ecd4f7d2d435",
+  "cleaned_notebook_sha256": "9f241cafaca426d71472c490d5e3c7d2381d6aaa9b37a03d18d272ddecf10428"
+}
