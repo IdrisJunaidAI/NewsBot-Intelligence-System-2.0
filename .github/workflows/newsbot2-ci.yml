@@ -25,7 +25,7 @@ jobs:
         with:
           python-version: "3.11"
       - name: Validate frontend JavaScript syntax
-        run: node --check static/script.js && node --check static/dashboard.js
+        run: node --check static/script.js && node --check static/dashboard.js && node --check static/multilingual.js
       - name: Validate Python syntax
         run: python -m compileall -q src app.py scripts tests
       - name: Install project dependencies

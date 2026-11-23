@@ -69,8 +69,8 @@
       ['Stored articles', snapshot.meta.articles.toLocaleString(), 'Current corpus only'],
       ['News categories', snapshot.meta.category_count, 'Distinct category labels'],
       ['Articles with dates', snapshot.meta.dated_articles.toLocaleString(), 'Recorded metadata, not live'],
-      ['Retrieval', snapshot.meta.search_method.includes('TF IDF') ? 'TF IDF' : 'Embeddings',
-       snapshot.meta.search_method.includes('TF IDF') ? 'Lexical search' : 'Vector similarity']
+      ['Retrieval', snapshot.meta.search_method.includes('multilingual sentence') ? 'MiniLM' : (snapshot.meta.search_method.includes('LSA') ? 'LSA' : 'TF IDF'),
+       snapshot.meta.search_method.includes('multilingual sentence') ? 'Neural semantic similarity' : (snapshot.meta.search_method.includes('LSA') ? 'Latent semantic indexing' : 'Lexical search')]
     ];
     metrics.forEach(([label, number, qualifier]) => {
       const tile = add(host, 'article', 'kpi-card');

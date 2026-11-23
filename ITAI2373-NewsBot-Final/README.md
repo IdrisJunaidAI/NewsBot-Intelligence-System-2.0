@@ -82,3 +82,8 @@ Reports and presentations under `reports/` are drafts unless the group name and 
 ## References
 
 Instructor final project rubric and Web App Development Tutorial; provided BBC news CSV files; scikit-learn, spaCy and VADER project documentation.
+
+
+## Phase 1: multilingual and semantic retrieval
+
+English, Spanish, French language detection is available locally. The Render Free search uses latent semantic indexing (TF IDF with truncated SVD) with a lexical comparison. Translation assisted search uses a third party translator ONLY with explicit opt-in per request; the provider is not guaranteed. Genuine shared vector multilingual search uses the optional Sentence Transformers multilingual MiniLM model in the Colab notebook or a capable local machine; it is NOT running on the Render Free instance. See docs/MULTILINGUAL_SEMANTIC_PHASE1.md. The corpus search and topic dashboard remain synthetic while the single article BBC category classifier uses the real historical labeled BBC dataset.

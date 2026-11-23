@@ -10,4 +10,4 @@ flask>=3,<4
 gunicorn>=21,<24
 pytest>=7,<10
 # Optional: sentence-transformers>=3,<6 for genuine multilingual semantic retrieval
-# Optional: deep-translator>=1.11,<2 for network translation
+deep-translator>=1.11,<2 # External translation is consent gated
