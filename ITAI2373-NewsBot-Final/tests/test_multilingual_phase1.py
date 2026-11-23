@@ -90,3 +90,16 @@ def test_injected_multilingual_encoder_simulates_dense_path_without_claiming_ext
         'El laboratorio de robótica inventó nuevos sistemas',mode='semantic')
     assert result['available'] and result['matches'][0]['article_id']=='A1'
     assert result['method']=='multilingual sentence embeddings'
+
+
+def test_english_trained_classifier_warns_for_spanish_article():
+    from src.system import NewsBotSystem
+    from config.settings import Settings
+    system = NewsBotSystem().fit_csv(Settings().demo_path, source='DEMO SYNTHETIC DATA ONLY')
+    spanish = ('El gobierno presentó nuevas medidas para la economía y el mercado, '
+               'mientras la empresa de tecnología anunció nuevos programas.')
+    result = system.analyze(spanish)
+    assert result['language']['language'] == 'es'
+    assert result['needs_human_review'] is True
+    assert 'intended for English' in result['language_limitation']
+
