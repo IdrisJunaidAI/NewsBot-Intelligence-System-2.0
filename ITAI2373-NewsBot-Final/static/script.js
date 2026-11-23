@@ -70,6 +70,7 @@ function renderAnalysis(body) {
   metric('Language', language.language);
   metric('Model probability', typeof c.model_probability === 'number'
     ? (c.model_probability * 100).toFixed(1) + '%' : '');
+  if (body.language_limitation) add(out, 'p', 'result-notice', body.language_limitation);
   if (body.needs_human_review) {
     add(out, 'p', 'result-notice',
       'This classification falls below the review threshold. Human review is recommended.');
