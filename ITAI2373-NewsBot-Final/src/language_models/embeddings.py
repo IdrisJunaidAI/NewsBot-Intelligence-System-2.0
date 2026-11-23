@@ -30,10 +30,15 @@ class SemanticSearch:
             similarity=cosine_similarity(self.vectorizer.transform([query]),self.vectors)[0]
         candidates=[]
         for idx in np.argsort(similarity)[::-1]:
+            value=float(similarity[idx])
+            # Zero lexical overlap is not evidence of a match. A conservative
+            # embedding floor also avoids showing near-zero vector similarities.
+            minimum=0.20 if self.method=='multilingual sentence embeddings' else 0.0
+            if not np.isfinite(value) or value <= minimum:continue
             record=self.df.iloc[int(idx)]
             if category and str(record.category).lower()!=str(category).lower():continue
             candidates.append({'article_id':str(record.article_id), 'category':str(record.category),
-                'score':round(float(similarity[idx]),4), 'snippet':str(record.text)[:250],
+                'score':round(value,4), 'snippet':str(record.text)[:250],
                 'source':None if str(record.source)=='<NA>' else str(record.source),
                 'date':None if str(record.date)=='NaT' else str(record.date)})
             if len(candidates)>=top_k:break
