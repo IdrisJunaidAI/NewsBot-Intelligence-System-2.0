@@ -1,38 +1,106 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NewsBot Intelligence System 2.0</title>
-<link rel="stylesheet" href="/static/style.css"></head>
-<body><div class="shell">
-<header><div><small>ITAI 2373 | ADVANCED NLP CAPSTONE</small>
-<h1>NewsBot Intelligence System <span>2.0</span></h1>
-<p>Analyze reporting, inspect model evidence and explore your stored article collection.</p></div>
-<div class="brand">NB<span>2</span></div></header>
-<section class="notice"><strong>Demonstration mode:</strong> This system analyzes a fixed collection of synthetic articles. It does not retrieve live or breaking news. Outputs are not fact verification or evidence of real publisher performance.</section>
-<main>
-<section class="card">
-<h2>Analyze an article</h2>
-<p>Paste at least 30 characters of article text to inspect category, sentiment, extracted summary, entities and topic weights.</p>
-<label for="article">Article text</label>
-<textarea id="article" rows="9" maxlength="30000" placeholder="Paste a news article here..."></textarea>
-<p class="hint">Analysis is based on a teaching corpus, not the BBC evaluation dataset.</p>
-<button id="analyze" type="button">Analyze article</button>
-<div id="analyze_out" class="result" role="status" aria-live="polite">Your analysis results will appear here.</div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="NewsBot 2.0, a transparent NLP teaching prototype with article exploration and model analytics.">
+  <title>NewsBot Intelligence System 2.0 | NLP Analytics</title>
+  <link rel="stylesheet" href="/static/style.css?v=3">
+  <link rel="stylesheet" href="/static/dashboard.css?v=3">
+</head>
+<body>
+<div class="shell">
+<header>
+  <div>
+    <small>ITAI 2373 | ADVANCED NLP CAPSTONE</small>
+    <h1>NewsBot Intelligence System <span>2.0</span></h1>
+    <p>Explore article content, inspect model evidence and visualize your loaded news collection.</p>
+  </div>
+  <div class="brand" aria-hidden="true">NB<span>2</span></div>
+</header>
+<section id="corpus_notice" class="notice" aria-live="polite">
+  <strong>Data integrity:</strong> Loading training corpus provenance. This application is not a live news service.
 </section>
-<section class="card">
-<h2>Ask your news collection</h2>
-<p>Search or summarize stored articles. Questions about today's latest headlines require a separate live news source.</p>
-<label for="query">Question about the loaded articles</label>
-<input id="query" placeholder="What articles discuss technology?">
-<div class="examples" aria-label="Example questions">
-<button type="button" data-example-query="Show technology articles">Browse technology</button>
-<button type="button" data-example-query="How many business articles?">Count business</button>
-<button type="button" data-example-query="Summarize sport">Summarize sport</button>
+<section class="analytics" aria-labelledby="analytics_title">
+  <div class="section-heading">
+    <div>
+      <small class="eyebrow">CORPUS INTELLIGENCE</small>
+      <h2 id="analytics_title">News analytics dashboard</h2>
+      <p>Evidence from the loaded collection only, with a clear distinction between synthetic examples and verified source data.</p>
+    </div>
+    <a class="export-link" id="export_link" href="/api/export/analytics.csv" download>Export analytics CSV</a>
+  </div>
+  <div id="dashboard_status" class="dashboard-status" role="status" aria-live="polite">Loading corpus analytics…</div>
+  <div id="dashboard_kpis" class="dashboard-kpis" aria-label="News collection indicators"></div>
+  <div class="analytics-grid">
+    <section class="viz-card" aria-labelledby="category_chart_title">
+      <div class="viz-header"><h3 id="category_chart_title">News categories</h3><span>Record counts</span></div>
+      <div id="category_chart" class="chart-bars"></div>
+      <p class="chart-footnote">Article categories from the loaded dataset.</p>
+    </section>
+    <section class="viz-card" aria-labelledby="sentiment_chart_title">
+      <div class="viz-header"><h3 id="sentiment_chart_title">Sentiment distribution</h3><span>VADER tone analysis</span></div>
+      <div id="sentiment_chart" class="chart-bars"></div>
+      <p class="chart-footnote">Language tone does not establish factual correctness or public opinion.</p>
+    </section>
+    <section class="viz-card" aria-labelledby="topic_chart_title">
+      <div class="viz-header"><h3 id="topic_chart_title">Discovered topics</h3>
+        <div class="topic-toggle" role="group" aria-label="Topic modeling algorithm">
+          <button type="button" class="topic-option active" data-topic-method="NMF" aria-pressed="true">NMF</button>
+          <button type="button" class="topic-option" data-topic-method="LDA" aria-pressed="false">LDA</button>
+        </div>
+      </div>
+      <div id="topic_chart" class="topic-chart"></div>
+      <p class="chart-footnote">Each article is assigned to its strongest statistical topic. Keywords are not verified event labels.</p>
+    </section>
+    <section class="viz-card" aria-labelledby="quality_title">
+      <div class="viz-header"><h3 id="quality_title">Model and data quality</h3><span>Traceable validation</span></div>
+      <div id="evaluation_panel"></div>
+      <div class="subtle-divider"></div>
+      <h4 class="small-heading">Recorded article dates</h4>
+      <div id="timeline_chart" class="chart-bars compact"></div>
+      <p class="chart-footnote">These dates belong to this collection and are not a live news trend.</p>
+    </section>
+  </div>
+</section>
+<section class="analysis-section" aria-labelledby="tools_title">
+  <div class="section-heading compact-heading">
+    <div><small class="eyebrow">NLP LAB</small><h2 id="tools_title">Analyze and explore</h2></div>
+  </div>
+  <main>
+    <section class="card">
+      <h2>Analyze an article</h2>
+      <p>Paste at least 30 characters to inspect classification, sentiment, extracted summary, named entities and topics.</p>
+      <label for="article">Article text</label>
+      <textarea id="article" rows="9" maxlength="30000" placeholder="Paste a news article here..."></textarea>
+      <p class="hint">Predictions reflect the loaded model and are not independent fact verification.</p>
+      <button id="analyze" type="button">Analyze article</button>
+      <div id="analyze_out" class="result" role="status" aria-live="polite">Analysis results will appear here.</div>
+    </section>
+    <section class="card">
+      <h2>Ask your news collection</h2>
+      <p>Search, browse and summarize stored articles. Current headlines require a separate live news source.</p>
+      <label for="query">Question about the loaded articles</label>
+      <input id="query" placeholder="What articles discuss technology?">
+      <div class="examples" aria-label="Example questions">
+        <button type="button" data-example-query="Show technology articles">Browse technology</button>
+        <button type="button" data-example-query="How many business articles?">Count business</button>
+        <button type="button" data-example-query="Summarize sport">Summarize sport</button>
+      </div>
+      <div class="actions">
+        <button id="ask" type="button">Ask NewsBot</button>
+        <button class="secondary" id="reset" type="button">Reset filters</button>
+      </div>
+      <div id="chat_out" class="result" role="status" aria-live="polite">Relevant article cards and source IDs will appear here.</div>
+    </section>
+  </main>
+</section>
+<footer>
+  <span>Classification · LDA / NMF · Sentiment · Search · Language Detection · Summarization · Conversation</span>
+  <p>Educational NLP research prototype. Optional translation and multilingual embedding search are not enabled on this demonstration deployment.</p>
+</footer>
 </div>
-<div class="actions"><button id="ask" type="button">Ask NewsBot</button>
-<button class="secondary" id="reset" type="button">Reset filters</button></div>
-<div id="chat_out" class="result" role="status" aria-live="polite">Relevant article cards and source IDs will appear here.</div>
-</section></main>
-<footer><span>Classification · LDA/NMF · Sentiment · Lexical Search · Language Detection · Summarization · Conversation</span>
-<p>Predictions require human review. Optional translation and multilingual embeddings are not enabled in this demonstration.</p></footer></div>
-<script src="/static/script.js"></script></body></html>
+<script src="/static/script.js?v=3"></script>
+<script src="/static/dashboard.js?v=3"></script>
+</body>
+</html>
