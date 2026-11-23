@@ -21,7 +21,7 @@ class NewsBotSystem:
         self.sentiment=SentimentAnalyzer();self.entities=EntityExtractor()
         self.summarizer=NewsSummarizer();self.search=SemanticSearch(use_embeddings=use_embeddings)
         self.languages=LanguageDetector();self.translator=Translator();self.generator=InsightGenerator()
-        self.multilingual=CrossLingualAnalyzer(self.search);self.conversation=QueryProcessor(self)
+        self.multilingual=CrossLingualAnalyzer(self.search, self.languages, self.translator);self.conversation=QueryProcessor(self)
         self.df=None;self.source='not loaded';self.bbc_classifier=None
     def fit_csv(self,path,source=None):
         self.df=load_news_csv(path)
