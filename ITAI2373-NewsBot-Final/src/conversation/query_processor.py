@@ -7,7 +7,7 @@ from src.conversation.intent_classifier import recognize_intent
 _BROWSE_WORDS=set(
     'show list browse give find me us any some all the a an about in on from of '
     'news article articles stories story items records results please i want '
-    'latest recent current positive negative neutral'.split()
+    'latest recent current positive negative neutral summarize summary brief'.split()
 )
 _LIVE_RE=re.compile(r'\b(latest|current|today|breaking|right now|real.time|recent)\b',re.I)
 
