@@ -36,11 +36,14 @@ class NewsBotSystem:
         if len(text)>self.settings.max_input_characters:raise ValueError('Article is too long')
         bbc=getattr(self,'bbc_classifier',None)
         classification=bbc.predict(text) if bbc is not None else self.classifier.predict(text)
+        detected_language=self.languages.detect(text)
+        language_out_of_domain=detected_language['language']!='en'
         analysis={'classification':classification,'sentiment':self.sentiment.analyze(text),
-             'language':self.languages.detect(text),'summary':self.summarizer.summarize(text),
+             'language':detected_language,'summary':self.summarizer.summarize(text),
              'entities':self.entities.extract(text),'relations':self.entities.relationships(text),
              'topics':self.topics.topics_for(text),
-             'needs_human_review':classification['model_probability']<self.settings.low_confidence_threshold,
+             'needs_human_review':(classification['model_probability']<self.settings.low_confidence_threshold or language_out_of_domain),
+             'language_limitation':('The category classifier and VADER sentiment are intended for English text; results for another or uncertain language are out of domain and require review. Use consent based translation if appropriate.' if language_out_of_domain else None),
              'model_source':('BBC News Train.csv, 1440 distinct labeled articles' if bbc is not None else self.source),
              'corpus_source':self.source,
              'source_note':('Category model uses historical BBC data; corpus search and topic model use the separate synthetic demo corpus.' if bbc is not None else 'All models use the same loaded corpus.')}
