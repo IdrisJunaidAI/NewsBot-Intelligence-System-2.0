@@ -155,6 +155,81 @@ def export_analytics():
     })
 
 
+
+@app.get('/api/multilingual/status')
+def multilingual_status():
+    try:
+        bot = get_model()
+        return jsonify({
+            'supported_languages': ['en', 'es', 'fr'],
+            'translation': bot.translator.status(),
+            'lsa_active': bool(bot.search.lsa_available),
+            'multilingual_embeddings_active': bot.search.method == 'multilingual sentence embeddings',
+            'semantic_model': 'sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2',
+            'news_source': bot.source, 'live_news': False,
+            'note': 'BBC classification and synthetic corpus retrieval are separate sources.'
+        })
+    except RuntimeError as exc:
+        return jsonify({'error': str(exc)}), 503
+
+
+@app.post('/api/multilingual/detect')
+def multilingual_detect():
+    payload = request.get_json(silent=True) or {}
+    try:
+        return jsonify(get_model().languages.detect(payload.get('text','')))
+    except ValueError as exc:
+        return jsonify({'error': str(exc)}), 400
+    except RuntimeError as exc:
+        return jsonify({'error': str(exc)}), 503
+
+
+@app.post('/api/multilingual/translate')
+def multilingual_translate():
+    payload = request.get_json(silent=True) or {}
+    try:
+        result = get_model().translator.translate(
+            payload.get('text',''), source=payload.get('source','auto'),
+            target=payload.get('target','en'),
+            external_consent=payload.get('external_consent') is True)
+        return jsonify(result), (200 if result['available'] else (503 if result.get('external_service_used') else 422))
+    except ValueError as exc:
+        return jsonify({'error': str(exc)}), 400
+    except RuntimeError as exc:
+        return jsonify({'error': str(exc)}), 503
+
+
+@app.post('/api/multilingual/search')
+def multilingual_search():
+    payload = request.get_json(silent=True) or {}
+    try:
+        result = get_model().multilingual.compare(
+            payload.get('query',''), mode=payload.get('mode','semantic'),
+            external_consent=payload.get('external_consent') is True)
+        return jsonify(result), (200 if result['available'] else (503 if result.get('external_service_used') or payload.get('mode')=='semantic' else 422))
+    except ValueError as exc:
+        return jsonify({'error': str(exc)}), 400
+    except RuntimeError as exc:
+        return jsonify({'error': str(exc)}), 503
+
+
+@app.post('/api/retrieval/compare')
+def retrieval_compare():
+    payload = request.get_json(silent=True) or {}
+    try:
+        search = get_model().search
+        query = payload.get('query','')
+        return jsonify({
+            'lexical': search.search(query,top_k=5,mode='lexical'),
+            'lsa': search.search(query,top_k=5,mode='lsa'),
+            'source':'Stored corpus contains 60 synthetic articles, not authentic BBC current news'
+        })
+    except ValueError as exc:
+        return jsonify({'error': str(exc)}), 400
+    except RuntimeError as exc:
+        return jsonify({'error': str(exc)}), 503
+
+
 @app.post('/api/clear')
 def clear():
     session.pop('conversation_context', None)
