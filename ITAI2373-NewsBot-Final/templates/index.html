@@ -7,6 +7,7 @@
   <title>NewsBot Intelligence System 2.0 | NLP Analytics</title>
   <link rel="stylesheet" href="/static/style.css?v=4">
   <link rel="stylesheet" href="/static/dashboard.css?v=4">
+  <link rel="stylesheet" href="/static/multilingual.css?v=1">
 </head>
 <body>
 <div class="shell">
@@ -63,6 +64,44 @@
     </section>
   </div>
 </section>
+
+<section class="lang-lab" aria-labelledby="ml_title">
+  <small class="eyebrow">MULTILINGUAL NLP LAB</small>
+  <h2 id="ml_title">English, Spanish and French intelligence</h2>
+  <p class="lang-subtitle">Compare latent semantic indexing with lexical search, detect languages, and use third party translation only when you opt in.</p>
+  <div id="ml_status" class="dashboard-status" role="status" aria-live="polite">Checking language capabilities…</div>
+  <label class="lang-consent" for="ml_consent">
+    <input type="checkbox" id="ml_consent">
+    <span>I explicitly consent to transmitting the text or query to an external translation service. Do not submit confidential or sensitive information. Local detection and search do not require consent.</span>
+  </label>
+  <div class="lang-grid">
+    <section class="lang-panel">
+      <h3>Language detection and translation</h3>
+      <label for="ml_text">Article excerpt (English, Spanish, French)</label>
+      <textarea id="ml_text" maxlength="2000" rows="4" placeholder="El gobierno anunció nuevos programas de tecnología para las empresas."></textarea>
+      <div class="lang-tools">
+        <button type="button" id="ml_detect">Detect language</button>
+        <label for="ml_target">Translate to</label>
+        <select id="ml_target"><option value="en">English</option><option value="es">Spanish</option><option value="fr">French</option></select>
+        <button type="button" id="ml_translate">Translate with consent</button>
+      </div>
+      <div id="ml_result" class="result" role="status" aria-live="polite">Language analysis will appear here.</div>
+    </section>
+    <section class="lang-panel">
+      <h3>Cross-language article exploration</h3>
+      <p class="hint">Stored articles are synthetic and English. Shared-vector multilingual search requires the optional neural model.</p>
+      <label for="ml_query">Query in English, Spanish or French</label>
+      <input id="ml_query" maxlength="500" value="Noticias sobre tecnología y robótica">
+      <label for="ml_mode">Method</label>
+      <select id="ml_mode"><option value="translated">Translation-assisted LSA</option><option value="semantic">Multilingual neural embeddings (optional)</option></select>
+      <div class="lang-tools">
+        <button type="button" id="ml_search">Find stored articles</button>
+        <button type="button" id="ml_compare" class="secondary">Compare LSA and TF IDF</button>
+      </div>
+      <div id="ml_search_results" class="result" role="status" aria-live="polite">Results will show the actual retrieval method.</div>
+    </section>
+  </div>
+</section>
 <section class="analysis-section" aria-labelledby="tools_title">
   <div class="section-heading compact-heading">
     <div><small class="eyebrow">NLP LAB</small><h2 id="tools_title">Analyze and explore</h2></div>
@@ -102,5 +141,6 @@
 </div>
 <script src="/static/script.js?v=4"></script>
 <script src="/static/dashboard.js?v=4"></script>
+<script src="/static/multilingual.js?v=1"></script>
 </body>
 </html>
