@@ -2,9 +2,15 @@ services:
   - type: web
     name: newsbot-intelligence-system-2
     runtime: python
-    buildCommand: pip install -r requirements.txt
+    plan: free
+    region: ohio
+    branch: main
+    buildCommand: pip install -r requirements.txt && (python -m spacy download en_core_web_sm || echo 'NER model unavailable') && python train.py --demo
     startCommand: bash scripts/start_web.sh
     healthCheckPath: /health
+    autoDeployTrigger: checksPass
     envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.11"
       - key: FLASK_SECRET_KEY
         generateValue: true
