@@ -60,7 +60,7 @@ class QueryProcessor:
                     category=state.get('category'))['results']
                 allowed=set(source_df.article_id)
                 total=sum(r['article_id'] in allowed for r in matches)
-                answer=f'{total} relevant articles in the loaded corpus (lexical search, not live news).'
+                answer=f'{total} relevant articles in the loaded corpus (stored corpus similarity, not live news).'
             else:
                 total=len(source_df)
                 answer=f'{total} matching articles in the loaded corpus.'
