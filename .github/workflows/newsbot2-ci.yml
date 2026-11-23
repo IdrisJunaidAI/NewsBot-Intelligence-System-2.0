@@ -34,3 +34,5 @@ jobs:
         run: python -m pytest -q
       - name: Verify explicitly synthetic model training
         run: python train.py --demo
+      - name: Verify real BBC model attached to Flask API
+        run: python scripts/smoke_real_classifier.py

@@ -1,91 +1,84 @@
 # NewsBot Intelligence System 2.0
 
-## ITAI 2373 Final Project | Individual Portfolio Development Copy
+**ITAI 2373 Natural Language Processing Final Capstone**
 
-**Student:** Idris O. Junaid  
-**Source midterm repository:** https://github.com/IdrisJunaidAI/ITAI2373_NewsBot_Midterm  
-**Status:** Flask NLP dashboard deployed on Render Free. The single-article BBC category classifier uses a safe released weight table; corpus search and topic dashboard use a synthetic 60-article demo. This is a research prototype, not a hardened production system.  
-**Training corpus:** The student supplied BBC News Train, Test and Sample Solution files. The labeled Train file has 1,490 rows (1,440 unique after deduplication). Raw BBC article text is not in this repository. See `docs/BBC_AUTHENTIC_EVALUATION.md`.  
-**Disclaimer:** The included `demo_articles.csv` contains exactly 60 synthetic articles authored as teaching examples and may not support externally valid evaluation.
+**Live application:** https://newsbot-intelligence-system-2-p97f.onrender.com
 
-### Research purpose
-NewsBot 2.0 connects advanced classification, latent topic models, sentiment, named entities, summarization, article retrieval, language detection, optional translation and a conversational web interface. NewsBot is a research prototype, not a news verification service or medical, regulatory, or financial decision engine.
+**Portfolio repository:** https://github.com/IdrisJunaidAI/NewsBot-Intelligence-System-2.0
 
-### From midterm to final
-The October 2026 midterm notebook reported a Linear SVM held-out accuracy of **96.53%** and macro F1 of **96.45%** on its BBC sample of **1,440** articles, based on the student-submitted execution reports. Those are **midterm metrics only**. This project deliberately defaults to a Logistic Regression model to expose model probabilities, while retaining Linear SVM and Naive Bayes for a separate CV comparison. Report new model results only after re-running with the BBC CSV and inspect class-specific performance.
+**Student:** Idris O. Junaid. **Team name and contribution assignments:** must be confirmed.
 
-### Quick start
-Python 3.11 recommended. In a new clean environment:
+## What is actually deployed
+
+NewsBot is an educational NLP research prototype hosted as a Flask web application on Render Free. It provides article classification, sentiment analysis, named entity recognition, extractive summarization, topic exploration, lexical search and a conversational interface.
+
+**Two distinct source boundaries are intentional.**
+
+1. **Single article category classification:** TF IDF Logistic Regression weights trained on 1,440 distinct labeled real BBC News Train articles. A released non-executable JSON.GZ coefficient table contains vocabulary, IDF and model weights but no original BBC article texts.
+2. **Dashboard charts, topic modeling, stored article search and conversational article retrieval:** 60 synthetic teaching articles. These are not real BBC coverage and are not a live news feed. The frontend labels this distinction.
+
+Article sentiment, entities and extracted summaries are calculated from the user supplied text. Translation, transformer semantic retrieval and cultural perspective comparisons are not deployed and should not be presented as functioning production capabilities.
+
+## Authentic BBC evidence
+
+Three supplied files were audited:
+
+* BBC News Train: 1,490 labeled input articles; 50 exact duplicate texts removed, leaving 1,440.
+* BBC News Test: 735 unlabeled articles; 38 distinct article texts overlap the training set.
+* BBC News Sample Solution: category labels repeat every five rows. It is a formatting placeholder, **not verified ground truth** and was not used to calculate accuracy.
+
+A stratified split with random seed 42, 1,152 training articles and 288 held out articles, after text deduplication, produced:
+
+| Classifier | Held out accuracy | Macro F1 |
+| --- | ---: | ---: |
+| Majority class baseline | 23.61% | 7.64% |
+| Multinomial Naive Bayes | 95.14% | 94.83% |
+| Logistic Regression (deployed) | 95.83% | 95.67% |
+| Linear SVM (best tested) | 96.88% | 96.77% |
+
+The model scores are uncalibrated. These historical results are an **internal BBC holdout evaluation**, not real time news performance or an independently labeled external test. Detailed aggregate metrics, class confusion and the research protocol are in `data/results/bbc_evaluation.json` and `docs/BBC_AUTHENTIC_EVALUATION.md`.
+
+### Optional research extension
+
+`data/results/fewshot_learning_curve.csv` contains a repeated low data study with five random subsets at each of 5, 10, 25, 50 and 100 labeled articles per class. On the fixed held out set, mean macro F1 increases from 85.26% to 95.61%. This is a supervised data efficiency experiment, not few shot LLM prompting.
+
+## Development setup
+
+Python 3.11 recommended.
 
 ```bash
+cd ITAI2373-NewsBot-Final
 python -m venv .venv
-# Activate your environment before installing packages
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 python -m spacy download en_core_web_sm
-python train.py --csv "data/raw/BBC News Train.csv"
-pytest -q
+python train.py --demo
+python -m pytest -q
+python scripts/smoke_real_classifier.py
 python app.py
 ```
 
-Then visit `http://127.0.0.1:5000`.
-
-For a clearly labeled local demonstration only, substitute `python train.py --demo`. Demonstration results **must never** be reported as BBC performance.
-
-### Optional advanced capabilities
+To rerun the real BBC experiment, download or supply your approved BBC CSV files locally and run:
 
 ```bash
-pip install sentence-transformers deep-translator
-python train.py --csv "data/raw/BBC News Train.csv" --embeddings
+python scripts/evaluate_bbc.py --train "/path/BBC News Train.csv" --test "/path/BBC News Test.csv" --sample "/path/BBC News Sample Solution.csv" --out data/results
 ```
 
-The semantic search component uses multilingual embeddings only when explicitly requested and successfully installed. Otherwise, it uses TF IDF lexical retrieval and labels this limitation in every response. Translation requires a network service and must not be represented as available offline. Named entity recognition requires `en_core_web_sm`; no entities are fabricated when the model is missing. Historical BBC data has no reliable article date, so topic evolution and time-based filters are unavailable unless a suitable dated corpus is provided.
+The original BBC article files are intentionally excluded from this repository. The last command generates real metrics, test category predictions, repeated low data trials and a locally trusted classifier pipeline.
 
-### System components
+## API and quality
 
-| Module | Implementation |
-| --- | --- |
-| Data quality | Schema mapping, cleaning, duplicate check, date provenance |
-| Classification | Leakage-aware 80/20 split, CV comparisons, logistic probabilities |
-| Topic discovery | LDA and NMF with inspectable words, temporal aggregation when dated |
-| Tone and entities | VADER, spaCy entities and clearly labeled cooccurrence |
-| Understanding | Extractive article summary and retrieval |
-| Multilingual | Language detection, optional translation and multilingual embeddings |
-| Conversation | Intent routing, corpus filtering, multi-turn filter context, article IDs |
-| Web interface | Flask dashboard with `/api/analyze`, `/api/query`, `/api/stats` |
+The Flask app exposes `/`, `/health`, `/api/analyze`, `/api/query`, `/api/dashboard`, `/api/stats`, `/api/export/analytics.csv` and `/api/clear`.
 
-### Reproducibility and governance
-Keep raw BBC source in `data/raw/` and do not push licensed data or secrets publicly. The application loads only trusted local `joblib` models. User-entered articles may contain sensitive information and are **not** sent to external providers unless the user intentionally enables an optional network translator. Review generated interpretation, sentiment and entity links manually. Set `FLASK_SECRET_KEY` for deployment and place Flask behind an HTTPS reverse proxy. This is not a hardened, audited public service.
+The repository uses automated Python, JavaScript and Flask endpoint checks via GitHub Actions. Build logs, deployed service version and request health can be inspected from the Render service dashboard. The app is a research prototype, not a hardened production security, reliability or fact verification service.
 
-### Submission and individual contributions
-The `docs/individual_contributions.md` file differentiates verified midterm activities from unverified future final work. This project package was assembled with AI coding assistance for review and testing; attribution should be retained and the student/team must inspect, modify, run, and understand it before submission. The instructor requires each student's repository and the team's reflective journal with real contributions. Names and group responsibilities must be verified before finalizing report filenames.
+## Assessment and limitations
 
-### File map
-`src/` reusable modules; `config/` settings; `notebooks/` guided execution; `tests/` automated tests; `data/` example data and outputs; `docs/` developer and user guides; `reports/` draft PDF reports and PowerPoint.
+The instructor asks for four advanced modules, comprehensive documentation, a 15 minute team presentation, a technical PDF, executive PDF, individual portfolio repository access and a genuine three page reflective journal. Full multilingual translation, semantic embeddings, cultural context comparison and generative LLM enhancement remain unverified gaps. A dated external news ingestion system would be required for time trend claims and current news queries.
 
-### Important limitations
-1. The real BBC training CSV and fitted model were **not** attached to the final-project upload.
-2. Standalone deployment and external translation require network access and installation not available during initial package assembly.
-3. The 60 sample article teaching set is synthetic; no new final-model claims are made about actual publisher accuracy.
-4. The optional 20-point research bonus in the rubric lists specific extensions such as few-shot learning and live processing. The default system does not assert completion of those extensions.
+Reports and presentations under `reports/` are drafts unless the group name and verified team contributions are completed. The student and all team members must assess their own contributions and presentation roles.
 
-### References
-Kaggle BBC News Classification: https://www.kaggle.com/competitions/learn-ai-bbc/data  
-scikit-learn: https://scikit-learn.org/stable/  
-spaCy: https://spacy.io/  
-VADER: Hutto & Gilbert (2014), ICWSM  
-Instructor final project guide and web application guide, supplied course materials.
+**AI assistance disclosure:** ChatGPT assisted with source code, research evaluation, regression tests and draft documentation. Student and team are responsible for review, reproducibility, attribution and accurate representation of independent work.
 
-### Frontend and optional hosting blueprint
+## References
 
-The responsive Flask app consists of `app.py`, `templates/index.html`, `static/style.css` and `static/script.js`. It exposes a dashboard, article analysis, natural language queries and health checks. `render.yaml`, `Procfile` and `scripts/start_web.sh` provide an optional hosting entry point. Hosting has **not** been performed or verified.
-
-The startup script trains from the included **synthetic demonstration** corpus if no model is present; this allows the web application to be viewed but cannot validate scientific performance. Before presenting as a research deployment, train on approved BBC news data and confirm model dependencies and provenance. Do not commit the BBC raw dataset or untrusted model artifacts. Full model loading in hosted environments requires validation of compute, memory, package versions and application security. The hosting provider may charge fees and its current deployment options must be confirmed.
-
-Continuous integration tests run on GitHub Actions using `.github/workflows/ci.yml`, including Flask route tests. The source package is self contained for code review; enabling optional language models requires additional installation and internet connectivity.
-
-
-## Authentic BBC evaluation update (November 23, 2026)
-
-See `docs/BBC_AUTHENTIC_EVALUATION.md` and `data/results/bbc_evaluation.json` for reproducible aggregate measurements. On an isolated 288 article holdout, Logistic Regression achieved **95.83% accuracy** and **95.67% macro F1**; Linear SVM achieved **96.88% accuracy** and **96.77% macro F1**. The uploaded sample solution is a cyclic placeholder and was not used as verified ground truth. The deployed category model uses Logistic Regression trained on 1,440 distinct labeled BBC articles. The article search and topic dashboard use 60 synthetic examples, with separate interface labels. `scripts/evaluate_bbc.py` reproduces the evaluation from licensed local CSV files. The released model is a non-executable JSON.GZ coefficients table that excludes raw BBC article texts. Do not present synthetic or historical results as live current news.
-
-**Research extension:** A repeated 5, 10, 25, 50, and 100 labeled articles per class learning curve is included in `data/results/fewshot_learning_curve.csv`. This is an exploratory low-data study rather than an LLM prompting demonstration.
+Instructor final project rubric and Web App Development Tutorial; provided BBC news CSV files; scikit-learn, spaCy and VADER project documentation.
