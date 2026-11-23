@@ -93,7 +93,9 @@ function renderAnalysis(body) {
   } else if (entities.reason) {
     add(out, 'p', 'meta', entities.reason);
   }
-  if (body.model_source) add(out, 'p', 'meta', 'Training corpus: ' + body.model_source);
+  if (body.model_source) add(out, 'p', 'meta', 'Category classifier training: ' + body.model_source);
+  if (body.corpus_source) add(out, 'p', 'meta', 'Topic and search corpus: ' + body.corpus_source);
+  if (body.source_note) add(out, 'p', 'result-notice', body.source_note);
   add(out, 'p', 'meta', 'Automated analysis is not independent fact verification.');
 }
 async function send(url, payload, target, mode) {

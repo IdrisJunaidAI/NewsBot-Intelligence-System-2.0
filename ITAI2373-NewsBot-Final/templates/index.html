@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="NewsBot 2.0, a transparent NLP teaching prototype with article exploration and model analytics.">
   <title>NewsBot Intelligence System 2.0 | NLP Analytics</title>
-  <link rel="stylesheet" href="/static/style.css?v=3">
-  <link rel="stylesheet" href="/static/dashboard.css?v=3">
+  <link rel="stylesheet" href="/static/style.css?v=4">
+  <link rel="stylesheet" href="/static/dashboard.css?v=4">
 </head>
 <body>
 <div class="shell">
@@ -70,10 +70,10 @@
   <main>
     <section class="card">
       <h2>Analyze an article</h2>
-      <p>Paste at least 30 characters to inspect classification, sentiment, extracted summary, named entities and topics.</p>
+      <p>Paste at least 30 characters. Category classification uses historical BBC training data; sentiment, entities, summary and topic weights are analyzed separately.</p>
       <label for="article">Article text</label>
       <textarea id="article" rows="9" maxlength="30000" placeholder="Paste a news article here..."></textarea>
-      <p class="hint">Predictions reflect the loaded model and are not independent fact verification.</p>
+      <p class="hint">The BBC model is an educational classifier, not independent fact verification. Search results and dashboard corpus statistics remain synthetic.</p>
       <button id="analyze" type="button">Analyze article</button>
       <div id="analyze_out" class="result" role="status" aria-live="polite">Analysis results will appear here.</div>
     </section>
@@ -100,7 +100,7 @@
   <p>Educational NLP research prototype. Optional translation and multilingual embedding search are not enabled on this demonstration deployment.</p>
 </footer>
 </div>
-<script src="/static/script.js?v=3"></script>
-<script src="/static/dashboard.js?v=3"></script>
+<script src="/static/script.js?v=4"></script>
+<script src="/static/dashboard.js?v=4"></script>
 </body>
 </html>

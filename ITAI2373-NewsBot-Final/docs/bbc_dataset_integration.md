@@ -2,7 +2,7 @@
 
 ## Current evidence status
 
-The approved `BBC News Train.csv` has not been supplied to this final project workspace. Accordingly, the publicly hosted Render application trains on the included **60 synthetic demonstration articles**, whose measured scores are **not** evidence of real BBC model performance. The previous midterm's 96.53% held out accuracy and 96.45% macro F1 are historical results from a different model execution and must not be rebranded as final results.
+The instructor-approved BBC Train, Test and Sample Solution CSVs were supplied on November 23, 2026. The real classification evaluation and the safe released BBC classifier are documented in `docs/BBC_AUTHENTIC_EVALUATION.md`. The publicly hosted Render application still uses **60 synthetic demonstration articles for topic modeling, search and dashboard aggregation**, while the single-article **category classifier** now uses the authentic BBC-derived weight table. The previous midterm's 96.53% held out accuracy and 96.45% macro F1 are historical results from a different model execution and must not be rebranded as final results.
 
 ## Step 1. Obtain the approved dataset
 

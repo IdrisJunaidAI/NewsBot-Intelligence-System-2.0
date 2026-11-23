@@ -22,7 +22,7 @@ class NewsBotSystem:
         self.summarizer=NewsSummarizer();self.search=SemanticSearch(use_embeddings=use_embeddings)
         self.languages=LanguageDetector();self.translator=Translator();self.generator=InsightGenerator()
         self.multilingual=CrossLingualAnalyzer(self.search);self.conversation=QueryProcessor(self)
-        self.df=None;self.source='not loaded'
+        self.df=None;self.source='not loaded';self.bbc_classifier=None
     def fit_csv(self,path,source=None):
         self.df=load_news_csv(path)
         self.source=source or str(path)
@@ -34,13 +34,16 @@ class NewsBotSystem:
         if not isinstance(text,str) or len(text.strip())<30:
             raise ValueError('Please enter an article of at least 30 characters')
         if len(text)>self.settings.max_input_characters:raise ValueError('Article is too long')
-        classification=self.classifier.predict(text)
+        bbc=getattr(self,'bbc_classifier',None)
+        classification=bbc.predict(text) if bbc is not None else self.classifier.predict(text)
         analysis={'classification':classification,'sentiment':self.sentiment.analyze(text),
              'language':self.languages.detect(text),'summary':self.summarizer.summarize(text),
              'entities':self.entities.extract(text),'relations':self.entities.relationships(text),
              'topics':self.topics.topics_for(text),
              'needs_human_review':classification['model_probability']<self.settings.low_confidence_threshold,
-             'model_source':self.source}
+             'model_source':('BBC News Train.csv, 1440 distinct labeled articles' if bbc is not None else self.source),
+             'corpus_source':self.source,
+             'source_note':('Category model uses historical BBC data; corpus search and topic model use the separate synthetic demo corpus.' if bbc is not None else 'All models use the same loaded corpus.')}
         return analysis
     def corpus_stats(self):return quality_report(self.df)
     def ask(self,query,context=None):return self.conversation.process(query,context)
