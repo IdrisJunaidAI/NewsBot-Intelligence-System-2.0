@@ -1,23 +1,23 @@
-# NewsBot 2.0 Analytics and Reproducibility Upgrade
+# NewsBot 2.0 BBC Research First Website Release
 
-## Completed in source
+## Delivered
 
-* Responsive News Analytics dashboard with live calculations from the loaded model's data, including category breakdown and VADER sentiment breakdown.
-* Both LDA and NMF topic model visualizations with assigned article counts and model derived keywords.
-* Training holdout accuracy, macro F1, and cross validated comparison for the models already implemented in the project.
-* Temporal distribution restricted to source provided dates.
-* Downloadable aggregate CSV report without raw article text.
-* BBC dataset preflight script with schema verification, class checks, and SHA256 fingerprint for reproducibility.
-* Regression tests for the analytics endpoint, calculated totals, CSV export, and BBC shaped file structure.
+* The main dashboard now loads **derived statistics from authentic historical BBC News Train** by default: 1,440 distinct labeled texts after removing 50 repeated articles from 1,490 input rows.
+* It shows five true BBC class counts, authentic historical NMF and LDA topic assignments, a separately labeled TextBlob polarity estimate and validated classical classifier results.
+* No original BBC news article bodies are included in the server's public corpus or aggregate JSON. Historical BBC topics cannot support time evolution because publication dates are absent.
+* The 60 synthetic article collection is retained as an explicit optional dashboard toggle and powers the stored article chatbot.
+* The new Current BBC News Headlines section uses official BBC News RSS titles and direct article links with visible attribution and an error fallback. These links are separate from the historical training corpus.
+* A responsive individual research portfolio layout, keyboard usable controls, CSV aggregate export, and independent submission documentation were added.
+* Github Actions tests BBC aggregate mass balance, classified BBC provenance, source selection, synthetic distinction and RSS parsing.
 
-## Not yet supported by evidence
+## Measured evidence
 
-* The authentic BBC training dataset has not been supplied to the workspace. Its final model scores cannot be calculated.
-* The hosted site still runs on the explicitly synthetic 60 article teaching corpus. Its 50 percent held out demonstration accuracy is not a valid research performance result.
-* No live news API or current events access has been added.
-* Multilingual embedding retrieval and machine translation remain optional features and are not enabled by this change.
-* Any additional score for an optional research extension must depend on actual implementation and validation, not this dashboard alone.
+The authentic BBC classifier's Logistic Regression held out accuracy is 95.83% and macro F1 is 95.67% on 288 records; Linear SVM comparison is 96.88% accuracy. The full historical BBC topic statistics use 1,440 unique documents. The separate MiniLM Colab experiment recorded 18/18 top rank retrieval matches on six synthetic passages and 18 queries.
 
-## Release checks
+## Honest limitations
 
-Review CI, `/health`, `/api/dashboard`, `/api/export/analytics.csv`, the topic method toggle, and the question and article analysis interfaces on the live site. Report merge commit and deployment ID with the individual portfolio documentation.
+* The BBC historical file has no verified article publication dates. Dated topic and sentiment evolution remains unavailable.
+* The chatbot and lightweight hosted LSA search do not index full BBC article texts. They explicitly search the separate synthetic examples.
+* The RSS section may be unavailable when BBC feed network access fails.
+* Cross language cultural interpretation and external translation quality on authentic multilingual news are not validated.
+* The professor requires a group submission in the detailed PDF, while this version is an individually prepared alternative pending instructor agreement.
