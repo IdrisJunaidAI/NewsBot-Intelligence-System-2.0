@@ -142,6 +142,7 @@ def test_flask_offline_mode_and_spanish_comparison_do_not_call_provider(monkeypa
             json={"query":"Actualités sur la technologie et la robotique"})
         assert comparison.status_code==200
         assert comparison.get_json()["normalized_query"]=="technology robotics"
-        assert comparison.get_json()["lsa"]["results"][0]["article_id"]=="TECH"
+        assert comparison.get_json()["lexical"]["results"][0]["article_id"]=="TECH"
+        assert comparison.get_json()["lsa"]["method"].startswith("LSA")
         html=client.get("/").get_data(as_text=True)
         assert '<option value="offline" selected>' in html
