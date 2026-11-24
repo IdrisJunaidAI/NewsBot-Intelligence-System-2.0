@@ -1,15 +1,25 @@
-# Deployment Guide
+# Individual Portfolio Deployment Guide
 
-1. Install Python 3.11 and create an isolated environment.
-2. Install `requirements.txt` and `python -m spacy download en_core_web_sm`.
-3. Download approved BBC dataset, place at `data/raw/BBC News Train.csv`, then run `python train.py --csv "data/raw/BBC News Train.csv"`.
-4. Run `pytest -q`; inspect `data/results/training_metrics.json` and conduct manual source verification.
-5. Set a random `FLASK_SECRET_KEY` environment variable and run locally using `python app.py`.
-6. Only for a controlled deployment, use an HTTPS reverse proxy, authentication, request limits, error logging, security reviews and privacy impact review. `gunicorn app:app` may be used on a supported production host after those controls. Never publish the raw BBC dataset, model secrets, or uncontrolled user text. Do not enable `debug=True` in production.
+NewsBot is deployed as a **Render Free** Python web service with the GitHub `main` branch. The site URL is https://newsbot-intelligence-system-2-p97f.onrender.com and the service uses Flask with Gunicorn.
 
-Model artifacts loaded through joblib must be generated locally or verified through trusted provenance. Optional translation sends data to an external provider; assess consent, licensing and data sensitivity first. The package does not claim a verified public deployment.
+The build installs Python dependencies and trains a small synthetic demonstration search model because public redistributing full BBC publisher text is not assumed. The article category classifier loads a separate safe, non executable BBC trained JSON.GZ weights release. The default dashboard reads `data/results/bbc_public_analytics.json` built from the authentic historical BBC Train CSV, without full text. The 60 item teaching search corpus is optional and explicitly labeled. Real current BBC headline links come from official attributed RSS with a bounded cache.
 
-## Optional Flask hosting setup
-The repository includes a Render configuration file (`render.yaml`) and `scripts/start_web.sh`. A host supporting Python 3.11 and Gunicorn can run the same script. On first start, an absent model triggers a **synthetic teaching demonstration** with 60 example articles. It does not train the final BBC model.
+## Commands
 
-To deploy on a supported host, connect your GitHub repository in its dashboard, select `render.yaml` or configure the build command `pip install -r requirements.txt` and start command `bash scripts/start_web.sh`. Supply `FLASK_SECRET_KEY` securely. Verify `/health`, `/api/stats`, `/api/analyze`, and `/api/query`, and test browser behavior before sharing the URL. Public hosting is an optional bonus and is **not yet completed**. Investigate hosting availability, quota, latency and security controls.
+`python -m pip install -r requirements.txt`  
+`python train.py --demo`  
+`python scripts/smoke_real_classifier.py`  
+`python -m pytest -q`  
+`gunicorn app:app`
+
+## Configuration
+
+`FLASK_SECRET_KEY` generated securely by Render; `PYTHON_VERSION` set in `render.yaml`. No API secrets or full article text are committed. The public website is still a limited academic prototype, not an audited news service. Apply rate limiting, observability, provider license review, accessibility testing and production security controls before commercial use.
+
+## Health and deployment checks
+
+Check `/health`, `/api/dashboard` for 1440 real records, `/api/dashboard?source=demo` for 60 teaching records, and `/api/bbc/headlines` for optional RSS headlines. RSS failure must be handled gracefully. Validate `POST /api/analyze` returns BBC category model provenance and `POST /api/query` states that the search corpus is synthetic.
+
+## Data rights
+
+Do not upload `BBC News Train.csv` or other original BBC news article bodies to the public repository by default. Official RSS titles and links should maintain BBC News attribution and comply with relevant publisher conditions. Business use needs separate rights review.

@@ -1,33 +1,36 @@
 # NewsBot Intelligence System 2.0
 
-ITAI 2373 Natural Language Processing Final Project | Idris Junaid
+**ITAI 2373 Natural Language Processing | Individual capstone portfolio | Idris O. Junaid**
 
-## Main project
+[Live NewsBot website](https://newsbot-intelligence-system-2-p97f.onrender.com)  
+[Full project folder](ITAI2373-NewsBot-Final/)  
+[Individual submission compliance matrix](ITAI2373-NewsBot-Final/docs/individual_submission_compliance.md)
 
-[Open the NewsBot 2.0 Python backend, Flask frontend, tests and documentation](ITAI2373-NewsBot-Final/README.md).
+The default website dashboard now shows **authentic historical BBC News research evidence** from 1,440 distinct labeled BBC articles, with NMF/LDA aggregate topics and honest statistical limitations. The current BBC News RSS links are displayed separately, with attribution and links to the original articles. Conversational article retrieval remains a clearly labeled synthetic 60 item demonstration because the original BBC full article bodies are not redistributed on the public site.
 
-The final project lives in `ITAI2373-NewsBot-Final/` and contains modular NLP analysis, a browser-based Flask dashboard, seven guided Jupyter notebooks, demonstration data and automated tests. It is an educational prototype, not an audited production system.
+The historical BBC classifier achieved **95.83% held out accuracy and 95.67% macro F1** using Logistic Regression on 288 held out articles. The Linear SVM comparison achieved **96.88% accuracy**. The separate executed Google Colab multilingual MiniLM study achieved **18 of 18** first rank retrieval matches on six synthetic documents and 18 controlled English, Spanish and French queries. These are different experiments with different source boundaries.
 
-## Original midterm evidence
+## Individual submission and historical preservation
 
-The root directory preserves the previously submitted `ITAI2373_NewsBot_Midterm (1).ipynb`, `MT_Technical_Report_IdrisJunaid_ITAI2373.pdf` and `MT_Reflective_Report_IdrisJunaid_ITAI2373.pdf`. The original midterm reported 96.53% held out accuracy on its BBC corpus. This result **does not apply** to the synthetic demonstration dataset used for final project smoke tests.
+This is the student's individual project. The original midterm notebook, technical report and reflective report remain preserved in the repository root. Current technical documentation, executive summary, 20 slide presentation and three page individual reflection are filed in `ITAI2373-NewsBot-Final/reports/`.
 
-## Run and test
+The published instructor instructions specify a group format and a group journal. The `Individual` filename segment in this version is a transparent proposed alternative, **not confirmed instructor approval**. No fictional collaborators or contributions are reported.
+
+AI tools assisted with software scaffolding, test authoring and document drafting. The student is accountable for independent comprehension, verification and the final submission. Credit is documented in [individual contributions](ITAI2373-NewsBot-Final/docs/individual_contributions.md).
+
+## Responsible publisher handling
+
+The original historical BBC article texts are not in this repository. The public dashboard contains no full article bodies, only derived aggregates, classifier weights and topic words. The project is educational and not commercial; actual rights for publisher reuse must be reviewed before any further deployment or redistribution.
+
+## Test and run
 
 ```bash
 cd ITAI2373-NewsBot-Final
 python -m pip install -r requirements.txt
 python train.py --demo
 python -m pytest -q
+python scripts/smoke_real_classifier.py
 python app.py
 ```
 
-Open http://127.0.0.1:5000 after starting the app. For meaningful evaluation replace the synthetic dataset with the instructor-approved BBC News Train CSV and train with `python train.py --csv "data/raw/BBC News Train.csv"`. Do not commit private or licensed data.
-
-## Hosting
-
-The repository includes a root `render.yaml` as an optional Render Blueprint. By default the demo hosting startup uses **synthetic sample data only**. A live hosted URL has not yet been established. Validate provenance and security before public hosting.
-
-## Attribution and accountability
-
-Source documents and portions of the implementation were prepared with AI assistance for student/team review. See `ITAI2373-NewsBot-Final/docs/individual_contributions.md`. Retain verified authorship and team attribution in all final submissions.
+The source code, licenses, setup and reproducibility guidance are under the project folder.
