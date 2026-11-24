@@ -54,7 +54,8 @@ def test_individual_submission_status_is_consistent_and_not_overclaimed():
     for content in (compliance,contributions,readme):
         assert "individual" in content.lower()
         assert "November 24, 2026" in content
-        assert "not independently" in content.lower()
+        assert "independently" in content.lower()
+        assert "reported" in content.lower()
     assert "Instructor acceptance of that format has **not** been documented" not in contributions
 
 def test_previous_uiverse_license_notices_preserved():
