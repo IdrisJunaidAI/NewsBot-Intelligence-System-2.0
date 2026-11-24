@@ -22,7 +22,7 @@
 | Technical documentation (15 points) | Individual detailed PDF, API, installation and configuration | Draft created; student final review required |
 | User documentation (15 points) | User guide, notebooks, FAQ, live demo steps | Synthetic narrated rehearsal video prepared; no independently verified personal on-camera demonstration |
 | Business docs (10 points) | Executive summary, ROI scenario, comparisons | Hypothetical ROI not realized |
-| Presentation (35 points) | 19 slide individual deck with speaker notes | Individual presentation approved as reported by the student; rehearsal required |
+| Presentation (35 points) | 20 slide individual deck with speaker notes | Individual presentation approved as reported by the student; rehearsal required |
 | Reflective journal | Three page individual journal | Individual format approved as reported by the student; retain complete independent reflection |
 | Web application bonus | Render Free Flask site, responsive dashboard and attributed BBC RSS | Implemented with batch analysis and interactive research chart; still an educational prototype; browser QA recommended |
 | Research extension | 5,10,25,50,100 shots per category repeated study | 25 real BBC fit rows, notebook 09, summary API and chart; instructor determines bonus eligibility |

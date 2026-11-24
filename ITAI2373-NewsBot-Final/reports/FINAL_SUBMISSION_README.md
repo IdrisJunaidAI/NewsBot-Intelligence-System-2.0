@@ -10,7 +10,7 @@
 
 1. `FP_TechnicalDoc_IdrisJunaid_Individual_ITAI2373.pdf`  (17 pages)
 2. `FP_ExecutiveSummary_IdrisJunaid_Individual_ITAI2373.pdf`  (3 pages)
-3. `FP_Presentation_IdrisJunaid_Individual_ITAI2373.pptx`  (19 slides with individually written presentation notes)
+3. `FP_Presentation_IdrisJunaid_Individual_ITAI2373.pptx`  (20 slides with individually written presentation notes; includes Flask frontend bonus)
 4. `FP_ReflectiveJournal_Individual_ITAI2373.pdf`  (3 pages)
 
 **GitHub portfolio:** https://github.com/IdrisJunaidAI/NewsBot-Intelligence-System-2.0  
@@ -46,3 +46,7 @@ The prose and presentation have been substantively rewritten to express the proj
 * [ ] Upload the required files and submit the two URLs in Canvas.
 
 **Do not upload this entire ZIP in place of the individually named files unless your Canvas instructor explicitly accepts a ZIP.**
+
+## Matching the professor's repository report structure and bonus opportunities
+
+The `reports/` folder now includes the descriptive filenames `executive_summary.pdf`, `technical_report.pdf` and `presentation_slides.pdf` requested in the repository tree. Canvas submission still uses the named `FP_...` files above. The presentation is now a 20 slide PowerPoint with 20-slide PDF reading copy. The optional `FP_BonusEvidence_IdrisJunaid_Individual_ITAI2373.pdf` supplies a two-page explanation of the tested batch frontend and authentic BBC limited-data study. Bonus marks remain at the professor's discretion. See `../docs/BONUS_EVIDENCE.md`.

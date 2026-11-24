@@ -78,7 +78,7 @@ See `docs/individual_contributions.md`, `docs/technical_documentation.md`, `docs
 
 ## GitHub link and presentation alternatives
 
-The course specifies an individual public repository for each submitter. This repository satisfies that condition for the approved solo capstone. The presentation format is a **19 slide PowerPoint with notes OR a 10 to 15 minute video**. The MP4 demonstration supplied separately is a **synthetic narration rehearsal aid**; it does not replace a recording where the student appears and walks through the live application. See [submission and video guidance](docs/VIDEO_PRESENTATION_AND_INDIVIDUAL_REPOSITORY.md).
+The course specifies an individual public repository for each submitter. This repository satisfies that condition for the approved solo capstone. The presentation format is a **20 slide PowerPoint with notes OR a 10 to 15 minute video**. The MP4 demonstration supplied separately is a **synthetic narration rehearsal aid**; it does not replace a recording where the student appears and walks through the live application. See [submission and video guidance](docs/VIDEO_PRESENTATION_AND_INDIVIDUAL_REPOSITORY.md).
 
 ### Bonus coursework evidence
 

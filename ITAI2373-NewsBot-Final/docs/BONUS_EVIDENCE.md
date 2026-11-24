@@ -53,3 +53,8 @@ All values above are calculated from the committed **25 original experiment rows
 After opening the live site, show the source-controlled BBC dashboard, switch to the synthetic demo to distinguish sources, run one pasted article through analysis, then run two independent excerpts through the batch panel. Demonstrate a question about stored synthetic articles. Show the low-data learning curve and change the metric between macro F1 and accuracy. Explain that scores come from the committed historical experiment and that the research did not involve an LLM prompt, followed by the limitations above.
 
 The instructor has sole discretion over awarding bonus points.
+
+
+## Instructor-ready bonus evidence appendix
+
+The optional `reports/FP_BonusEvidence_IdrisJunaid_Individual_ITAI2373.pdf` provides a two-page visual evidence summary, including the measured learning curve and method disclosures. The updated `reports/FP_Presentation_IdrisJunaid_Individual_ITAI2373.pptx` has 20 slides. Slides 17 and 18 separately address the up to 20 point research extension and up to 30 point Flask frontend. The source-controlled PDF `reports/presentation_slides.pdf` is a 20-page viewing copy and is not required in addition to the PPTX for Canvas submission.

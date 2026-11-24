@@ -16,7 +16,7 @@ The instructor's detailed PDF says **choose one format**:
 * Option A: 15 to 20 slide PowerPoint with speaker notes.
 * Option B: 10 to 15 minute MP4 or unlisted video, covering the same content. The original team rule requests that presenters appear. As an individual presenter, the student should be visible for this option.
 
-A revised 19 slide PowerPoint exists under reports/ and meets the formatting requirements for Option A.
+A revised 20 slide PowerPoint exists under reports/ and meets the formatting requirements for Option A.
 
 ## Prepared video draft
 
@@ -29,3 +29,6 @@ Do not portray synthesized audio as the student's real voice. The existing Power
 ## Canvas submission
 
 Submit the public repository link, required PDFs, one presentation format, and the live web app URL for the optional frontend. Preserve the project's accurate distinctions between historical BBC evidence, the synthetic teaching corpus and current attributed BBC RSS links.
+
+
+**Revised presentation synchronization:** The authoritative PowerPoint and its new PDF reading copy now contain 20 slides with a dedicated Flask frontend bonus slide. The earlier 13 minute 47 second AI voice practice MP4 still uses 19 slides; do not present that practice recording as the student's final filmed video.
