@@ -20,4 +20,4 @@
 
 ## Release checks
 
-Review CI, `/health`, `/api/dashboard`, `/api/export/analytics.csv`, the topic method toggle, and the question and article analysis interfaces on the live site. Report merge commit and deployment ID with the team documentation.
+Review CI, `/health`, `/api/dashboard`, `/api/export/analytics.csv`, the topic method toggle, and the question and article analysis interfaces on the live site. Report merge commit and deployment ID with the individual portfolio documentation.
