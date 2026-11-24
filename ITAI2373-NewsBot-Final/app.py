@@ -12,6 +12,7 @@ from config.settings import Settings
 from src.analysis.bbc_classifier import BBCWeightedClassifier
 from src.utils.dashboard import dashboard_snapshot
 from src.utils.bbc_feed import get_bbc_headlines
+from src.multilingual.offline_query import offline_news_query
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('FLASK_SECRET_KEY', os.urandom(32).hex())
@@ -181,6 +182,9 @@ def multilingual_status():
             'supported_languages': ['en', 'es', 'fr'],
             'translation': bot.translator.status(),
             'lsa_active': bool(bot.search.lsa_available),
+            'offline_topic_search_available': True,
+            'offline_topic_search_languages': ['en', 'es', 'fr'],
+            'offline_topic_search_note': 'Local curated term mapping, not full machine translation or multilingual transformer inference.',
             'multilingual_embeddings_active': bot.search.method == 'multilingual sentence embeddings',
             'semantic_model': 'sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2',
             'news_source': bot.source, 'live_news': False,
@@ -234,11 +238,29 @@ def multilingual_search():
 def retrieval_compare():
     payload = request.get_json(silent=True) or {}
     try:
-        search = get_model().search
+        system = get_model()
+        search = system.search
         query = payload.get('query','')
+        if not isinstance(query,str) or not query.strip():
+            raise ValueError('A nonempty search query is required')
+        detection = system.languages.detect(query)
+        language = detection['language']
+        if language in ('es','fr'):
+            mapping = offline_news_query(query,language)
+            if not mapping['available']:
+                return jsonify({'error':mapping['reason'],'language':detection}),422
+            query_en = mapping['query_en']
+            mapping_note = mapping['note']
+        else:
+            query_en = query
+            mapping_note = 'Direct English query; no external translation used'
         return jsonify({
-            'lexical': search.search(query,top_k=5,mode='lexical'),
-            'lsa': search.search(query,top_k=5,mode='lsa'),
+            'lexical': search.search(query_en,top_k=5,mode='lexical'),
+            'lsa': search.search(query_en,top_k=5,mode='lsa'),
+            'language': detection,
+            'normalized_query': query_en,
+            'mapping_note': mapping_note,
+            'external_service_used': False,
             'source':'Stored corpus contains 60 synthetic articles, not authentic BBC current news'
         })
     except ValueError as exc:
