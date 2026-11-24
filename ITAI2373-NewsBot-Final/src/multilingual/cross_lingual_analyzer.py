@@ -19,7 +19,11 @@ class CrossLingualAnalyzer:
             return {"available":False,"mode":"offline","language":language,
                     "reason":mapped["reason"],
                     "external_service_used":bool(external_used)}
-        search_mode="lsa" if getattr(self.search_engine,"lsa_available",False) else "lexical"
+        # A small synthetic index makes SVD/LSA rankings unstable for sparse,
+        # curated topic terms. Exact English vocabulary matching is a safer
+        # default. LSA remains available in the explicit comparison control.
+        search_mode=("lexical" if language in ("es","fr") else
+                     ("lsa" if getattr(self.search_engine,"lsa_available",False) else "lexical"))
         results=self.search_engine.search(mapped["query_en"],top_k=top_k,mode=search_mode)
         note=mapped["note"]
         if why:
