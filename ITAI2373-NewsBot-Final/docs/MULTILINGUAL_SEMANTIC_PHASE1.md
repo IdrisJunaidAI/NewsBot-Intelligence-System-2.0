@@ -70,3 +70,14 @@ The original template notebook was subsequently executed by the student and its 
 **Scope restriction:** These results are a small controlled benchmark, not validation on authentic multilingual BBC news, independent publishers or cultural perspective analysis. LSA was not included in this Colab comparison. Translation was **not executed** because the consent switch remained false. The hosted Free Render system still uses LSA, not MiniLM neural inference.
 
 See `docs/MULTILINGUAL_EXECUTED_RESULTS.md`, `data/results/multilingual_measured_summary.csv`, and `notebooks/08_Multilingual_Semantic_Search_Executed_Evidence.ipynb` for the measured result table and executed code. The cleaned notebook preserves meaningful outputs while removing transient Colab progress widgets. The supplied original notebook's SHA256 appears in `data/results/multilingual_evidence_manifest.json`.
+
+
+## Offline topic search and resilient translation (November 23, 2026)
+
+NewsBot now defaults to `mode="offline"` for English, Spanish and French queries. For Spanish and French, a **manually curated, bounded list of news topic words** maps terms such as `tecnología` to `technology` and `robotique` to `robotics`. English LSA or TF IDF then retrieves against the **synthetic classroom corpus**. No external data transmission or user consent is required for this mode. It is **not translation**, multilingual model inference, general natural language understanding, or current BBC article search. Unknown topics and negations may be omitted, so results must be reviewed.
+
+`mode="translated"` remains an explicit opt-in external service. Google's underlying endpoint can answer HTTP 429 (`TooManyRequests`) for shared hosted service IPs. The code now classifies rate-limited provider errors, stops repeated requests for a local 10 minute cooldown, and exposes structured errors without leaking submitted text. If a consenting external translation call fails and local news-topic words are recognized, the query is searched using a **conspicuously labeled offline fallback**, not a fabricated translation. Direct text translation is unavailable during the provider limit; it never returns vocabulary lookup as a full translated sentence.
+
+The default web UI selects offline search. The "Compare LSA and TF IDF" control also normalizes recognized Spanish/French topic words locally. Testing includes third-party rate limit simulation, zero external requests in offline mode, fallback output provenance, and Spanish/French retrieval. Actual external provider reliability and translation quality remain unverified.
+
+For robust, full sentence production translation, deploy an authorized paid/free-tier translation API with credentials or separately host an approved offline model, after evaluating data protection, resource limits, and quality. None is assumed installed for this capstone.

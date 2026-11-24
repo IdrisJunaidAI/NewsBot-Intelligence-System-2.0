@@ -106,7 +106,7 @@
 <section class="lang-lab" aria-labelledby="ml_title">
   <small class="eyebrow">MULTILINGUAL NLP LAB</small>
   <h2 id="ml_title">English, Spanish and French intelligence</h2>
-  <p class="lang-subtitle">Compare latent semantic indexing with lexical search, detect languages, and use third party translation only when you opt in.</p>
+  <p class="lang-subtitle">Explore locally in Spanish or French without a translation provider. Compare LSA and TF IDF, detect languages, or explicitly opt in to third party translation.</p>
   <div id="ml_status" class="dashboard-status" role="status" aria-live="polite">Checking language capabilities…</div>
   <label class="lang-consent" for="ml_consent">
     <input type="checkbox" id="ml_consent">
@@ -127,16 +127,16 @@
     </section>
     <section class="lang-panel">
       <h3>Cross-language article exploration</h3>
-      <p class="hint">Stored articles are synthetic and English. Shared-vector multilingual search requires the optional neural model.</p>
+      <p class="hint">Offline keyword matching is supported for selected Spanish and French news concepts. It is not full translation; the searchable teaching corpus is English and synthetic. Neural retrieval requires the optional model.</p>
       <label for="ml_query">Query in English, Spanish or French</label>
       <input id="ml_query" maxlength="500" value="Noticias sobre tecnología y robótica">
       <label for="ml_mode">Method</label>
-      <select id="ml_mode"><option value="translated">Translation-assisted LSA</option><option value="semantic">Multilingual neural embeddings (optional)</option></select>
+      <select id="ml_mode"><option value="offline" selected>Offline topic search (no provider)</option><option value="translated">External translation + LSA (optional)</option><option value="semantic">Multilingual neural embeddings (Colab only)</option></select>
       <div class="lang-tools">
         <button type="button" id="ml_search">Find stored articles</button>
         <button type="button" id="ml_compare" class="secondary">Compare LSA and TF IDF</button>
       </div>
-      <div id="ml_search_results" class="result" role="status" aria-live="polite">Results will show the actual retrieval method.</div>
+      <div id="ml_search_results" class="result" role="status" aria-live="polite">Offline search is ready. No translation provider is required.</div>
     </section>
   </div>
 </section>
@@ -179,7 +179,7 @@
 </div>
 <script src="/static/script.js?v=4"></script>
 <script src="/static/dashboard.js?v=4"></script>
-<script src="/static/multilingual.js?v=1"></script>
+<script src="/static/multilingual.js?v=2"></script>
 <script src="/static/bbc_headlines.js?v=1"></script>
 </body>
 </html>
