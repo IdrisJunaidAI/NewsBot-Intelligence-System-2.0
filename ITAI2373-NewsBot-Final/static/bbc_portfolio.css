@@ -1,0 +1,45 @@
+/* Individually branded BBC research experience. No BBC trademark is reproduced. */
+:root{--nb-ink:#14253e;--nb-blue:#0e2341;--nb-muted:#607087;--nb-teal:#12b8a6;--nb-line:#dee6f0}
+body{background:linear-gradient(180deg,#eef5f8 0,#f3f6fa 42%,#ecf4f5 100%)}
+.shell{max-width:1240px}
+header{position:relative;overflow:hidden;background:radial-gradient(circle at 90% 8%,rgba(24,194,185,.24),transparent 36%),linear-gradient(120deg,#0b1d39,#152e52);padding:46px 48px;box-shadow:0 18px 38px rgba(8,35,61,.16)}
+header::before{content:"";position:absolute;inset:auto -110px -150px auto;width:360px;height:360px;border:1px solid rgba(102,222,221,.20);border-radius:50%;pointer-events:none}
+header h1{font-size:clamp(1.9rem,3.25vw,2.75rem);letter-spacing:-.04em;max-width:760px}
+header p{max-width:740px;font-size:.98rem}
+.portfolio-nav{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin:15px 0 24px;padding:9px;background:white;border:1px solid var(--nb-line);border-radius:14px;box-shadow:0 8px 22px #142f520d}
+.portfolio-nav a{text-decoration:none;padding:9px 11px;font-size:.86rem;font-weight:700;color:#375066;border-radius:9px}
+.portfolio-nav a:hover,.portfolio-nav a:focus-visible{background:#e8f8f7;color:#0c746f;outline-offset:2px}
+.analytics{padding-top:18px}
+.dataset-toolbar{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.dataset-switch{display:flex;gap:3px;background:#e5edf3;border-radius:10px;padding:4px;flex-wrap:wrap}
+.dataset-option{font-size:.83rem;border:0;margin:0;background:transparent;color:#415a6c;padding:11px 12px;border-radius:8px}
+.dataset-option.active{background:#0e756f;color:#fff}
+.dataset-option:hover{background:#d0ecea;color:#0b554e}
+.dataset-option.active:hover{background:#0e756f;color:#fff}
+.dataset-explainer{color:#596f82;font-size:.86rem;margin:2px 0 13px}
+.notice{border-color:#b7d6d0;background:#e9f8f5;color:#20544c}
+.kpi-card{border-color:#cddde5;box-shadow:0 5px 18px rgba(9,41,75,.055)}
+.kpi-number{color:#086d71}
+.viz-card{box-shadow:0 8px 22px rgba(12,38,68,.055)}
+.bbc-rss{margin:32px 0 28px;padding:27px;border:1px solid #d2e0e7;border-radius:21px;background:linear-gradient(135deg,#ffffff,#f4fafb);box-shadow:0 6px 22px rgba(12,38,68,.06)}
+.bbc-rss .section-heading{margin-top:0}
+.bbc-credit{display:inline-flex;align-items:center;border-radius:10px;text-decoration:none;font-weight:750;background:#173b55;color:#fff;padding:11px 15px;white-space:nowrap}
+.bbc-credit:hover{background:#205777;color:#fff}
+.feed-toolbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:18px 0}
+.feed-toolbar label{margin:0;font-size:.86rem;color:#4b6274}
+.feed-toolbar select{border:1px solid #c4d6e0;border-radius:9px;padding:11px 12px;background:white;max-width:240px}
+.feed-toolbar button{margin:0;padding:10px 16px}
+#bbc_feed_status{font-size:.82rem;color:#637889}
+.bbc-headline-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.bbc-headline-card{border:1px solid #d9e5ed;background:white;border-radius:13px;padding:16px 18px;min-height:152px;box-shadow:0 3px 11px rgba(12,38,68,.03)}
+.bbc-headline-card:focus-within,.bbc-headline-card:hover{border-color:#8ebdb9}
+.bbc-source-label{display:block;font-weight:800;font-size:.69rem;letter-spacing:.105em;color:#0c7d75}
+.bbc-article-title{font-size:1rem;margin:9px 0;line-height:1.4;letter-spacing:-.015em}
+.bbc-article-title a{color:#1a344c;text-decoration:none}
+.bbc-article-title a:hover{text-decoration:underline}
+.bbc-date{font-size:.76rem;color:#728294;display:block;margin-bottom:8px}
+.bbc-attribution{font-size:.82rem;font-weight:750;color:#0e837a;text-decoration:none}
+.bbc-attribution:hover{text-decoration:underline}
+.feed-disclosure{font-size:.77rem;color:#677a89;margin:18px 0 0}
+@media(max-width:790px){header{padding:30px 24px}.bbc-headline-grid{grid-template-columns:1fr}.bbc-rss{padding:19px}.dataset-toolbar{width:100%}.dataset-switch{width:100%;justify-content:center}.dataset-option{flex:1}.feed-toolbar select{width:100%;max-width:none}.portfolio-nav{gap:3px}.portfolio-nav a{font-size:.79rem;padding:9px 8px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
