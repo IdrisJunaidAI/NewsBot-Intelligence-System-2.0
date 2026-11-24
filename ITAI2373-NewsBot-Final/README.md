@@ -70,8 +70,12 @@ This is an educational research prototype, not an audited production platform or
 
 **Academic integrity:** ChatGPT assisted with implementation, draft writing and test development. The student supplied source data, ran and returned executed Colab evidence, reviewed the code and research outputs, and retains responsibility for testing, comprehension, revisions and submission. AI assistance must not be misrepresented as unaided work.
 
-**Solo submission compatibility:** The Canvas overview and detailed professor instructions describe group requirements. The individual documents here use `Individual` in the filename segment normally reserved for a group. Acceptance of this exception remains subject to instructor confirmation. No fictional collaborators are reported.
+**Individual submission status:** The student reports the professor accepted completion individually and does not intend to form groups. The files use `Individual` in the group segment of the published filename template. The professor's approval is student reported, not independently corroborated by a written notice. No fictional collaborators are reported.
 
 ### Evidence and reports
 
 See `docs/individual_contributions.md`, `docs/technical_documentation.md`, `docs/individual_submission_compliance.md`, `docs/MULTILINGUAL_EXECUTED_RESULTS.md`, the protected historical files in the repository root, the regression test suite and the `reports/` directory for individual submission artifacts.
+
+## GitHub link and presentation alternatives
+
+The course specifies an individual public repository for each submitter. This repository satisfies that condition for the approved solo capstone. The presentation format is a **19 slide PowerPoint with notes OR a 10 to 15 minute video**. The MP4 demonstration supplied separately is a **synthetic narration rehearsal aid**; it does not replace a recording where the student appears and walks through the live application. See [submission and video guidance](docs/VIDEO_PRESENTATION_AND_INDIVIDUAL_REPOSITORY.md).

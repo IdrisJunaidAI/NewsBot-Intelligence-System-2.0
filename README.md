@@ -12,9 +12,9 @@ The historical BBC classifier achieved **95.83% held out accuracy and 95.67% mac
 
 ## Individual submission and historical preservation
 
-This is the student's individual project. The original midterm notebook, technical report and reflective report remain preserved in the repository root. Current technical documentation, executive summary, 20 slide presentation and three page individual reflection are filed in `ITAI2373-NewsBot-Final/reports/`.
+This is the student's individual project. The original midterm notebook, technical report and reflective report remain preserved in the repository root. Current technical documentation, executive summary, 19 slide presentation and three page individual reflection are filed in `ITAI2373-NewsBot-Final/reports/`.
 
-The published instructor instructions specify a group format and a group journal. The `Individual` filename segment in this version is a transparent proposed alternative, **not confirmed instructor approval**. No fictional collaborators or contributions are reported.
+The student reports that the professor approved completing this capstone individually and will not form groups. The published rubric still contains group wording, so the reports and presentation use `Individual` in the group name filename position. The student's report of approval has not been independently verified against written instructor correspondence. No fictional collaborators or contributions are reported.
 
 AI tools assisted with software scaffolding, test authoring and document drafting. The student is accountable for independent comprehension, verification and the final submission. Credit is documented in [individual contributions](ITAI2373-NewsBot-Final/docs/individual_contributions.md).
 
@@ -34,3 +34,9 @@ python app.py
 ```
 
 The source code, licenses, setup and reproducibility guidance are under the project folder.
+
+## Canvas presentation choice and personal repository
+
+The detailed rubric permits **PowerPoint OR a 10 to 15 minute recorded video**, not both. The final individual PowerPoint contains **19 slides with presenter notes**. A separate AI narrated practice MP4 can aid rehearsal, but it is **not** a video of the student appearing and should not be submitted as if it were personal camera footage. If the student selects the video format instead of PowerPoint, record personal narration, include the individual presenter appearing, and demonstrate the live website. See [individual repository and video submission notes](ITAI2373-NewsBot-Final/docs/VIDEO_PRESENTATION_AND_INDIVIDUAL_REPOSITORY.md).
+
+**Individual portfolio repository link for Canvas:** https://github.com/IdrisJunaidAI/NewsBot-Intelligence-System-2.0
