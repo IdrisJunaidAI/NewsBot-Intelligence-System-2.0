@@ -37,13 +37,13 @@ def test_dashboard_web_and_csv(demo, monkeypatch):
     client = server.app.test_client()
     homepage = client.get('/')
     assert homepage.status_code == 200
-    assert b'News analytics dashboard' in homepage.data
+    assert b'Authentic BBC intelligence dashboard' in homepage.data
     assert b'dashboard.js' in homepage.data
-    response = client.get('/api/dashboard')
+    response = client.get('/api/dashboard?source=demo')
     assert response.status_code == 200
     assert response.get_json()['meta']['articles'] == 60
-    assert client.get('/api/dashboard').get_json() == response.get_json()
-    csv_response = client.get('/api/export/analytics.csv')
+    assert client.get('/api/dashboard?source=demo').get_json() == response.get_json()
+    csv_response = client.get('/api/export/analytics.csv?source=demo')
     assert csv_response.status_code == 200
     assert csv_response.mimetype == 'text/csv'
     rows = list(csv.DictReader(io.StringIO(csv_response.get_data(as_text=True))))
@@ -69,3 +69,39 @@ def test_bbc_schema_preflight_without_real_bbc(tmp_path):
     assert len(report['file_sha256']) == 64
     assert report['removed_rows'] == 0
     assert 'model' not in report
+
+def test_authentic_bbc_dashboard_is_default_without_full_text(demo, monkeypatch):
+    import app as server
+    monkeypatch.setattr(server, '_model', demo)
+    with server.app.test_client() as client:
+        response = client.get('/api/dashboard')
+        assert response.status_code == 200
+        data = response.get_json()
+        assert data['meta']['articles'] == 1440
+        assert data['meta']['synthetic'] is False
+        assert data['meta']['dated_articles'] == 0
+        assert data['meta']['article_text_public'] is False
+        assert sum(x['count'] for x in data['categories']) == 1440
+        assert sum(x['articles'] for x in data['topics']['NMF']) == 1440
+        assert sum(x['articles'] for x in data['topics']['LDA']) == 1440
+        assert abs(data['evaluation']['holdout_accuracy'] - 0.95833333333) < .0001
+        raw = response.get_data(as_text=True)
+        assert 'The software developer introduced' not in raw
+        assert client.get('/api/dashboard?source=unknown').status_code == 400
+        exported = client.get('/api/export/analytics.csv')
+        assert exported.status_code == 200
+        assert '1440' not in exported.get_data(as_text=True) or 'evaluation' in exported.get_data(as_text=True)
+
+
+def test_bbc_rss_parser_is_attributed_and_sanitized():
+    from src.utils.bbc_feed import parse_bbc_rss
+    xml = b"""<rss><channel>
+      <item><title>BBC sample title</title><link>https://www.bbc.com/news/articles/example123</link>
+      <pubDate>Mon, 23 Nov 2026 18:00:00 GMT</pubDate></item>
+      <item><title>Phishing link</title><link>https://example.net/steal</link></item>
+      </channel></rss>"""
+    record = parse_bbc_rss(xml, 'top')
+    assert record['attribution'] == 'BBC News'
+    assert record['articles'][0]['title'] == 'BBC sample title'
+    assert len(record['articles']) == 1
+    assert not any(item['url'].startswith('https://example.net') for item in record['articles'])

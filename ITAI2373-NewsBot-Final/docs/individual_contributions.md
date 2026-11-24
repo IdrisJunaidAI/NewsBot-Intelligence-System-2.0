@@ -1,15 +1,28 @@
-# Contribution Evidence and Attribution
+# Individual Contributions, Evidence and AI Attribution
 
-## Verified from October 2026 midterm documents
-Idris O. Junaid reported obtaining the instructor-approved BBC dataset, validating the article/category schema, executing and reviewing the Colab notebook, diagnosing NumPy/pandas and scikit-learn conflicts, resolving the VADER resource issue, correcting an unrelated housing CSV upload, interpreting output tables and preparing the individual GitHub reports. These claims derive from the student's midterm technical and reflective reports, not a third-party audit.
+**Student:** Idris O. Junaid  
+**Submission:** Individual capstone portfolio, ITAI 2373.
 
-## Final project status
-The final project starter code, example dataset, first draft documentation and presentation were prepared with AI assistance in this conversation. **These are not proof of Idris's own completed coding or a team's verified contribution.** Before submission, each contributor must run and review code, correct issues, document new work, and attest only to actual work performed. No teammate names, responsibilities, meetings or dates have been supplied. Team journal is therefore a completion template, not a finished verified team history.
+## Work and accountability verified through the project interaction
 
-## Academic integrity declaration to personalize
-We used AI assistance for drafting and scaffolding. We reviewed, tested, edited and understood the submitted implementation; our independent contributions are listed below with specific commits or artifacts. Complete this declaration only after these activities occurred.
+I supplied the BBC News Train, BBC News Test and Sample Solution CSV files, maintained my GitHub repository, approved and merged the evolving application changes, tested the web interface and ran the multilingual MiniLM notebook in Google Colab. The executed notebook was returned with saved output, enabling validation of the 18 question research experiment. Previously submitted midterm files document my data preparation, troubleshooting and evaluation work.
 
-| Team member | Verified module or duty | Evidence (commit, notebook, test, screenshot) | Review status |
-| --- | --- | --- | --- |
-| Idris O. Junaid | To be updated with actual final project work | Add evidence | Pending |
-| Other teammate | Add actual name and work | Add evidence | Pending |
+These statements identify actions present in the project record. They do **not** claim that I independently typed every line of software code. My final responsibilities are to inspect the running application, understand the design, rerun key notebooks, verify the documentation and submit an accurate academic record.
+
+| Scope | Evidence | Current assessment |
+| --- | --- | --- |
+| Dataset sourcing | BBC News Train, Test and Sample Solution supplied for this capstone | Verified input |
+| Initial research foundation | Midterm notebook and submitted October reports in GitHub root | Archived evidence |
+| Version control | GitHub repository with review branches, merges and CI workflow | Verified repository record |
+| Model evaluation | Authentic BBC holdout metrics, confusion matrix, reproducible scripts | Verified numeric records |
+| Multilingual research | Executed Colab MiniLM notebook and saved Recall metrics | Verified output with small sample limitation |
+| User interface | Live Flask application and responsive dashboard | Deployment and API tests; manual full UX acceptance still needed |
+| Documentation | Individual PDFs, PowerPoint and reflection prepared for review | Draft artifacts requiring final student review |
+
+## Assistance disclosure
+
+ChatGPT assisted with code scaffolding, test authoring, debugging plans, analytics scripts, documentation drafts and slide creation. Academic accountability is not transferred to the tool. I must be able to describe the design and reproduce the key results. All third party libraries, original datasets and model documentation are cited separately. I do not attribute work to nonexistent collaborators.
+
+## Submission status
+
+The detailed assignment template requires group work and a group journal, while this submission has been prepared as an individual alternative at the student's request. Instructor acceptance of that format has **not** been documented. This is a material grading consideration that should be resolved before the December 1 deadline. No claim of professor approval is made.

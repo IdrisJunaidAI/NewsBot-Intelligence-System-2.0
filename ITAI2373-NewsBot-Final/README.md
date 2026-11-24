@@ -1,54 +1,48 @@
 # NewsBot Intelligence System 2.0
 
-**ITAI 2373 Natural Language Processing Final Capstone**
+## Individual ITAI 2373 NLP capstone
 
-**Live application:** https://newsbot-intelligence-system-2-p97f.onrender.com
+**Student:** Idris O. Junaid  
+**Submission scope:** Individual work and independently accountable research portfolio.  
+**Source repository:** https://github.com/IdrisJunaidAI/NewsBot-Intelligence-System-2.0  
+**Website:** https://newsbot-intelligence-system-2-p97f.onrender.com  
+**Due:** December 1, 2026, at 11:59 PM Central Time.
 
-**Portfolio repository:** https://github.com/IdrisJunaidAI/NewsBot-Intelligence-System-2.0
+### Website data source: authentic BBC evidence first
 
-**Student:** Idris O. Junaid. **Team name and contribution assignments:** must be confirmed.
+The dashboard shows aggregate statistics computed from the student's supplied labeled BBC News Train CSV by default. The source contains 1,490 records; after removal of 50 repeated article texts, 1,440 distinct records remain across the five original labeled categories. It shows actual BBC category frequencies, LDA and NMF statistical topic counts, TextBlob polarity estimates and the original stratified classifier holdout evidence. The report in `data/results/bbc_public_analytics.json` contains **no original BBC article bodies or full text** and no invented publication dates. The original CSV is excluded from public GitHub and the live server.
 
-## What is actually deployed
+A clearly marked toggle exposes the **separate 60 article synthetic teaching corpus** for chatbot article retrieval and its demonstration charts. The live website does not yet semantically search full historic BBC article texts: that would require a legally authorized publication or retrieval deployment. It must never imply that synthetic chatbot search results came from BBC News.
 
-NewsBot is an educational NLP research prototype hosted as a Flask web application on Render Free. It provides article classification, sentiment analysis, named entity recognition, extractive summarization, topic exploration, lexical search and a conversational interface.
+The **Current BBC News Headlines** panel uses attributed, unmodified headline titles and source links from an official BBC RSS feed when available. RSS entries are **current third party links**, not the historical classifier training corpus. Publisher conditions apply; this personal academic demonstration is not licensed for commercial use.
 
-**Two distinct source boundaries are intentional.**
+### Classification results from authentic BBC historical data
 
-1. **Single article category classification:** TF IDF Logistic Regression weights trained on 1,440 distinct labeled real BBC News Train articles. A released non-executable JSON.GZ coefficient table contains vocabulary, IDF and model weights but no original BBC article texts.
-2. **Dashboard charts, topic modeling, stored article search and conversational article retrieval:** 60 synthetic teaching articles. These are not real BBC coverage and are not a live news feed. The frontend labels this distinction.
-
-Article sentiment, entities and extracted summaries are calculated from the user supplied text. Translation, transformer semantic retrieval and cultural perspective comparisons are not deployed and should not be presented as functioning production capabilities.
-
-## Authentic BBC evidence
-
-Three supplied files were audited:
-
-* BBC News Train: 1,490 labeled input articles; 50 exact duplicate texts removed, leaving 1,440.
-* BBC News Test: 735 unlabeled articles; 38 distinct article texts overlap the training set.
-* BBC News Sample Solution: category labels repeat every five rows. It is a formatting placeholder, **not verified ground truth** and was not used to calculate accuracy.
-
-A stratified split with random seed 42, 1,152 training articles and 288 held out articles, after text deduplication, produced:
-
-| Classifier | Held out accuracy | Macro F1 |
+| Model | Held out accuracy | Macro F1 |
 | --- | ---: | ---: |
-| Majority class baseline | 23.61% | 7.64% |
+| Majority baseline | 23.61% | 7.64% |
 | Multinomial Naive Bayes | 95.14% | 94.83% |
-| Logistic Regression (deployed) | 95.83% | 95.67% |
-| Linear SVM (best tested) | 96.88% | 96.77% |
+| Logistic Regression deployed for classification | 95.83% | 95.67% |
+| Linear SVM comparison | 96.88% | 96.77% |
 
-The model scores are uncalibrated. These historical results are an **internal BBC holdout evaluation**, not real time news performance or an independently labeled external test. Detailed aggregate metrics, class confusion and the research protocol are in `data/results/bbc_evaluation.json` and `docs/BBC_AUTHENTIC_EVALUATION.md`.
+A fixed seed 42, stratified 80/20 split was used after deduplicating repeated article texts. The holdout includes 288 articles. The 735 record BBC test CSV contains no verified labels; the supplied sample solution repeats a sequence and is not a credible ground truth. Do not claim test accuracy on those 735 records. The released Logistic Regression inference weights were trained on all 1,440 unique records after the holdout experiment, and do not contain the underlying news text.
 
-### Optional research extension
+### Multilingual study
 
-`data/results/fewshot_learning_curve.csv` contains a repeated low data study with five random subsets at each of 5, 10, 25, 50 and 100 labeled articles per class. On the fixed held out set, mean macro F1 increases from 85.26% to 95.61%. This is a supervised data efficiency experiment, not few shot LLM prompting.
+An executed student Colab notebook demonstrates real `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` inference with 384 dimensional embeddings. On a small synthetic six document benchmark and six queries in each of English, Spanish and French, recorded Recall@1 and Recall@3 were 100% for MiniLM across the three languages. The English only TF IDF baseline had Recall@1 of 100%, 50% and 33.3%, respectively. This is **not validation on authentic multilingual news** and does not establish cultural context interpretation. External translation was disabled during that Colab run. Hosted Render Free uses an LSA index instead of MiniLM due resource limits.
 
-## Development setup
+### Installed system modules
 
-Python 3.11 recommended.
+1. **Content Analysis:** classification, LDA/NMF topic modeling, VADER sentiment for individual English input, spaCy entity recognition, category and topic visualization, deduplication and quality reporting.
+2. **Understanding and Generation:** extractive summarization, TF IDF/LSA retrieval comparison, rule grounded insight templates; neural multilingual MiniLM in a separate tested Colab execution.
+3. **Multilingual Intelligence:** language detection for English, Spanish and French, optional consent based translation with a third party provider, and an experimental cross language embedding pipeline. Translation quality and cultural perspective analysis remain unverified.
+4. **Conversational Interface:** intent parsing, filters and multi turn session context for the separate synthetic demonstration corpus. No live BBC corpus conversation is claimed.
+
+### Reproduction
+
+Use Python 3.11 and run from `ITAI2373-NewsBot-Final`:
 
 ```bash
-cd ITAI2373-NewsBot-Final
-python -m venv .venv
 python -m pip install -r requirements.txt
 python -m spacy download en_core_web_sm
 python train.py --demo
@@ -57,33 +51,26 @@ python scripts/smoke_real_classifier.py
 python app.py
 ```
 
-To rerun the real BBC experiment, download or supply your approved BBC CSV files locally and run:
+For real BBC reproduction, supply a licensed, locally stored copy of `BBC News Train.csv` and follow `docs/BBC_AUTHENTIC_EVALUATION.md`. To regenerate the public aggregate export, run `python scripts/export_bbc_public_analytics.py --csv "path/to/BBC News Train.csv"`, if the optional offline dependencies are installed. No original BBC article text should be committed.
 
-```bash
-python scripts/evaluate_bbc.py --train "/path/BBC News Train.csv" --test "/path/BBC News Test.csv" --sample "/path/BBC News Sample Solution.csv" --out data/results
-```
+### APIs
 
-The original BBC article files are intentionally excluded from this repository. The last command generates real metrics, test category predictions, repeated low data trials and a locally trusted classifier pipeline.
+* `GET /api/dashboard` defaults to the authentic historical BBC aggregate evidence.
+* `GET /api/dashboard?source=demo` provides explicitly synthetic corpus statistics.
+* `GET /api/export/analytics.csv?source=bbc` downloads derived BBC aggregates.
+* `GET /api/bbc/headlines?channel=top` retrieves BBC attributed RSS titles and BBC page links.
+* `POST /api/analyze` classifies a pasted article with authentic historical BBC weights and discloses limitations.
+* `POST /api/query` queries only the separate demonstration article collection.
+* `GET /api/multilingual/status`, `POST /api/multilingual/detect`, `POST /api/multilingual/translate`, `POST /api/multilingual/search` and `POST /api/retrieval/compare` expose documented language features.
 
-## API and quality
+### Scope, ethics and transparency
 
-The Flask app exposes `/`, `/health`, `/api/analyze`, `/api/query`, `/api/dashboard`, `/api/stats`, `/api/export/analytics.csv` and `/api/clear`.
+This is an educational research prototype, not an audited production platform or fact checker. The historical BBC training corpus has no verified publication dates, so topic and sentiment evolution cannot be inferred from it. The RSS headlines can provide dated current links but are not the training corpus. The BBC publisher's reuse conditions and dataset license must be followed. Model probability is not guaranteed calibration. Cross language news cultural comparisons have not been externally verified.
 
-The repository uses automated Python, JavaScript and Flask endpoint checks via GitHub Actions. Build logs, deployed service version and request health can be inspected from the Render service dashboard. The app is a research prototype, not a hardened production security, reliability or fact verification service.
+**Academic integrity:** ChatGPT assisted with implementation, draft writing and test development. The student supplied source data, ran and returned executed Colab evidence, reviewed the code and research outputs, and retains responsibility for testing, comprehension, revisions and submission. AI assistance must not be misrepresented as unaided work.
 
-## Assessment and limitations
+**Solo submission compatibility:** The Canvas overview and detailed professor instructions describe group requirements. The individual documents here use `Individual` in the filename segment normally reserved for a group. Acceptance of this exception remains subject to instructor confirmation. No fictional collaborators are reported.
 
-The instructor asks for four advanced modules, comprehensive documentation, a 15 minute team presentation, a technical PDF, executive PDF, individual portfolio repository access and a genuine three page reflective journal. Full multilingual translation, semantic embeddings, cultural context comparison and generative LLM enhancement remain unverified gaps. A dated external news ingestion system would be required for time trend claims and current news queries.
+### Evidence and reports
 
-Reports and presentations under `reports/` are drafts unless the group name and verified team contributions are completed. The student and all team members must assess their own contributions and presentation roles.
-
-**AI assistance disclosure:** ChatGPT assisted with source code, research evaluation, regression tests and draft documentation. Student and team are responsible for review, reproducibility, attribution and accurate representation of independent work.
-
-## References
-
-Instructor final project rubric and Web App Development Tutorial; provided BBC news CSV files; scikit-learn, spaCy and VADER project documentation.
-
-
-## Phase 1: multilingual and semantic retrieval
-
-English, Spanish, French language detection is available locally. The Render Free search uses latent semantic indexing (TF IDF with truncated SVD) with a lexical comparison. Translation assisted search uses a third party translator ONLY with explicit opt-in per request; the provider is not guaranteed. Genuine shared vector multilingual search uses the optional Sentence Transformers multilingual MiniLM model in the Colab notebook or a capable local machine; it is NOT running on the Render Free instance. See docs/MULTILINGUAL_SEMANTIC_PHASE1.md. The corpus search and topic dashboard remain synthetic while the single article BBC category classifier uses the real historical labeled BBC dataset.
+See `docs/individual_contributions.md`, `docs/technical_documentation.md`, `docs/individual_submission_compliance.md`, `docs/MULTILINGUAL_EXECUTED_RESULTS.md`, the protected historical files in the repository root, the regression test suite and the `reports/` directory for individual submission artifacts.

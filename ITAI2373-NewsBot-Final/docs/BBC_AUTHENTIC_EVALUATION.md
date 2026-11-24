@@ -37,4 +37,4 @@ SHA256 training: `f56a65dab2ea728505a639d2186a2b2f1c0939f28e8e89b5ed1c1fe9520b13
 
 ## Limitations and academic integrity
 
-The instructor requires genuine individual contribution records, proper AI tool attribution, and team reflection from all members. The project files do not establish those details. Historical BBC articles have no trustworthy publication date metadata in these uploads; no temporal-news trend claims can be made. The task's real-time, multilingual translation, cultural perspective, and generative content requirements still need separate implementation and testing.
+The instructor requires genuine individual contribution records, proper AI tool attribution, and individual reflective record by the sole student. The project files do not establish those details. Historical BBC articles have no trustworthy publication date metadata in these uploads; no temporal-news trend claims can be made. The task's real-time, multilingual translation, cultural perspective, and generative content requirements still need separate implementation and testing.

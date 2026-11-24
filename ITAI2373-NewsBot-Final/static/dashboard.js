@@ -15,6 +15,7 @@
   };
   let data = null;
   let selectedTopic = 'NMF';
+  let activeSource = 'bbc';
 
   function renderBars(container, dataPoints, options = {}) {
     container.replaceChildren();
@@ -65,13 +66,19 @@
   function renderKpis(snapshot) {
     const host = byId('dashboard_kpis');
     host.replaceChildren();
-    const metrics = [
-      ['Stored articles', snapshot.meta.articles.toLocaleString(), 'Current corpus only'],
-      ['News categories', snapshot.meta.category_count, 'Distinct category labels'],
-      ['Articles with dates', snapshot.meta.dated_articles.toLocaleString(), 'Recorded metadata, not live'],
-      ['Retrieval', snapshot.meta.search_method.includes('multilingual sentence') ? 'MiniLM' : (snapshot.meta.search_method.includes('LSA') ? 'LSA' : 'TF IDF'),
-       snapshot.meta.search_method.includes('multilingual sentence') ? 'Neural semantic similarity' : (snapshot.meta.search_method.includes('LSA') ? 'Latent semantic indexing' : 'Lexical search')]
-    ];
+    const metrics = snapshot.meta.synthetic
+      ? [
+          ['Teaching articles', snapshot.meta.articles.toLocaleString(), 'Synthetic reference corpus'],
+          ['Categories', snapshot.meta.category_count, 'Demonstration class labels'],
+          ['Recorded dates', snapshot.meta.dated_articles.toLocaleString(), 'Synthetic metadata'],
+          ['Retrieval', 'LSA', 'On synthetic article text only']
+        ]
+      : [
+          ['BBC articles analyzed', snapshot.meta.articles.toLocaleString(), 'Real historical BBC training texts'],
+          ['News categories', snapshot.meta.category_count, 'Authentic annotated category labels'],
+          ['Held out accuracy', (100 * snapshot.evaluation.holdout_accuracy).toFixed(2) + '%', 'Logistic model on 288 BBC articles'],
+          ['Best classifier', (100 * snapshot.bbc_classifier.comparison_svm_accuracy).toFixed(2) + '%', 'Linear SVM comparison only']
+        ];
     metrics.forEach(([label, number, qualifier]) => {
       const tile = add(host, 'article', 'kpi-card');
       add(tile, 'span', 'kpi-label', label);
@@ -108,7 +115,7 @@
     }
     add(panel, 'p', 'meta', 'Held out evaluation size: ' + (evalData.holdout_count || 0) + ' articles');
     const bbc = snapshot.bbc_classifier;
-    if (bbc && bbc.active) {
+    if (bbc && bbc.active && snapshot.meta.synthetic) {
       const section = add(panel, 'section', 'bbc-evidence');
       add(section, 'h4', 'small-heading', 'Real BBC classification evaluation');
       add(section, 'p', 'quality-lead', bbc.articles_used + ' distinct labeled BBC articles; 288 held out for evaluation.');
@@ -129,18 +136,27 @@
     notice.replaceChildren();
     add(notice, 'strong', '', snapshot.meta.corpus + '. ');
     add(notice, 'span', '', snapshot.meta.disclaimer);
-    if (snapshot.bbc_classifier?.active) {
+    if (snapshot.meta.synthetic) {
       add(notice, 'p', 'quality-lead',
-          'Article category classification uses a real BBC trained model. The searchable articles, topic charts and corpus statistics remain synthetic demonstrations. This is not live news.');
+          'The selected demonstration charts and chatbot search use synthetic articles. Switch to Real BBC evidence for authentic historical analytics.');
+    } else {
+      add(notice, 'p', 'quality-lead',
+          'Category counts, topics and model metrics are from authentic historical BBC data. Full BBC article texts are not publicly redistributed. The conversational search remains a separate synthetic demonstration.');
     }
     const status = byId('dashboard_status');
     status.replaceChildren();
-    add(status, 'span', 'data-indicator', snapshot.meta.synthetic ? 'Synthetic data' : 'User supplied corpus');
+    add(status, 'span', 'data-indicator', snapshot.meta.synthetic ? 'Synthetic teaching examples' : 'Authentic BBC historical corpus');
     add(status, 'span', 'meta', 'Data source: ' + snapshot.meta.source);
     renderKpis(snapshot);
     renderBars(byId('category_chart'), snapshot.categories);
     renderBars(byId('sentiment_chart'), snapshot.sentiments);
+    const sentimentHint = byId('sentiment_method_note');
+    if (sentimentHint) sentimentHint.textContent = snapshot.sentiment_method || 'VADER on synthetic teaching examples: not public opinion or fact verification';
     renderQuality(snapshot);
+    const statusDescription = byId('dataset_method_note');
+    if (statusDescription) statusDescription.textContent = snapshot.meta.synthetic
+       ? 'Demo mode: simulated records; synthetic dates do not establish a historical time trend.'
+       : 'Research mode: 1,440 unique historical articles with genuine labels. No verified publication dates were provided, so no topic or sentiment time trend is invented.';
     const timeline = (snapshot.timeline || []).map(d => ({label: d.period, count: d.articles}));
     renderBars(byId('timeline_chart'), timeline, {empty: 'Publication date information was not supplied.', limit: 6});
     renderTopics();
@@ -148,12 +164,17 @@
 
   async function load() {
     const status = byId('dashboard_status');
-    status.textContent = 'Loading corpus analytics…';
+    status.textContent = 'Loading selected corpus analytics…';
     try {
-      const response = await fetch('/api/dashboard', {cache: 'no-store'});
+      const response = await fetch('/api/dashboard?source=' + encodeURIComponent(activeSource), {cache: 'no-store'});
       const payload = await response.json();
       if (!response.ok) throw new Error(payload.error || 'Analytics request failed');
       render(payload);
+      const exportLink = byId('export_link');
+      if (exportLink) {
+        exportLink.href = '/api/export/analytics.csv?source=' + encodeURIComponent(activeSource);
+        exportLink.removeAttribute('aria-disabled');
+      }
     } catch (error) {
       status.replaceChildren();
       add(status, 'p', 'result-error', 'Analytics unavailable: ' + error.message);
@@ -161,6 +182,17 @@
     }
   }
 
+  document.querySelectorAll('[data-source]').forEach(button => {
+    button.addEventListener('click', () => {
+      activeSource = button.dataset.source;
+      document.querySelectorAll('[data-source]').forEach(other => {
+        const active = other.dataset.source === activeSource;
+        other.classList.toggle('active', active);
+        other.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+      load();
+    });
+  });
   document.querySelectorAll('[data-topic-method]').forEach(button => {
     button.addEventListener('click', () => {
       selectedTopic = button.dataset.topicMethod;

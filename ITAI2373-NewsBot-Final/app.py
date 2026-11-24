@@ -11,6 +11,7 @@ from flask import Flask, Response, jsonify, render_template, request, session
 from config.settings import Settings
 from src.analysis.bbc_classifier import BBCWeightedClassifier
 from src.utils.dashboard import dashboard_snapshot
+from src.utils.bbc_feed import get_bbc_headlines
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('FLASK_SECRET_KEY', os.urandom(32).hex())
@@ -22,6 +23,7 @@ app.config.update(
 )
 BBC_WEIGHTS_PATH = Path(__file__).resolve().parent / 'data' / 'released_models' / 'bbc_classifier_weights.json.gz'
 BBC_EVALUATION_PATH = Path(__file__).resolve().parent / 'data' / 'results' / 'bbc_evaluation.json'
+BBC_PUBLIC_DASHBOARD = Path(__file__).resolve().parent / 'data' / 'results' / 'bbc_public_analytics.json'
 _model = None
 _dashboard_cache = {'model': None, 'snapshot': None}
 
@@ -39,8 +41,18 @@ def get_model():
     return _model
 
 
-def get_dashboard():
-    """Reuse expensive summary computation while the in-memory corpus is unchanged."""
+def get_dashboard(source='bbc'):
+    """BBC authentic aggregate evidence by default; synthetic demo is opt-in.
+
+    The published BBC aggregate file contains no original article text.
+    """
+    if source == 'bbc':
+        if not BBC_PUBLIC_DASHBOARD.is_file():
+            raise RuntimeError('Verified BBC aggregate report is not installed')
+        with BBC_PUBLIC_DASHBOARD.open(encoding='utf-8') as handle:
+            return json.load(handle)
+    if source != 'demo':
+        raise ValueError('Choose bbc or demo')
     model = get_model()
     if _dashboard_cache['model'] is not model:
         snapshot = dashboard_snapshot(model)
@@ -75,7 +87,8 @@ def home():
 @app.get('/health')
 def health():
     return jsonify({'status': 'ok', 'component': 'web', 'model_ready': Settings().model_path.exists(),
-                    'bbc_classifier_available': BBC_WEIGHTS_PATH.is_file()})
+                    'bbc_classifier_available': BBC_WEIGHTS_PATH.is_file(),
+                    'bbc_aggregate_available': BBC_PUBLIC_DASHBOARD.is_file()})
 
 
 @app.post('/api/analyze')
@@ -113,7 +126,9 @@ def stats():
 @app.get('/api/dashboard')
 def dashboard():
     try:
-        return jsonify(get_dashboard())
+        return jsonify(get_dashboard(request.args.get('source', 'bbc')))
+    except ValueError as exc:
+        return jsonify({'error': str(exc)}), 400
     except RuntimeError as exc:
         return jsonify({'error': str(exc)}), 503
 
@@ -129,7 +144,9 @@ def _csv_cell(value):
 @app.get('/api/export/analytics.csv')
 def export_analytics():
     try:
-        data = get_dashboard()
+        data = get_dashboard(request.args.get('source', 'bbc'))
+    except ValueError as exc:
+        return jsonify({'error': str(exc)}), 400
     except RuntimeError as exc:
         return jsonify({'error': str(exc)}), 503
     buffer = io.StringIO()
@@ -228,6 +245,21 @@ def retrieval_compare():
         return jsonify({'error': str(exc)}), 400
     except RuntimeError as exc:
         return jsonify({'error': str(exc)}), 503
+
+
+
+@app.get('/api/bbc/headlines')
+def bbc_headlines():
+    """Official BBC RSS titles and links only, for educational personal use."""
+    channel = request.args.get('channel', 'top')
+    if channel not in ('top', 'technology', 'business', 'world', 'science'):
+        return jsonify({'error': 'Unsupported BBC feed channel'}), 400
+    try:
+        return jsonify(get_bbc_headlines(channel))
+    except (OSError, ValueError, RuntimeError) as exc:
+        return jsonify({'error': 'Live RSS unavailable; open the official BBC News feed directly',
+                        'feed': 'https://feeds.bbci.co.uk/news/rss.xml',
+                        'detail': type(exc).__name__}), 503
 
 
 @app.post('/api/clear')

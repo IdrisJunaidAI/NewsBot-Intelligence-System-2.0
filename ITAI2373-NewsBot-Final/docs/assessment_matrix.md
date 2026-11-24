@@ -16,4 +16,4 @@ The detailed PDF allocates 50 points GitHub structure, 75 advanced analysis, 40 
 | Conversation context | Rule intent, multi-turn session filter, article ID | More advanced questions and usability testing |
 | Web bonus | Flask UI and HTTP endpoints | Test full browser and deploy accessible HTTPS URL |
 | Research bonus | No qualifying advanced research extension claimed | Implement one of instructor-listed research options and evaluate |
-| Report and presentation | Generated draft PDF/PPTX | Group name, authentic evidence, actual tests, final signatures |
+| Report and presentation | Generated draft PDF/PPTX | Individual scope, authentic evidence, current tests and student attestation |
