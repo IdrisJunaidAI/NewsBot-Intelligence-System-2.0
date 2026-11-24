@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="/static/dashboard.css?v=4">
   <link rel="stylesheet" href="/static/multilingual.css?v=1">
   <link rel="stylesheet" href="/static/bbc_portfolio.css?v=1">
+  <link rel="stylesheet" href="/static/studio_theme.css?v=1">
+  <link rel="stylesheet" href="/static/uiverse_components.css?v=1">
 </head>
 <body>
 <div class="shell">
@@ -17,8 +19,29 @@
     <small>ITAI 2373 | INDIVIDUAL NLP CAPSTONE</small>
     <h1>NewsBot Intelligence System <span>2.0</span></h1>
     <p>A research grade news intelligence portfolio using authentic BBC historical data, interpretable analytics and multilingual experimentation.</p>
+  <!-- From Uiverse.io by StealthWorm - https://uiverse.io/StealthWorm/spotty-horse-48
+       MIT License, Copyright (c) StealthWorm (thierry) -->
+  <div class="nb-hero-actions">
+    <button type="button" id="nb-explore" class="nb-space-btn" aria-label="Explore BBC research analytics">
+      <strong>EXPLORE</strong>
+      <span class="nb-space-stars-container" aria-hidden="true"><span class="nb-space-stars"></span></span>
+      <span class="nb-space-glow" aria-hidden="true"><span class="nb-space-circle"></span><span class="nb-space-circle"></span></span>
+    </button>
+    <span class="nb-hero-microcopy">RESEARCH PORTFOLIO / 2026<br>AUTHENTIC EVIDENCE · EXPLORATORY NLP</span>
   </div>
-  <div class="brand" aria-hidden="true">NB<span>2</span></div>
+  </div>
+<!-- From Uiverse.io by kelvyn_8843 - https://uiverse.io/kelvyn_8843/big-cheetah-20
+      MIT License, Copyright (c) KSAplay (Kenny), kelvyn_8843 (kelv) -->
+  <div class="nb-studio-controls">
+    <label class="nb-torch" for="nb_torch_toggle">
+      <input id="nb_torch_toggle" type="checkbox" checked aria-label="Toggle studio illumination">
+      <span class="nb-torch-scene" aria-hidden="true">
+        <span class="nb-torch-head"><div class="nb-torch-face nb-torch-top"><div></div><div></div><div></div><div></div></div><div class="nb-torch-face nb-torch-left"><div></div><div></div><div></div><div></div></div><div class="nb-torch-face nb-torch-right"><div></div><div></div><div></div><div></div></div></span>
+        <span class="nb-torch-stick"><div class="nb-torch-side nb-torch-side-left"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div><div class="nb-torch-side nb-torch-side-right"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></span>
+      </span>
+    </label>
+    <p id="nb-torch-label">STUDIO LIGHT / ON</p>
+  </div>
 </header>
 <nav class="portfolio-nav" aria-label="Site navigation">
   <a href="#analytics_title">BBC Research Dashboard</a>
@@ -38,9 +61,14 @@
       <p>Explore real BBC category and topic statistics, classifier performance and methods. Synthetic examples remain a separate opt in demonstration.</p>
     </div>
     <div class="dataset-toolbar">
-      <div class="dataset-switch" role="group" aria-label="Select analytics corpus">
-        <button type="button" class="dataset-option active" data-source="bbc" aria-pressed="true">Real BBC evidence</button>
-        <button type="button" class="dataset-option" data-source="demo" aria-pressed="false">Synthetic demo</button>
+      <!-- From Uiverse.io by Pradeepsaranbishnoi - https://uiverse.io/Pradeepsaranbishnoi/honest-penguin-58
+           MIT License, Copyright (c) Pradeepsaranbishnoi (Pradeep Saran) -->
+      <div class="nb-dataset-control">
+        <span class="nb-dataset-caption" id="nb-source-label" aria-live="polite">REAL BBC EVIDENCE</span>
+        <input type="checkbox" id="nb_dataset_switch" aria-label="Switch to synthetic demonstration analytics"
+               aria-describedby="nb-source-explainer">
+        <label class="nb-evidence-switch" for="nb_dataset_switch"></label>
+        <span class="nb-dataset-caption" id="nb-source-explainer">Historical BBC ↔ Synthetic demo</span>
       </div>
       <a class="export-link" id="export_link" href="/api/export/analytics.csv?source=bbc" download>Export CSV</a>
     </div>
@@ -152,6 +180,19 @@
       <textarea id="article" rows="9" maxlength="30000" placeholder="Paste a news article here..."></textarea>
       <p class="hint">Single article category classification uses real historical BBC training data. The topic suggestions and conversational search use a separate synthetic teaching corpus.</p>
       <button id="analyze" type="button">Analyze article</button>
+      <!-- From Uiverse.io by asif_6635 - https://uiverse.io/asif_6635/moody-turtle-2
+           MIT License, Copyright (c) asif_6635 (Asif) -->
+      <div class="nb-wave-row">
+        <div class="nb-wave-player" id="nb-summary-player" data-playing="false">
+          <button type="button" id="nb-summary-play" class="nb-wave-play" disabled
+                  aria-label="Play generated article summary" title="Play or pause generated summary">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path id="nb-wave-icon" d="M8 5v14l11-7z"></path></svg>
+          </button>
+          <div class="nb-wave-bars" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <span id="nb-wave-time" class="nb-wave-time" aria-label="Elapsed time">0:00</span>
+        </div>
+        <span class="nb-wave-caption" id="nb-wave-caption">Analyze an article to enable browser speech playback.</span>
+      </div>
       <div id="analyze_out" class="result" role="status" aria-live="polite">Analysis results will appear here.</div>
     </section>
     <section class="card">
@@ -177,6 +218,18 @@
   <p>Individual course portfolio. Real historical BBC research analytics and live RSS are separate. Multilingual MiniLM was evaluated in Google Colab; the hosted site uses lighter retrieval.</p>
 </footer>
 </div>
+<!-- From Uiverse.io by Nawsome - https://uiverse.io/Nawsome/breezy-ape-20
+     MIT License, Copyright (c) Nawsome -->
+<div id="nb-loading-curtain" class="nb-loading-curtain" hidden role="status" aria-live="polite" aria-label="Processing news analysis">
+  <div class="nb-loading-stage">
+    <div class="nb-pl" aria-hidden="true">
+      <span class="nb-pl-dot"></span><span class="nb-pl-dot"></span><span class="nb-pl-dot"></span><span class="nb-pl-dot"></span><span class="nb-pl-dot"></span><span class="nb-pl-dot"></span><span class="nb-pl-dot"></span><span class="nb-pl-dot"></span><span class="nb-pl-dot"></span><span class="nb-pl-dot"></span><span class="nb-pl-dot"></span><span class="nb-pl-dot"></span>
+      <span class="nb-pl-text">Loading…</span>
+    </div>
+    <span class="nb-loading-caption" id="nb-loading-message">PROCESSING REQUEST</span>
+  </div>
+</div>
+<script src="/static/uiverse_components.js?v=1"></script>
 <script src="/static/script.js?v=4"></script>
 <script src="/static/dashboard.js?v=4"></script>
 <script src="/static/multilingual.js?v=2"></script>
