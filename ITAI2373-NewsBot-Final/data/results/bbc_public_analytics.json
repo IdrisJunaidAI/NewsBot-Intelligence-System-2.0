@@ -1,0 +1,275 @@
+{
+  "meta": {
+    "corpus": "BBC historical labeled research corpus",
+    "source": "BBC News Train.csv (student supplied for course research)",
+    "synthetic": false,
+    "articles": 1440,
+    "input_rows": 1490,
+    "category_count": 5,
+    "dated_articles": 0,
+    "source_coverage": 0,
+    "search_method": "Not available for full BBC corpus: full article texts are not publicly hosted",
+    "has_live_news": false,
+    "article_text_public": false,
+    "disclaimer": "Authentic historical BBC research statistics. This dataset has no publication dates and is not a live news feed. Full article texts are deliberately excluded from the public server.",
+    "dataset_sha256": "f56a65dab2ea728505a639d2186a2b2f1c0939f28e8e89b5ed1c1fe9520b1323",
+    "notes": "Aggregate counts, topic weights, and classifier evaluation only; no copyrighted article text."
+  },
+  "categories": [
+    {
+      "label": "sport",
+      "count": 342,
+      "percentage": 23.8
+    },
+    {
+      "label": "business",
+      "count": 335,
+      "percentage": 23.3
+    },
+    {
+      "label": "politics",
+      "count": 266,
+      "percentage": 18.5
+    },
+    {
+      "label": "entertainment",
+      "count": 263,
+      "percentage": 18.3
+    },
+    {
+      "label": "technology",
+      "count": 234,
+      "percentage": 16.2
+    }
+  ],
+  "sentiments": [
+    {
+      "label": "neutral",
+      "count": 762,
+      "percentage": 52.9
+    },
+    {
+      "label": "positive",
+      "count": 655,
+      "percentage": 45.5
+    },
+    {
+      "label": "negative",
+      "count": 23,
+      "percentage": 1.6
+    }
+  ],
+  "sentiment_method": "TextBlob lexical polarity with +0.10 and -0.10 cutoffs, descriptive estimate; not VADER or external validation",
+  "sentiment_by_category": {
+    "sport": {
+      "positive": 189,
+      "neutral": 142,
+      "negative": 11
+    },
+    "business": {
+      "neutral": 237,
+      "positive": 91,
+      "negative": 7
+    },
+    "politics": {
+      "neutral": 182,
+      "negative": 2,
+      "positive": 82
+    },
+    "entertainment": {
+      "positive": 166,
+      "neutral": 96,
+      "negative": 1
+    },
+    "technology": {
+      "positive": 127,
+      "neutral": 105,
+      "negative": 2
+    }
+  },
+  "topics": {
+    "NMF": [
+      {
+        "id": 0,
+        "keywords": [
+          "england",
+          "game",
+          "win",
+          "wales",
+          "cup",
+          "said",
+          "ireland"
+        ],
+        "articles": 348
+      },
+      {
+        "id": 1,
+        "keywords": [
+          "mr",
+          "labour",
+          "blair",
+          "election",
+          "brown",
+          "party",
+          "said"
+        ],
+        "articles": 253
+      },
+      {
+        "id": 2,
+        "keywords": [
+          "growth",
+          "said",
+          "economy",
+          "year",
+          "sales",
+          "bank",
+          "market"
+        ],
+        "articles": 338
+      },
+      {
+        "id": 3,
+        "keywords": [
+          "film",
+          "best",
+          "awards",
+          "award",
+          "actor",
+          "actress",
+          "films"
+        ],
+        "articles": 207
+      },
+      {
+        "id": 4,
+        "keywords": [
+          "mobile",
+          "people",
+          "music",
+          "said",
+          "phone",
+          "technology",
+          "users"
+        ],
+        "articles": 294
+      }
+    ],
+    "LDA": [
+      {
+        "id": 0,
+        "keywords": [
+          "said",
+          "people",
+          "mobile",
+          "technology",
+          "new",
+          "music",
+          "games"
+        ],
+        "articles": 209
+      },
+      {
+        "id": 1,
+        "keywords": [
+          "film",
+          "best",
+          "said",
+          "year",
+          "music",
+          "new",
+          "awards"
+        ],
+        "articles": 242
+      },
+      {
+        "id": 2,
+        "keywords": [
+          "said",
+          "mr",
+          "people",
+          "government",
+          "labour",
+          "election",
+          "blair"
+        ],
+        "articles": 324
+      },
+      {
+        "id": 3,
+        "keywords": [
+          "said",
+          "game",
+          "england",
+          "time",
+          "year",
+          "win",
+          "world"
+        ],
+        "articles": 329
+      },
+      {
+        "id": 4,
+        "keywords": [
+          "said",
+          "year",
+          "mr",
+          "market",
+          "company",
+          "firm",
+          "growth"
+        ],
+        "articles": 336
+      }
+    ]
+  },
+  "timeline": [],
+  "evaluation": {
+    "model": "TF IDF Logistic Regression, actual BBC labeled data",
+    "holdout_accuracy": 0.9583333333333334,
+    "holdout_macro_f1": 0.956728494159208,
+    "holdout_count": 288,
+    "source": "BBC deduplicated labeled Train, stratified 80/20, seed 42",
+    "cross_validation": [
+      {
+        "model": "Majority baseline",
+        "cv_macro_f1": 0.0768580274214949,
+        "cv_accuracy": 0.2378472222222222
+      },
+      {
+        "model": "Multinomial Naive Bayes",
+        "cv_macro_f1": 0.9600175410906409,
+        "cv_accuracy": 0.9609375
+      },
+      {
+        "model": "Logistic Regression",
+        "cv_macro_f1": 0.9670469464696937,
+        "cv_accuracy": 0.9678819444444445
+      },
+      {
+        "model": "Linear SVM",
+        "cv_macro_f1": 0.977034117865578,
+        "cv_accuracy": 0.9774305555555557
+      }
+    ],
+    "interpretation": "Internal held out evaluation, not external or current news accuracy. 50 duplicate texts removed before splitting."
+  },
+  "bbc_classifier": {
+    "active": true,
+    "model": "TF IDF Logistic Regression",
+    "articles_used": 1440,
+    "heldout_count": 288,
+    "heldout_accuracy": 0.9583333333333334,
+    "heldout_macro_f1": 0.956728494159208,
+    "comparison_svm_accuracy": 0.96875,
+    "comparison_svm_macro_f1": 0.9676603574882915,
+    "evaluation_source": "Real BBC labeled training corpus",
+    "note": "The research corpus is BBC. Stored article search is still a separately labeled synthetic demo. Full BBC article text is not redistributed."
+  },
+  "chart_notes": {
+    "categories": "Historical BBC label frequencies, not current news proportions",
+    "sentiments": "TextBlob polarity on historical article texts; interpret cautiously",
+    "topics": "NMF and LDA statistical topic assignments computed on authentic BBC training text; no time trend inferred",
+    "timeline": "Historical BBC CSV has no verified publication timestamp"
+  }
+}
