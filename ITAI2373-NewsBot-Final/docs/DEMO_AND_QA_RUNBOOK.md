@@ -2,7 +2,7 @@
 
 ## Recommended order for the 15 minute talk
 
-The presentation has 19 slides with speaker notes. Reserve about two minutes for the live website and finish with the limitations and your individual accountability. Rehearse the slide notes rather than reading technical paragraphs verbatim.
+The presentation has 20 slides with speaker notes, including the dedicated frontend bonus slide. The previously prepared synthetic narration practice video is based on the earlier 19 slide version and is not the student-on-camera presentation. Reserve about two minutes for the live website and finish with the limitations and your individual accountability. Rehearse the slide notes rather than reading technical paragraphs verbatim.
 
 ## Browser demonstration
 

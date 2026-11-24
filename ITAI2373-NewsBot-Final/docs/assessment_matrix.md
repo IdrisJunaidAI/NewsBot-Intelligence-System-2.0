@@ -1,20 +1,32 @@
-# Instructor Requirements and Individual Evidence Matrix
+# Professor rubric traceability | Individual NewsBot 2.0
 
-The instructor PDF assigns 50 points to the repository, 75 to advanced analysis, 40 to documentation and 35 to presentation. A second assessment grouping assigns 100 technical, 50 documentation and 50 presentation points. Both total 200; the Canvas due date for the current assignment is December 1, 2026.
+**Published grading:** 200 core points, divided into Repository (50), Advanced Analysis (75), Comprehensive Documentation (40) and Presentation (35). The instructor also lists a second qualitative review of Technical Excellence (100), Documentation (50) and Presentation (50); **these are alternative groupings of the same 200 points, not additional points**.
 
-See **individual_submission_compliance.md** for the complete current evidence and honestly identified remaining gaps. This is an individual alternative, not an approved exception to the professor's group format.
+**Extra credit available:** Up to 30 points for the optional Flask web frontend and up to 20 points for advanced research. Neither is guaranteed. See [fully evidenced bonus report](BONUS_EVIDENCE.md) and [individual compliance status](individual_submission_compliance.md).
 
-| Requirement | Verified evidence | Gap |
+| Criterion | Current evidence | Remaining limitations / evaluation risk |
 | --- | --- | --- |
-| Individual portfolio GitHub | Code, notebooks, CI tests, docs, artifacts | Repository access for instructor required |
-| Classification | 1,440 authentic distinct BBC labels; Logistic Regression 95.83% held out accuracy | External publisher testing, calibrated probabilities |
-| Topic modeling | Authentic BBC NMF and LDA aggregate topic assignments by default | No verified dates for topic evolution |
-| Sentiment | BBC TextBlob aggregate, VADER on English pasted text | No dated sentiment evolution |
-| Entity relationships | spaCy entities and same article cooccurrence | No causal relationship verification |
-| Summarization and content enhancement | Extractive summary, rule grounded insight templates | No audited pretrained abstractive generator |
-| Semantic retrieval | Hosted LSA and TF IDF on 60 synthetic passages; actual MiniLM in Colab | No licensed searchable BBC full text deployment |
-| Multilingual | English, Spanish, French detection; optional consent gated translation; measured synthetic MiniLM | No real multi publisher cultural framing or tested translation quality |
-| Conversation | Context, intent, synthetic article IDs and search filters | Not a full historic BBC text chatbot |
-| Web frontend | Live Render Free responsive BBC research dashboard and official attributed RSS links | Professional security audit and browser acceptance needed |
-| Research extension | Repeated reduced data training curve across 5 sample sizes | Instructor decides bonus qualification |
-| Documentation and presentation | Individual 13 page technical PDF, 4 page executive summary, 20 slide deck with notes, 3 page individual journal | Instructor approval required for replacing prescribed group format |
+| Repository 50 | Public individual GitHub repository with modular src, version bounded requirements, settings/key template, 9 notebooks (7 prescribed + 2 additional), tests, processing/model/result directories, docs, reports, meaningful commit history, GitHub Actions | Raw BBC CSV intentionally excluded for content rights; instructor needs student to supply authorized local dataset for exact reproduction |
+| Topic discovery 20 of Advanced 75 | LDA and NMF on authentic BBC aggregate and separate demo text, selectable interactive topic chart | No BBC publication timestamps, so topic evolution cannot be claimed |
+| Language models 20 of Advanced 75 | Extractive summarizer, grounded insight template, TF IDF and LSA retrieval; real MiniLM in the executed Colab experiment | No validated hosted BBC semantic full text search; query expansion limited |
+| Multilingual 20 of Advanced 75 | English/Spanish/French detection, optional consent-gated translation, curated offline word mapping, executed MiniLM benchmark | Translation quality and real cross-publisher cultural context not validated |
+| Conversation 15 of Advanced 75 | Intent handling, category and sentiment filters, multistep session context, source IDs, summaries | Stored article content is the **60 synthetic examples**, not the BBC historical articles |
+| Technical documents 15 of Documentation 40 | Refined 17 page technical PDF, source API/installation/configuration docs, diagram and data provenance | Student should confirm version applicability and personal attestation |
+| User docs 15 of Documentation 40 | User guide, FAQ, notebooks, live demo runbook, practice MP4 with synthetic voice clearly marked | A **personal on-camera tutorial** has not been verified; practice MP4 is not student appearance evidence |
+| Business docs 10 of Documentation 40 | Individual 3 page executive summary, hypothetical ROI, use cases, competitive comparison | ROI is illustrative and has not been realized commercially |
+| Presentation 35 | Individual 20 slide PowerPoint with notes and live website/demo plan; student reports instructor accepts solo format | Personal delivery and Q&A must be completed by student |
+| **Bonus web frontend, up to 30** | Render Free Flask site, authentic BBC evidence dashboard, attributed official RSS links, article analysis, new 2–5 article batch analysis, natural language query UI, multilingual lab, interactive visualizations and responsive glass UI | Manual browser acceptance and accessibility/security audit remain prudent |
+| **Bonus advanced research, up to 20** | 25 measured BBC low-data supervised classifier fits: 5 training sizes × 5 seeds, a fixed 288 example holdout, mean/stdev plot, CSV, original evaluation script, notebook 09 and `GET /api/research/fewshot` | This is a **low-data supervised learning curve**, not LLM few-shot prompting or unseen-category adaptation; instructor determines eligibility |
+
+## Individual scope
+
+The student reported that the professor accepts an individual submission and does not intend to create a team. Existing group instructions and contribution marks should therefore be discussed as individually integrated work, not fictitious coordination. The source files and research statement disclose AI help and external MIT Uiverse contributors.
+
+## Core limitations deliberately not concealed
+
+* BBC training documents have no publication date: genuine time evolution remains not measurable.
+* Original BBC article bodies are not republished on GitHub or Render.
+* The historical BBC classification percentages are **holdout** evidence only, not live news accuracy guarantees.
+* Multilingual MiniLM's reported perfect controlled retrieval is based on **six synthetic items and 18 intentionally constructed queries**, not independent cross-cultural news validation.
+* A separate synthetic source powers the conversational search.
+* Model probabilities are uncalibrated. No fact-checking or untested human bias classifications are claimed.

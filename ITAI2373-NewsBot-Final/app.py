@@ -13,6 +13,8 @@ from src.analysis.bbc_classifier import BBCWeightedClassifier
 from src.utils.dashboard import dashboard_snapshot
 from src.utils.bbc_feed import get_bbc_headlines
 from src.multilingual.offline_query import offline_news_query
+from src.utils.batch_analysis import analyze_articles
+from src.utils.research_bonus import learning_curve_report
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('FLASK_SECRET_KEY', os.urandom(32).hex())
@@ -101,6 +103,36 @@ def analyze():
         return jsonify({'error': str(exc)}), 400
     except RuntimeError as exc:
         return jsonify({'error': str(exc)}), 503
+
+
+@app.get('/api/research/fewshot')
+def fewshot_research():
+    """Show committed real BBC reduced-training-size results, never raw articles."""
+    try:
+        response = jsonify(learning_curve_report())
+        response.headers['Cache-Control'] = 'public, max-age=300'
+        return response
+    except (OSError, ValueError) as exc:
+        app.logger.warning('Few-shot result evidence unavailable: %s', type(exc).__name__)
+        return jsonify({'error': 'Research evidence temporarily unavailable'}), 503
+
+
+@app.post('/api/batch/analyze')
+def batch_analyze():
+    """Analyze 2–5 user supplied excerpts without persistence."""
+    payload = request.get_json(silent=True)
+    if not isinstance(payload, dict):
+        return jsonify({'error': 'Provide a JSON object containing an articles array'}), 400
+    try:
+        data = analyze_articles(get_model(), payload.get('articles'))
+        response = jsonify(data)
+        response.headers['Cache-Control'] = 'no-store'
+        return response
+    except ValueError as exc:
+        return jsonify({'error': str(exc)}), 400
+    except RuntimeError as exc:
+        app.logger.warning('Batch analysis unavailable: %s', type(exc).__name__)
+        return jsonify({'error': 'Article analysis model temporarily unavailable'}), 503
 
 
 @app.post('/api/query')

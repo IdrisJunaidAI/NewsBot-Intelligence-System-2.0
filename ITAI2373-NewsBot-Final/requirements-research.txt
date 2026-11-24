@@ -1,0 +1,6 @@
+# Optional research-only packages, not installed on Render Free.
+# Use with: python -m pip install -r requirements-research.txt
+-r requirements.txt
+matplotlib>=3.7,<4
+textblob>=0.17,<1
+sentence-transformers>=3,<6

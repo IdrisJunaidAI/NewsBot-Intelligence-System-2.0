@@ -12,7 +12,7 @@ The historical BBC classifier achieved **95.83% held out accuracy and 95.67% mac
 
 ## Individual submission and historical preservation
 
-This is the student's individual project. The original midterm notebook, technical report and reflective report remain preserved in the repository root. Current technical documentation, executive summary, 19 slide presentation and three page individual reflection are filed in `ITAI2373-NewsBot-Final/reports/`.
+This is the student's individual project. The original midterm notebook, technical report and reflective report remain preserved in the repository root. Current technical documentation, executive summary, 20 slide presentation and three page individual reflection are filed in `ITAI2373-NewsBot-Final/reports/`.
 
 The student reports that the professor approved completing this capstone individually and will not form groups. The published rubric still contains group wording, so the reports and presentation use `Individual` in the group name filename position. The student's report of approval has not been independently verified against written instructor correspondence. No fictional collaborators or contributions are reported.
 
@@ -37,6 +37,16 @@ The source code, licenses, setup and reproducibility guidance are under the proj
 
 ## Canvas presentation choice and personal repository
 
-The detailed rubric permits **PowerPoint OR a 10 to 15 minute recorded video**, not both. The final individual PowerPoint contains **19 slides with presenter notes**. A separate AI narrated practice MP4 can aid rehearsal, but it is **not** a video of the student appearing and should not be submitted as if it were personal camera footage. If the student selects the video format instead of PowerPoint, record personal narration, include the individual presenter appearing, and demonstrate the live website. See [individual repository and video submission notes](ITAI2373-NewsBot-Final/docs/VIDEO_PRESENTATION_AND_INDIVIDUAL_REPOSITORY.md).
+The detailed rubric permits **PowerPoint OR a 10 to 15 minute recorded video**, not both. The final individual PowerPoint contains **20 slides with presenter notes**. A separate AI narrated practice MP4 can aid rehearsal, but it is **not** a video of the student appearing and should not be submitted as if it were personal camera footage. If the student selects the video format instead of PowerPoint, record personal narration, include the individual presenter appearing, and demonstrate the live website. See [individual repository and video submission notes](ITAI2373-NewsBot-Final/docs/VIDEO_PRESENTATION_AND_INDIVIDUAL_REPOSITORY.md).
 
 **Individual portfolio repository link for Canvas:** https://github.com/IdrisJunaidAI/NewsBot-Intelligence-System-2.0
+
+## Professor rubric alignment and optional bonus evidence
+
+The repository now includes the prescribed source, notebook and documentation paths, including the separate `data/processed/` directory, nine teaching and research notebooks, source tested bonus endpoints, and the example generic PDF report aliases alongside the exact individual Canvas filenames.
+
+The **optional web frontend bonus (up to 30 points)** includes an interactive authentic historical BBC research dashboard, single article classification, **2 to 5 article batch analysis**, synthetic article conversational queries, a multilingual lab and multiple charts. The **advanced research extension (up to 20 points)** is a 25-run measured historical BBC reduced-training-data classification study, available through an interactive learning curve and a reproducible notebook. This is not LLM few-shot prompting or evidence of unseen-category recognition.
+
+[Read the source-linked evidence for both bonuses](ITAI2373-NewsBot-Final/docs/BONUS_EVIDENCE.md) | [View the 2-page bonus PDF](ITAI2373-NewsBot-Final/reports/FP_BonusEvidence_IdrisJunaid_Individual_ITAI2373.pdf) | [See all professor rubric requirements](ITAI2373-NewsBot-Final/docs/assessment_matrix.md).
+
+**Presentation:** The authoritative PowerPoint is now 20 slides and has 20 speaker notes. The independent earlier practice video contains 19 slides with synthetic narration; it is not a filmed student appearance. The active presentation choice for Canvas remains the 20 slide PowerPoint.

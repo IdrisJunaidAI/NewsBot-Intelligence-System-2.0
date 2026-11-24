@@ -1,0 +1,31 @@
+/* ITAI 2373 bonus evidence panels; scoped to existing NewsBot glass UI. */
+.bonus-research{margin:38px 0 26px;padding:clamp(17px,2.7vw,31px);border:1px solid rgba(230,247,255,.25);border-radius:27px;background:linear-gradient(133deg,rgba(203,236,250,.12),rgba(14,24,38,.76));backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:inset 0 1px 0 #ffffff2a,0 18px 50px #0005}
+.bonus-research .section-heading{margin:0 0 18px}
+.bonus-evidence-strip{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.bonus-evidence-strip span{padding:8px 12px;border-radius:99px;border:1px solid #afdded48;background:#d2edf016;color:#ddf8ff;font-size:.76rem;font-weight:700}
+.bonus-research-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px}
+.bonus-research-card{background:linear-gradient(135deg,#e6f5ff1b,#0d1724af);border:1px solid #d9f1ff2b;border-radius:18px;padding:20px;min-width:0}
+.bonus-research-card h3{color:#f3fbff;font-size:1.05rem;margin:0 0 13px}
+.bonus-research-card p{color:#bdced9;line-height:1.65}
+.bonus-inline-label{display:flex;align-items:center;gap:9px;font-size:.79rem;color:#d5ecf4;margin:0}
+.bonus-inline-label select{width:auto;max-width:135px;padding:8px;margin:0}
+.bonus-curve{display:grid;gap:17px;padding-top:12px}
+.bonus-curve-row{display:grid;gap:7px}
+.bonus-curve-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:.83rem}
+.bonus-curve-head strong{color:#f3fcff}
+.bonus-curve-head span{color:#deedf5;font-variant-numeric:tabular-nums}
+.bonus-curve-track{height:17px;background:#e9f9ff1c;border:1px solid #c4eefb21;overflow:hidden;border-radius:99px}
+.bonus-curve-bar{height:100%;min-width:1px;border-radius:99px;background:linear-gradient(90deg,#528da9,#97e2ed);box-shadow:0 0 16px #88e7f252}
+.bonus-batch-card{grid-column:1/-1}
+.bonus-batch-card textarea{width:100%;resize:vertical}
+.bonus-batch-card .article-hit{padding:16px;margin-top:12px}
+.bonus-batch-card .article-hit h3{font-size:1rem;margin:4px 0 8px;color:#e6faff}
+.bonus-batch-card .article-hit p{line-height:1.55;color:#c8dce9}
+.bonus-batch-results-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.bonus-metric-line{font-size:.8rem;color:#d8ebf5}
+.bonus-research #bonus_research_note{padding:14px;border-color:#c2ebfc49;background:#1024389c;color:#deecf6}
+#bonus_research_chart .result-error{margin:0}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.bonus-research{background:#17283a}.bonus-research-card{background:#1b2c3d}}
+@media(max-width:880px){.bonus-research-grid{grid-template-columns:1fr}.bonus-research .section-heading{align-items:flex-start;flex-wrap:wrap}}
+@media(max-width:650px){.bonus-batch-results-grid{grid-template-columns:1fr}.bonus-research-card{padding:15px}.bonus-evidence-strip span{font-size:.70rem}}
+@media(prefers-reduced-transparency:reduce){.bonus-research{background:#17283a;backdrop-filter:none;-webkit-backdrop-filter:none}.bonus-research-card{background:#1b2c3d}}

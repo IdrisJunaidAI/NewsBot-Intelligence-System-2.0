@@ -46,8 +46,20 @@ Run `python -m pip install -r requirements.txt`, `python train.py --demo`, `pyth
 
 ## Limitations, rights, academic integrity
 
-Classifier probabilities are not calibrated, publisher rights and potential AI restrictions must be respected, BBC records lack dates, translation quality is not externally validated, and cultural context across real multilingual publishers is not proven. The detailed professor document prescribes a group submission; this student has requested an individual alternative and must confirm acceptability. AI assistance was used to develop code, tests and drafts and must be disclosed rather than represented as work completed without support.
+Classifier probabilities are not calibrated, publisher rights and potential AI restrictions must be respected, BBC records lack dates, translation quality is not externally validated, and cultural context across real multilingual publishers is not proven. The student reports that the professor explicitly accepts independent completion and will not create a group. Individual authorship and documented AI assistance are retained. AI assistance was used to develop code, tests and drafts and must be disclosed rather than represented as work completed without support.
 
 ## Primary references
 
 Instructor supplied final project and web application guidance; supplied BBC Train/Test/Sample CSVs; scikit-learn, spaCy, VADER and TextBlob documentation; official Sentence Transformers multilingual MiniLM model card; BBC Global Terms of Use for RSS and publisher content; GitHub Actions and Render deployment evidence.
+
+
+## Optional bonus features and reproducible evidence
+
+The Flask frontend now includes an intentionally bounded `POST /api/batch/analyze` endpoint for 2–5 pasted excerpts (30–5000 characters each, 15000 total). Input validation occurs before any model inference, and the service returns per-document category, uncalibrated model probability, sentiment, language, extractive summary and review indicator. No raw article body is intentionally persisted; published summaries necessarily reuse user-supplied sentences. The interface runs on Render Free without new external dependencies.
+
+The advanced research extension is a **25-run historical BBC reduced-training-data experiment**, using five independently sampled training subsets at each of five sizes and a fixed 288-article holdout. The numeric CSV in `data/results/fewshot_learning_curve.csv`, the original `scripts/evaluate_bbc.py` experiment, `notebooks/09_FewShot_Learning_Curve.ipynb`, and the `GET /api/research/fewshot` endpoint provide auditable source, method, and presentation. See `docs/BONUS_EVIDENCE.md` for exact means, standard deviations and caveats. This is not unseen-category adaptation or in-context LLM few-shot prompting.
+
+
+### Submission evidence synchronization
+
+The optional two-page bonus appendix in `reports/FP_BonusEvidence_IdrisJunaid_Individual_ITAI2373.pdf` records the new frontend batch and authentic historical BBC low-data extension. The authoritative PowerPoint has 20 slides with speaker notes, and `reports/presentation_slides.pdf` is a matching PDF viewing copy. Existing technical PDF remains the core source analysis report; the bonus appendix is supplementary rather than silently modifying previously attested model results.
