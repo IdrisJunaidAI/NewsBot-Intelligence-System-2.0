@@ -43,6 +43,7 @@
   }
   async function request(path,body,target,renderer){
     const host=get(target);
+    window.NewsBotUI?.setLoading(target,true);
     host.replaceChildren(create('p','Processing request…'));
     try {
       const response=await fetch(path,{method:'POST',headers:{'Content-Type':'application/json'},
@@ -53,7 +54,7 @@
     } catch(error) {
       host.replaceChildren();
       message(host,'Unable to complete request: '+error.message,'result-error');
-    }
+    } finally { window.NewsBotUI?.setLoading(target,false); }
   }
   get('ml_detect').addEventListener('click',()=>{
     request('/api/multilingual/detect',{text:get('ml_text').value.trim()},'ml_result',data=>{

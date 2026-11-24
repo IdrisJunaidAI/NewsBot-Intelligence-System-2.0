@@ -101,6 +101,7 @@ function renderAnalysis(body) {
 }
 async function send(url, payload, target, mode) {
   const out = el(target);
+  window.NewsBotUI?.setLoading(target,true);
   out.replaceChildren(add(document.createElement('div'), 'p', 'meta', 'Processing request…'));
   try {
     const response = await fetch(url, {
@@ -113,6 +114,7 @@ async function send(url, payload, target, mode) {
     else if (mode === 'analysis') renderAnalysis(data);
     else { out.replaceChildren(); add(out, 'p', 'answer', 'Conversation filters reset.'); }
   } catch (error) { displayError(target, 'Unable to complete request: ' + error.message); }
+  finally { window.NewsBotUI?.setLoading(target,false); }
 }
 el('analyze').addEventListener('click', () => {
   const text = el('article').value.trim();

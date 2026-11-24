@@ -164,6 +164,7 @@
 
   async function load() {
     const status = byId('dashboard_status');
+    window.NewsBotUI?.setLoading('dashboard_status',true);
     status.textContent = 'Loading selected corpus analytics…';
     try {
       const response = await fetch('/api/dashboard?source=' + encodeURIComponent(activeSource), {cache: 'no-store'});
@@ -179,20 +180,18 @@
       status.replaceChildren();
       add(status, 'p', 'result-error', 'Analytics unavailable: ' + error.message);
       byId('export_link').setAttribute('aria-disabled', 'true');
-    }
+    } finally { window.NewsBotUI?.setLoading('dashboard_status',false); }
   }
 
-  document.querySelectorAll('[data-source]').forEach(button => {
-    button.addEventListener('click', () => {
-      activeSource = button.dataset.source;
-      document.querySelectorAll('[data-source]').forEach(other => {
-        const active = other.dataset.source === activeSource;
-        other.classList.toggle('active', active);
-        other.setAttribute('aria-pressed', active ? 'true' : 'false');
-      });
+  const datasetToggle = byId('nb_dataset_switch');
+  if (datasetToggle) {
+    datasetToggle.addEventListener('change', () => {
+      activeSource = datasetToggle.checked ? 'demo':'bbc';
+      const caption = byId('nb-source-label');
+      if (caption) caption.textContent = datasetToggle.checked ? 'SYNTHETIC DEMONSTRATION':'REAL BBC EVIDENCE';
       load();
     });
-  });
+  }
   document.querySelectorAll('[data-topic-method]').forEach(button => {
     button.addEventListener('click', () => {
       selectedTopic = button.dataset.topicMethod;
