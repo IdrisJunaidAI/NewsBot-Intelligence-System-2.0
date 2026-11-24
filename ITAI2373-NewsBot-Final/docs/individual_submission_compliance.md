@@ -2,7 +2,7 @@
 
 **Basis:** ITAI 2373 Final Project, NewsBot Intelligence System 2.0, detailed instructor PDF (18 pages) plus Canvas overview due December 1, 2026.
 
-**Critical exception:** Instructor material explicitly says team project, 15 minute team presentation and three page group journal. This is an individual alternative drafted at the student's request. Instructor approval has not been shown. It cannot be asserted as automatically compliant. The filename segment `Individual` is a transparent substitute for `[GroupName]`, not an approved group identifier.
+**Individual submission approval reported by student on November 24, 2026:** The student confirms the professor is comfortable with individual completion and does not intend to create groups. The earlier group format in the assignment remains the published template, but this is now an instructor-approved individual pathway **as reported by the student**. Written instructor confirmation has not been independently inspected. The filename segment `Individual` transparently substitutes for `[GroupName]`; confirm the exact naming convention if the instructor expects a different label.
 
 | Requirement | Evidence | Status and gap |
 | --- | --- | --- |
@@ -22,14 +22,14 @@
 | Technical documentation (15 points) | Individual detailed PDF, API, installation and configuration | Draft created; student final review required |
 | User documentation (15 points) | User guide, notebooks, FAQ, live demo steps | Video demonstration not recorded |
 | Business docs (10 points) | Executive summary, ROI scenario, comparisons | Hypothetical ROI not realized |
-| Presentation (35 points) | 19 slide individual deck with speaker notes | Solo adaptation requires instructor acceptance; rehearsal required |
-| Reflective journal | Three page individual journal | Not the prescribed group format, approval required |
+| Presentation (35 points) | 19 slide individual deck with speaker notes | Individual presentation approved as reported by the student; rehearsal required |
+| Reflective journal | Three page individual journal | Individual format approved as reported by the student; retain complete independent reflection |
 | Web application bonus | Render Free Flask site, responsive dashboard and attributed BBC RSS | Hosted and tested, still an educational prototype |
 | Research extension | 5,10,25,50,100 shots per category repeated study | Experimental data available; instructor determines bonus eligibility |
 
 ## Before submission
 
-1. Confirm individual exception and the permitted GroupName filename placeholder with the instructor.
+1. Individual submission has been approved according to the student's November 24 update. Confirm the GroupName filename placeholder only if the instructor specifies a different label.
 2. Confirm repository is accessible to the instructor. Current private visibility cannot be treated as publicly accessible.
 3. Reopen all PDFs and PPTX for your own accuracy review and confirm files render correctly.
 4. Verify latest live BBC aggregate dashboard, synthetic toggle, multilingual lab and RSS behaviour from a browser.
