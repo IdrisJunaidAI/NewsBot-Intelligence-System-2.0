@@ -79,3 +79,9 @@ See `docs/individual_contributions.md`, `docs/technical_documentation.md`, `docs
 ## GitHub link and presentation alternatives
 
 The course specifies an individual public repository for each submitter. This repository satisfies that condition for the approved solo capstone. The presentation format is a **19 slide PowerPoint with notes OR a 10 to 15 minute video**. The MP4 demonstration supplied separately is a **synthetic narration rehearsal aid**; it does not replace a recording where the student appears and walks through the live application. See [submission and video guidance](docs/VIDEO_PRESENTATION_AND_INDIVIDUAL_REPOSITORY.md).
+
+### Bonus coursework evidence
+
+The optional **Flask frontend** now includes a 2–5 article batch analyzer and an interactive authentic BBC few-shot learning curve alongside the existing BBC dashboard, multilingual lab and synthetic corpus chatbot. For reproducible bonus research evidence, see [BONUS_EVIDENCE.md](docs/BONUS_EVIDENCE.md), [professor rubric matrix](docs/assessment_matrix.md) and [notebook 09](notebooks/09_FewShot_Learning_Curve.ipynb). The measured 25-run learning curve is low-data supervised classification, **not** LLM few-shot prompting or generalization to unseen categories. No paid hosting or additional live-news content is needed.
+
+**Submission formats:** The professor's directory-tree examples use descriptive names such as `reports/technical_report.pdf`, while Canvas explicitly mandates `FP_TechnicalDoc_...` filenames. The required, individually named PDFs/PPTX reside in `reports/`; see [reports README](reports/README.md). The professor approved individual work as reported by the student.

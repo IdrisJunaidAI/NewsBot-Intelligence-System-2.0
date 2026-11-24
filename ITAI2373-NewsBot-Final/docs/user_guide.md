@@ -35,3 +35,16 @@ Paste English, Spanish or French input for language detection. Optional external
 ## Troubleshooting
 
 A sleeping Render Free app may take time to respond. If the RSS panel reports a failure, use the official BBC News link. If multilingual translation fails, confirm consent, provider access and language selection. For missing NER in local setup install `en_core_web_sm`. The GitHub Actions workflow tests core endpoints and source identity. Do not run untrusted joblib or pickle artifacts.
+
+
+## Batch processing (optional Flask frontend bonus)
+
+1. Scroll to **Batch article intelligence**.
+2. Paste 2 to 5 separate news excerpts. Put exactly `===` on its own line between them.
+3. Each excerpt must contain at least 30 and at most 5,000 characters; all excerpts together must not exceed 15,000 characters.
+4. Select **Analyze 2 to 5 articles** to display a separate category, text tone, language, model probability (uncalibrated) and extractive summary for each.
+5. For Spanish and French entries, the English-trained classifier is out of domain and requests human review. Do not submit private data. Inputs are not intentionally persisted in the application.
+
+## Few shot research bonus visualization
+
+Scroll to **How much labeled data does a classifier need?** under Bonus Research. Select **Macro F1** or **Accuracy**. Each bar shows the mean from five committed historical BBC experiments at that training size, plus the across-seed standard deviation. This is not live model training and does not use the synthetic web corpus. The raw measured CSV is available through the linked GitHub file. Original BBC texts are not exposed.

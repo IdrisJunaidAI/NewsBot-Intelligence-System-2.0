@@ -35,3 +35,12 @@
 ### Dataset rights
 
 The published BBC aggregate JSON and CSV are derived statistical findings. They do not grant a license to reuse original BBC full texts. Use official publisher links for reading the original articles.
+
+
+### `POST /api/batch/analyze` (frontend bonus)
+
+Body: `{"articles":["A news excerpt of at least thirty characters ...","Another independent excerpt of at least thirty characters ..."]}`. Accepts **2 to 5** strings, each 30–5000 characters and a maximum of 15000 total. Success (200) returns `{"processed":2,"results":[{"article_number":1,"category":"...","model_probability":0.7,"sentiment":"...","language":"en","summary":"...","needs_human_review":false,"classifier_source":"..."}],"disclaimer":"..."}`. The values shown here are **shape examples, not actual model predictions**. Invalid input yields 400; unavailable model yields 503. No original input text is echoed, although extractive summaries reuse supplied sentences. Cache control: no-store.
+
+### `GET /api/research/fewshot` (research bonus)
+
+Returns the committed **measured** historical BBC low-data experiment data: five sample sizes, five random-seed repetitions, aggregated mean and sample standard deviation for holdout macro F1 and accuracy, provenance, limitations, and experiment count. Reads `data/results/fewshot_learning_curve.csv`; no raw article bodies or input text are served. Missing or corrupt evidence produces 503 rather than invented scores. `data/results/fewshot_learning_curve.csv` is the source of truth.
