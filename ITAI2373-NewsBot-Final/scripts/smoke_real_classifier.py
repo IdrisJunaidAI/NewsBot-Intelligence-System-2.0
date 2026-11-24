@@ -19,8 +19,13 @@ with app.test_client() as c:
     dashboard = c.get('/api/dashboard')
     assert dashboard.status_code == 200, dashboard.data
     analytics = dashboard.get_json()
-    assert analytics['meta']['synthetic'] is True
-    assert analytics['meta']['articles'] == 60
+    assert analytics['meta']['synthetic'] is False
+    assert analytics['meta']['articles'] == 1440
+    assert sum(x['count'] for x in analytics['categories']) == 1440
+    demo_response = c.get('/api/dashboard?source=demo')
+    assert demo_response.status_code == 200
+    assert demo_response.get_json()['meta']['synthetic'] is True
+    assert demo_response.get_json()['meta']['articles'] == 60
     assert analytics['bbc_classifier']['active'] is True
     assert analytics['bbc_classifier']['articles_used'] == 1440
     assert abs(analytics['bbc_classifier']['heldout_accuracy'] - 0.9583333333) < 1e-5
