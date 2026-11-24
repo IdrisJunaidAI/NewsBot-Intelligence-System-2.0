@@ -84,3 +84,13 @@ footer p{color:#aab5c2}
 @media(max-width:950px){header{min-height:310px}header::after{opacity:.27;width:240px;height:240px}.nb-studio-controls{min-width:130px}}
 @media(max-width:750px){.shell{padding:12px}.portfolio-nav{position:static}.portfolio-nav a{font-size:.81rem}.nb-studio-controls{display:none}header{padding:36px 26px}header h1{font-size:clamp(2.1rem,10vw,3.2rem)}header::after{opacity:.2}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}header::after,.portfolio-nav{transition:none}}
+
+/* Keep the functional 3D torch accessible on smaller screens rather than hiding it. */
+#analytics_title,#bbc_news_heading,#ml_title,#tools_title{scroll-margin-top:105px}
+@media(max-width:750px){
+  header{flex-direction:column;align-items:stretch;gap:5px}
+  .nb-studio-controls{display:grid;justify-items:center;align-self:center;min-width:128px;max-height:155px}
+  .nb-studio-controls p{font-size:.73rem}
+  .nb-hero-actions{margin-top:28px}
+  .nb-hero-microcopy{max-width:180px}
+}
