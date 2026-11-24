@@ -104,4 +104,4 @@ class CrossLingualAnalyzer:
                 "method":("Translation-assisted " if translated else "Direct English ")+results["method"],
                 "matches":results["results"],
                 "external_service_used":bool(translated and translated.get("external_service_used")),
-                "note":"Query converted to English with external translation then retrieved in English; not shared-vector multilingual neural search. Translation quality is unverified."}
+                "note":"Query converted to English with external translation then retrieved in English; NOT shared multilingual transformer retrieval. Translation quality is unverified."}
