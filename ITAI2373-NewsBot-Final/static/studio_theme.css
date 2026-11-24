@@ -1,0 +1,86 @@
+/* NewsBot Industrial Studio: original application skin based on the supplied dark sculptural reference.
+   Visual treatment only. Authentic BBC analytics, provenance and research behavior are unchanged. */
+:root {
+  --nb-studio-bg:#090b0e;
+  --nb-studio-panel:#14191f;
+  --nb-studio-panel2:#1b222a;
+  --nb-studio-line:#343b46;
+  --nb-studio-text:#f2f4f7;
+  --nb-studio-muted:#aab5c2;
+  --nb-studio-accent:#91dfef;
+}
+html{scroll-behavior:smooth}
+body{background:radial-gradient(ellipse at 18% 0%,#27303b 0%,#0d1116 28%,transparent 56%),linear-gradient(180deg,#08090c,#13171d 49%,#090b0e);color:var(--nb-studio-text);min-height:100vh}
+.shell{max-width:1400px;padding:24px clamp(16px,3vw,42px)}
+header{border-radius:26px;min-height:375px;padding:clamp(34px,5vw,70px);background:radial-gradient(ellipse at 82% 45%,rgba(235,242,250,.20),transparent 22%),radial-gradient(ellipse at 75% 50%,rgba(88,102,120,.35),transparent 36%),linear-gradient(116deg,#06080b 16%,#161b23 63%,#050607);border:1px solid #383f48;box-shadow:0 25px 85px #0009, inset 0 1px 0 #8e96a333;isolation:isolate}
+header::before{inset:auto -6% -36% auto;width:460px;height:320px;border:1px solid rgba(242,244,245,.28);border-radius:48%;transform:rotate(-20deg);box-shadow:inset 16px 20px 24px #fff1,0 0 50px #ffffff09;transition:opacity .35s}
+header::after{content:"";position:absolute;z-index:-1;width:clamp(210px,31vw,420px);height:clamp(210px,31vw,420px);right:3%;top:-12%;pointer-events:none;border:32px solid transparent;border-radius:38% 62% 51% 49% / 52% 40% 60% 48%;background:linear-gradient(142deg,#c5ccd29c 3%,#5b6875a3 26%,#161b23 58%,#b5bac277 83%) border-box;mask:linear-gradient(#000 0 0) padding-box,linear-gradient(#000 0 0);mask-composite:exclude;filter:drop-shadow(8px 28px 25px #000c);transform:rotate(-31deg);opacity:.8;transition:opacity .35s,transform .6s}
+header>div:first-child{z-index:1;position:relative;max-width:770px}
+header small{color:#b9c5d2;font-size:.68rem;letter-spacing:.28em;font-weight:750}
+header h1{font-size:clamp(2.3rem,5vw,4.9rem);line-height:1.04;letter-spacing:-.075em;margin:19px 0 18px;color:#f6f9fc;text-wrap:balance}
+header h1 span{color:#b6ecf5;text-shadow:0 0 28px rgba(105,219,246,.20)}
+header p{color:#bbc6d0;font-size:clamp(.93rem,1.3vw,1.05rem);line-height:1.8;max-width:620px}
+header .brand{display:none}
+.nb-hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:30px}
+.nb-hero-microcopy{font-size:.74rem;color:#d4dce4;letter-spacing:.1em;max-width:230px}
+.nb-studio-controls{position:relative;z-index:1;align-self:end;display:grid;justify-items:center;gap:8px;min-width:158px}
+.nb-studio-controls p{font-size:.72rem;color:#d4dce4;text-align:center;margin:0;line-height:1.4;font-weight:750;letter-spacing:.09em}
+body:not(.nb-illumination) header::before,body:not(.nb-illumination) header::after{opacity:.18}
+body:not(.nb-illumination) header{background:linear-gradient(120deg,#06080b,#10151b 70%,#050607)}
+.portfolio-nav{background:#13171ce8;border:1px solid #303943;box-shadow:0 15px 30px #0004;backdrop-filter:blur(15px);gap:5px;border-radius:17px;position:sticky;top:10px;z-index:8;padding:9px}
+.portfolio-nav a{color:#c3cdd7;border-radius:10px}
+.portfolio-nav a:hover,.portfolio-nav a:focus-visible{background:#263846;color:#dbf6f9}
+.section-heading h2,.lang-lab h2,.lang-panel h3,.viz-header h3,.card h2,.small-heading{color:#f3f7fb}
+.section-heading p,.lang-subtitle,.hint,.chart-footnote,.card p,.feed-disclosure,.dataset-explainer{color:#aebbc8}
+.eyebrow{color:#8ce5ea;letter-spacing:.19em}
+.notice{background:#172c2c;border:1px solid #3a5559;color:#d6eee9;border-radius:14px}
+.notice .quality-lead{color:#d3f0ed}
+.dashboard-status,.data-indicator{color:#d8e3eb}
+.data-indicator{background:#17383b;color:#b6e9e4}
+.kpi-card,.viz-card,.bbc-rss,.lang-lab,.lang-panel,.card{background:linear-gradient(144deg,#202731,#14191f 55%,#12161c);border:1px solid #3b434f;color:#f2f5fa;box-shadow:0 12px 36px #0004}
+.kpi-card{min-height:150px;border-radius:20px}
+.kpi-label,.kpi-qualifier,.meta{color:#afbdcb}
+.kpi-number{color:#d3f5ff;font-size:clamp(1.85rem,2.5vw,2.3rem)}
+.viz-card{border-radius:20px}
+.viz-header>span,.bar-label,.bar-count,.topic-keywords,.empty-chart,.comparison-row,.kpi-card .meta{color:#bbc6d3}
+.bar-track,.topic-track{background:#313a47}
+.bar-color-0{background:#99dcec}.bar-color-1{background:#aabaf1}.bar-color-2{background:#c3a2da}.bar-color-3{background:#e5b995}.bar-color-4{background:#9dc9b5}
+.topic-toggle{background:#0d1116;border:1px solid #434b54}
+.topic-option{color:#b8c8d5}
+.topic-option.active{background:#344d62;color:white}
+.quality-lead,.quality-metric strong,.comparison-row strong{color:#e3f4fa}
+.quality-metric{background:#2a3440}
+.quality-explainer{background:#3c2d24;color:#f4d4a0}
+.subtle-divider{background:#34404b}
+.bbc-rss{border-radius:25px}
+.bbc-headline-card,.article-hit,.metric{background:#1c232b;border:1px solid #35404d;color:#e5edf4;box-shadow:none}
+.bbc-headline-card:hover,.bbc-headline-card:focus-within{border-color:#a2d9e0}
+.bbc-article-title a,.hit-heading strong,.metric-value{color:#f2f7fc}
+.bbc-source-label,.bbc-attribution{color:#9de6e9}
+.bbc-date{color:#bbc6d4}
+.bbc-credit,.export-link{background:#dbe9ef;color:#101a25;border-radius:12px}
+.bbc-credit:hover,.export-link:hover{background:#a9e1e5;color:#101a25}
+.lang-lab,.analysis-section{margin-top:35px}
+.lang-lab{border-radius:25px;padding:clamp(20px,3vw,34px)}
+.lang-panel{border-radius:18px}
+.lang-consent{background:#372b20;border-color:#866b4d;color:#fee5bd}
+.lang-consent span{color:#f5ddb7}
+label{color:#dde6ee}
+textarea,input,select,.lang-panel select,.feed-toolbar select{background:#101720;color:#f2f7fc;border:1px solid #596676}
+textarea:focus,input:focus,select:focus{outline:2px solid #a3e7ef;border-color:#9acbd4}
+textarea::placeholder,input::placeholder{color:#97a8b6}
+button{background:#e4eef3;color:#0d1722;border-radius:11px}
+button:hover{background:#b5e9ee;color:#101a25}
+.secondary,.examples button{background:#2d3845;color:#ecf5fa;border:1px solid #465b6a}
+.secondary:hover,.examples button:hover{background:#425a68;color:white}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #97e5eb;outline-offset:3px}
+.result{background:#151d26;border:1px solid #40505c;color:#e1eaf3}
+.result .answer,.results-title,.summary-text{color:#eef7ff}
+.result-notice{background:#3d3323;border-color:#806440;color:#fee2a8}
+.result-error{color:#ffc0c6}
+.chart-footnote{color:#9daab7}
+footer{color:#9eacba;border-top:1px solid #303944;margin-top:48px}
+footer p{color:#aab5c2}
+@media(max-width:950px){header{min-height:310px}header::after{opacity:.27;width:240px;height:240px}.nb-studio-controls{min-width:130px}}
+@media(max-width:750px){.shell{padding:12px}.portfolio-nav{position:static}.portfolio-nav a{font-size:.81rem}.nb-studio-controls{display:none}header{padding:36px 26px}header h1{font-size:clamp(2.1rem,10vw,3.2rem)}header::after{opacity:.2}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}header::after,.portfolio-nav{transition:none}}
