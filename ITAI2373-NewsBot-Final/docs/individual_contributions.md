@@ -25,4 +25,4 @@ ChatGPT assisted with code scaffolding, test authoring, debugging plans, analyti
 
 ## Submission status
 
-The detailed assignment template requires group work and a group journal, while this submission has been prepared as an individual alternative at the student's request. Instructor acceptance of that format has **not** been documented. This is a material grading consideration that should be resolved before the December 1 deadline. No claim of professor approval is made.
+The course assignment template was written for groups. On November 24, 2026, the student reported that the professor accepts individual submission and is not creating any groups. Accordingly, the project uses individual contribution records, individual documentation, an individual presentation, and an individual reflective journal. This approval is **student reported** rather than independently substantiated by an instructor email or rubric amendment. The student remains personally responsible for understanding, reviewing and presenting all work, including acknowledging AI assistance accurately.

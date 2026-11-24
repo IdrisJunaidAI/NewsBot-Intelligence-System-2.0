@@ -4,6 +4,7 @@
 
 **Student:** Idris O. Junaid  
 **Submission scope:** Individual work and independently accountable research portfolio.  
+**Professor's individual submission decision:** Student reported on November 24, 2026 that individual completion is accepted and no groups will be formed. This report has not been independently verified against written instructor correspondence.  
 **Source repository:** https://github.com/IdrisJunaidAI/NewsBot-Intelligence-System-2.0  
 **Website:** https://newsbot-intelligence-system-2-p97f.onrender.com  
 **Due:** December 1, 2026, at 11:59 PM Central Time.
