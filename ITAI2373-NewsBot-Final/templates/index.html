@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="/static/studio_theme.css?v=1">
   <link rel="stylesheet" href="/static/uiverse_components.css?v=1">
   <link rel="stylesheet" href="/static/prismatic_glass.css?v=1">
+  <link rel="stylesheet" href="/static/bonus_research.css?v=1">
 </head>
 <body>
 <div class="shell">
@@ -53,6 +54,8 @@
   <a href="#analytics_title">BBC Research Dashboard</a>
   <a href="#bbc_news_heading">Current BBC Headlines</a>
   <a href="#ml_title">Multilingual Lab</a>
+  <a href="#bonus_research_title">Bonus Research</a>
+  <a href="#batch_title">Batch Analysis</a>
   <a href="#tools_title">Analyze and Ask</a>
   <a href="https://github.com/IdrisJunaidAI/NewsBot-Intelligence-System-2.0" target="_blank" rel="noopener noreferrer">Source Code</a>
 </nav>
@@ -114,6 +117,41 @@
   </div>
 </section>
 
+
+<section class="bonus-research" aria-labelledby="bonus_research_title">
+  <div class="section-heading">
+    <div>
+      <small class="eyebrow">ADVANCED RESEARCH EXTENSION · UP TO 20 BONUS POINTS</small>
+      <h2 id="bonus_research_title">How much labeled data does a classifier need?</h2>
+      <p>Measured few-shot learning curve on the authentic historical BBC corpus. Five stratified training sizes, five random seeds each, and the same independent 288-article evaluation partition.</p>
+    </div>
+    <a class="export-link" href="https://github.com/IdrisJunaidAI/NewsBot-Intelligence-System-2.0/blob/main/ITAI2373-NewsBot-Final/data/results/fewshot_learning_curve.csv" target="_blank" rel="noopener noreferrer">View raw experiment CSV</a>
+  </div>
+  <div class="bonus-evidence-strip">
+    <span>25 measured model fits</span><span>5 BBC news categories</span><span>288 held-out articles</span><span>0 original BBC texts republished</span>
+  </div>
+  <div class="bonus-research-grid">
+    <div class="bonus-research-card">
+      <div class="viz-header">
+        <h3>Classifier learning curve</h3>
+        <label for="bonus_metric" class="bonus-inline-label">Metric
+          <select id="bonus_metric">
+            <option value="macro_f1">Macro F1</option>
+            <option value="accuracy">Accuracy</option>
+          </select>
+        </label>
+      </div>
+      <div id="bonus_research_chart" role="status" aria-live="polite">Loading committed research results…</div>
+      <p class="chart-footnote">Bars show the mean across five seeds. The ± number is the across-seed standard deviation, not a confidence interval.</p>
+    </div>
+    <div class="bonus-research-card">
+      <h3>Methodology and reproducibility</h3>
+      <p>Training subsets were drawn only from the original BBC training partition. Each experiment used TF IDF and Logistic Regression, then evaluated on the same fixed holdout. These are historical news classifications, not LLM prompt examples.</p>
+      <div id="bonus_research_note" class="result" role="status" aria-live="polite">No original article bodies are served in the experiment response.</div>
+      <p class="chart-footnote">Repeated evaluation on one holdout makes this exploratory evidence. Performance on different publishers, languages or current news has not been established.</p>
+    </div>
+  </div>
+</section>
 
 <section class="bbc-rss" aria-labelledby="bbc_news_heading">
   <div class="section-heading">
@@ -217,6 +255,20 @@
       </div>
       <div id="chat_out" class="result" role="status" aria-live="polite">Relevant article cards and source IDs will appear here.</div>
     </section>
+    <section class="card bonus-batch-card" aria-labelledby="batch_title">
+      <small class="eyebrow">WEB APPLICATION BONUS · BATCH NLP</small>
+      <h2 id="batch_title">Batch article intelligence</h2>
+      <p>Analyze two to five short articles together. Separate articles with a line containing three equals signs (<code>===</code>). Individual articles can contain 30 to 5000 characters. Total input is limited to 15000 characters.</p>
+      <label for="bonus_batch_text">Article excerpts</label>
+      <textarea id="bonus_batch_text" rows="7" maxlength="16000" placeholder="Paste the first news article here, at least 30 characters.
+
+===
+
+Paste a second news article here, at least 30 characters."></textarea>
+      <p class="hint">Article categories use the historical BBC trained classifier. Results include category, text tone, language, and an extractive summary. The app does not store submitted article bodies. Do not submit confidential or sensitive material.</p>
+      <div class="actions"><button type="button" id="bonus_batch_run">Analyze 2 to 5 articles</button></div>
+      <div id="bonus_batch_results" class="result" role="status" aria-live="polite">Batch analysis results will appear here.</div>
+    </section>
   </main>
 </section>
 <footer>
@@ -240,5 +292,6 @@
 <script src="/static/dashboard.js?v=4"></script>
 <script src="/static/multilingual.js?v=2"></script>
 <script src="/static/bbc_headlines.js?v=1"></script>
+<script src="/static/bonus_features.js?v=1"></script>
 </body>
 </html>
