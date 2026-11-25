@@ -1,3 +1,5 @@
+> **ITAI 2373 complete course portfolio:** [Interactive portfolio source and launch guide](https://github.com/IdrisJunaidAI/ITAI2373_NewsBot_Midterm/tree/main/docs) | [Course evidence map](https://github.com/IdrisJunaidAI/ITAI2373_NewsBot_Midterm/blob/main/docs/COURSE_INDEX.md) | [Midterm original evidence](https://github.com/IdrisJunaidAI/ITAI2373_NewsBot_Midterm) | [NLP lab notebooks](https://github.com/IdrisJunaidAI/efficacy-ai-learning-hub).
+
 # NewsBot Intelligence System 2.0
 
 **ITAI 2373 Natural Language Processing | Individual capstone portfolio | Idris O. Junaid**
@@ -12,7 +14,7 @@ The historical BBC classifier achieved **95.83% held out accuracy and 95.67% mac
 
 ## Individual submission and historical preservation
 
-This is the student's individual project. The original midterm notebook, technical report and reflective report remain preserved in the repository root. Current technical documentation, executive summary, 20 slide presentation and three page individual reflection are filed in `ITAI2373-NewsBot-Final/reports/`.
+This is the student's individual project. The original midterm notebook, technical report and reflective report are preserved in the separate [midterm repository](https://github.com/IdrisJunaidAI/ITAI2373_NewsBot_Midterm). The final capstone contains its own current evidence and reports. Current technical documentation, executive summary, 20 slide presentation and three page individual reflection are filed in `ITAI2373-NewsBot-Final/reports/`.
 
 The student reports that the professor approved completing this capstone individually and will not form groups. The published rubric still contains group wording, so the reports and presentation use `Individual` in the group name filename position. The student's report of approval has not been independently verified against written instructor correspondence. No fictional collaborators or contributions are reported.
 
